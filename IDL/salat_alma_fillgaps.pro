@@ -1,6 +1,7 @@
 function salat_alma_fillgaps, cube, cadence, time, boxcar=boxcar, clip=clip, nofillgap=nofillgap, help=help
 	
-; fill gaps in time-series data by linear interpolation and/or apply a temporal boxcar average
+; (1) fill gaps in time-series data by linear interpolation
+; (2) apply a temporal boxcar average
 
 IF keyword_set(help) THEN BEGIN
   PRINT,' '
