@@ -16,7 +16,8 @@ dir = './'
 outdir = savedir
 savefile = filename
 
-if mkcube+cleancube+polish gt 1 OR mkcube+cleancube+polish ne 1 then stop
+if mkcube+cleancube+polish gt 1 and mkcube+cleancube+polish ne 3 then stop
+if mkcube+cleancube+polish eq 0 then begin mkcube = 1 & cleancube = 1 & polish = 1 endif
 
 ; -------------------------------------------------------------------------------------------------------
 ; -------------------------------------------------------------------------------------------------------
