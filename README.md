@@ -26,7 +26,7 @@ IDL> salad_telluric_transmission, band=band, pwv=pwv_req, frequency=freq_r, out_
 ```
 
 #### :round_pushpin: SALAT_MAKE_ALMA_CUBE
-> Create ALMA cubes from individual files outputed by SoAP (put them together, remove bad frames and polish the cube), i.e., both pre-level4 and level4 cubes
+> Create ALMA cubes from individual files outputed by SoAP (put them together, remove bad frames and polish the cube), i.e., creates both pre-level4 and level4 cubes
 ```JavaScript
 IDL> salat_make_alma_cube, filesearch, savedir=savedir, filename=filename, date=date
 ```
@@ -38,9 +38,21 @@ IDL> salat_alma_polish_tseries, dir=dir, cube=cube, ...
 ```
 
 #### :round_pushpin: SALAT_MAKE_MOVIE
-> Males movie (time series of images) along with an analog clock and beam size/shap depicted
+> Makes a movie (time series of images) along with an analog clock and beam size/shap depicted
 ```JavaScript
 IDL> salat_make_movie, almacube, pixelsize=pixelsize, savedir=savedir, filename=filename
+```
+
+#### :round_pushpin: SALAT_COMBINE_SPECTRALWINDOWS
+> Combines data cubes for different spectral windows and does check if all time steps do exist in both cubes
+```JavaScript
+IDL> salad_combine_spectralwindows, dsw0, dsw1, nusw0, nusw1, time0, time1, spectralwindow=specwin
+```
+
+#### :round_pushpin: SALAT_ALMA_INT2BRTEMP
+> Convert intensity to brightness temperature
+```JavaScript
+IDL> salat_alma_int2brtemp, intensity, lambda, rh=rh
 ```
 
 ## Python routines
