@@ -55,6 +55,12 @@ IDL> salad_combine_spectralwindows, dsw0, dsw1, nusw0, nusw1, time0, time1, spec
 IDL> salat_alma_int2brtemp, intensity, lambda, rh=rh
 ```
 
+#### :round_pushpin: SALAT_ALMA_FILLGAPS
+> Fill gaps in time-series data by linear interpolation, and optionally apply a temporal boxcar average
+```JavaScript
+IDL> salat_alma_fillgaps, cube, cadence, time, boxcar=boxcar
+```
+
 ## Python routines
 
 
