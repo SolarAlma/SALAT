@@ -79,6 +79,12 @@ IDL> salat_alma_intensity_to_K
 IDL> bestframe = salat_contrast(cube, limit=limit, sbadframes=badframes, goodframes=goodframes)
 ```
 
+#### :round_pushpin: SALAT_FITS2CRISPEX
+> Create a CRISPEX cube from a fits cube (for quick inspection using CRISPEX)
+```JavaScript
+IDL> salat_fits2crispex, fitscube, savedir=savedir, filename=filename
+```
+
 ## Python routines
 
 #### :round_pushpin: SALAT_ALMA_READFITSDATA
