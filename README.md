@@ -61,6 +61,24 @@ IDL> salat_alma_int2brtemp, intensity, lambda, rh=rh
 IDL> salat_alma_fillgaps, cube, cadence, time, boxcar=boxcar
 ```
 
+#### :round_pushpin: SALAT_ALMA_MODIFY_HEADER_AND_INFO
+> Modify header of old cubes and add missing keywords
+```JavaScript
+IDL> salat_alma_modify_header_and_info
+```
+
+#### :round_pushpin: SALAT_ALMA_INTENSITY_TO_K
+> Convery intensity to temperature using a conversion factor's vector
+```JavaScript
+IDL> salat_alma_intensity_to_K
+```
+
+#### :round_pushpin: SALAT_CONTRAST
+> Compute and plot "mean intensity" and "rms intensity contrast" of a cube and indicate bad/good frames based on a given threshold
+```JavaScript
+IDL> bestframe = salat_contrast(cube, limit=limit, sbadframes=badframes, goodframes=goodframes)
+```
+
 ## Python routines
 
 #### :round_pushpin: SALAT_ALMA_READFITSDATA
