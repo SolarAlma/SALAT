@@ -1,4 +1,4 @@
-; pro alma_modify_header_and_info
+pro salat_alma_modify_header_and_info
 
 
 dir = '/mn/stornext/d13/alma/shahin/original_cubes/SolarAlma.b3.2017-04-22-17:20:13.to.17:42:37/'
