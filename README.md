@@ -63,4 +63,11 @@ IDL> salat_alma_fillgaps, cube, cadence, time, boxcar=boxcar
 
 ## Python routines
 
+#### :round_pushpin: SALAT_ALMA_READFITSDATA
+> Read all FITS in a folder and create DataCube, an array with times and extract pixelsize
+```JavaScript
+In [1]: run salad_read_fitsdata
+
+In [2]: dfba_alma_soap,tfba_alma_soap,arpx_alma_soap = ALMA_fits_reader(path_alma_fba) 
+````
 
