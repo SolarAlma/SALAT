@@ -21,6 +21,8 @@ from salat_reads_fitsdata import ALMA_fits_reader
 
 def ALMA_splitcube_scans(tfba_alma,dfba_alma):
     """
+    Author: Guevara Gomez J.C.
+
     Using salat_reads_fitstada to get data and time cubes
     split the cubes in the scans of the observation
 

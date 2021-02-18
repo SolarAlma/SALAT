@@ -1,3 +1,5 @@
+#Author: Guevara Gomez J.C.
+
 ###Extra
 import warnings
 warnings.filterwarnings('ignore')

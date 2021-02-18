@@ -2,6 +2,8 @@ from astropy.io import fits
 
 def alma_readheader(file,showheader = False):
 	"""
+	Author: Guevara Gomez J.C.
+
 	Get the header from a single FITS file
 
 	Parameters

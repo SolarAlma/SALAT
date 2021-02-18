@@ -19,6 +19,8 @@ import glob
 
 def ALMA_fits_reader(path_alma_fba,Shahin_format=False):
     """
+    Author: Guevara Gomez J.C.
+    
     Using the path of the fitts file, the FBA cube is read.
     FOV is cropped to get rid of NAN values around image
 

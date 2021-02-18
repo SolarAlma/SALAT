@@ -8,6 +8,8 @@ from skyfield.api import load
 
 def distance_sun_earth(time0,):
     """
+    Author: Guevara Gomez J.C.
+    
     Finds the distance Sun - Earth at exact time0
 
     Parameters

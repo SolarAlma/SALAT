@@ -6,6 +6,8 @@ import tqdm
 
 def get_ALMA_obs_beam(path_obs,SOAP=True):
     """
+    Author: Guevara Gomez J.C.
+
     From the fits this script extract the bmajor, bminor and bangle in ARCSEC
 
     Parameters
