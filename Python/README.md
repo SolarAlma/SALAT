@@ -23,7 +23,7 @@ In [3]: header = alma_readheader(file,showheader = True)
 #### :round_pushpin: SALAT_ALMA_SPLITSCANS
 > Use the FITS READER to read data and create a cube split in all the scans for the observation
 ```JavaScript
-In [1]: run salat_alma_readfitsheade.py
+In [1]: run salat_alma_readfitsheader.py
 
 In [2]: path_alma_fba = '/test_data/b3.2017-04-22/'
         dfba_alma_soap,tfba_alma_soap,arpx_alma_soap = ALMA_fits_reader(path_alma_fba,Shahin_format=False)
