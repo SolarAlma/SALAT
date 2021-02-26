@@ -4,7 +4,7 @@
 	IDL> salad_read_fitsdata, filename
 	```
 
-!!! success "SALAT_ALMA_READFITSHEADER"
+!!! success "SALAT_ALMA_READFITSHEADER" 
 	Reads the FITS header and extracts relevant information 
 	```webidl
 	IDL> salat_alma_readfitsheader, header
