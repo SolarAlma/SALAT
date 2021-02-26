@@ -1,9 +1,9 @@
 <p align="center">
-    <strong>SALAT: Solar ALMA Library of Auxiliary Tools</strong>
+    <span style="font-size:4em;"><strong><span style="font-family:Papyrus;">SALAT</span>: Solar ALMA Library of Auxiliary Tools</strong></span>
 </p>
 
 <p align="center">
-    <img src="https://img.shields.io/badge/under-development-green">
+    <img src="https://img.shields.io/badge/under-development-red">
     <img src="https://img.shields.io/badge/copyright-RoCS%2FSolarALMA-blue">
     <a href="https://opensource.org/licenses/MIT" title=""><img src="https://img.shields.io/badge/License-MIT-yellow.svg"></a>
 </p>
