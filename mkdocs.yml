@@ -1,0 +1,98 @@
+site_name: SALAT Documentation
+site_url: https://SolarAlma.github.io/SALAT/
+
+# Repository
+repo_name: SolarALMA/SALAT
+repo_url: https://github.com/SolarAlma/SALAT
+edit_uri: ""
+
+# Copyright
+copyright: Copyright &copy; 2021 <a href="https://www.mn.uio.no/rocs/english/projects/solaralma/" target="blank">RoCS/SolarALMA</a>
+
+nav:
+  - Home: index.md
+  - Categories: categories.md
+  - Routines:
+    - IDL: idl.md
+    - Python: python.md
+
+theme:
+  name: material
+  palette:
+      scheme: default
+      primary: teal
+      accent: teal
+  font:
+    text: Roboto
+    code: Roboto Mono
+  favicon: images/favicon.png
+  logo: images/favicon.png
+
+markdown_extensions:
+    - toc:
+        permalink: '#'
+
+# Customization
+extra:
+  social:
+    - icon: fontawesome/solid/home
+      link: https://www.mn.uio.no/rocs/english/projects/solaralma/
+    - icon: fontawesome/brands/github
+      link: https://github.com/SolarAlma/SALAT
+
+plugins:
+    - search
+
+# Extensions
+markdown_extensions:
+  - admonition
+  - abbr
+  - attr_list
+  - codehilite
+  - def_list
+  - footnotes
+  - meta
+  - md_in_html
+  - markdown.extensions.admonition
+  - markdown.extensions.attr_list
+  - markdown.extensions.codehilite:
+      guess_lang: false
+  - markdown.extensions.def_list
+  - markdown.extensions.footnotes
+  - markdown.extensions.tables
+  - markdown.extensions.abbr
+  - markdown.extensions.md_in_html
+  - markdown.extensions.meta
+  - markdown.extensions.toc:
+      baselevel: 1
+      permalink: true
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.extra
+  - pymdownx.keys
+  - pymdownx.magiclink:
+      repo_url_shorthand: true
+      user: squidfunk
+      repo: mkdocs-material
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
