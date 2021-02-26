@@ -1,3 +1,8 @@
+<p align="center">
+    <img src="https://img.shields.io/badge/under-development-green">
+    <a href="https://opensource.org/licenses/MIT" title=""><img src="https://img.shields.io/badge/License-MIT-yellow.svg"></a>
+</p>
+
 ## SALAT: Solar ALMA Library of Auxiliary Tools
 
 A collection of routines (programmed in IDL and/or Python) linked to post restorations and simple analysis/exploration of Solar ALMA data sets reduced with SoAP. Description of all codes, along with working examples, have been provided in this document. See each code's header for further explanations and keywords.
