@@ -7,4 +7,4 @@ A collection of routines (programmed in IDL and/or Python) linked to post restor
 
 ## Documentation
 
-See the documentation at **[https://solaralma.github.io/SALAT](https://solaralma.github.io/SALAT/)** for **getting started guides**, **descriptions**, and **working examples**.
+See the documentation at **[https://SolarALMA.github.io/SALAT](https://solaralma.github.io/SALAT/)** for **getting started guides**, **descriptions**, and **working examples**.
