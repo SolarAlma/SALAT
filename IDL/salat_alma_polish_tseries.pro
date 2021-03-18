@@ -142,7 +142,7 @@ pro salat_alma_polish_tseries, dir = dir, cube = cube, xbd = xbd, ybd = ybd, np 
                          	ang = ang, shift = shift, square=square, twogirds=twogirds, threegirds=threegirds, $
                          	negang = negang, crop=crop, ext_time = ext_time, noselect=noselect, centered=centered, $
                          	outdir = outdir, rad = rad, ext_date = ext_date, filename=filename, fits=fits, grid=grid, $
-						 	nostretch=nostretch, silent=silent, badframes=badframes, obstime=obstime, pixelsize=pixelsize
+				nostretch=nostretch, silent=silent, badframes=badframes, obstime=obstime, pixelsize=pixelsize
 
   if n_elements(dir) eq 0 then dir = './'
   if n_elements(outdir) eq 0 then outdir = dir
@@ -402,26 +402,12 @@ pro salat_alma_polish_tseries, dir = dir, cube = cube, xbd = xbd, ybd = ybd, np 
   me = mean(tmean)
   for ii = 0L, ct - 1 do icube[*,*,ii] *= (me / tmean[ii])
   tmeani = total(total(icube,1),1) / float(nx) / float(ny)
-  ; if silent ne 0 then begin
-  ; 	  wset, 1
-  ; 	  if n_elements(tmeani) gt 0 and min(tmean) gt -1000000. then oplot, tmeani, ps=2, color=111
-  ; endif
-  
-  ; ofil = filename+'_corrected.fits'
-  ; print, '-- saving corrected cube (no aperture added) -> ' + odir + ofil
-  
   
   ofil2 = filename+'_corrected_aper.fits'
   print, '-- saving corrected cube (with additional circular aperture) -> ' + odir + ofil2
   
-  
   ofil4 = filename+'_sj_level4.fits'
   print, '-- saving corrected cube (with additional circular aperture), and boxcar 0f 10 frames -> ' + odir + ofil4
-  
-  
-  ; ofil3 = filename+'_corrected_aper_int.fits'
-  ; print, '-- saving corrected cube (with additional circular aperture) -> ' + odir + ofil3
-  
   
   nx = n_elements(acube[*,0,0])
   ny = n_elements(acube[0,*,0])
@@ -430,9 +416,7 @@ pro salat_alma_polish_tseries, dir = dir, cube = cube, xbd = xbd, ybd = ybd, np 
   ; add an extra circular aparture:
   dist_circle, mask, [nx,ny]
   mask = mask*pixelsize
-  ; mask(where(mask gt 120)) = 10000.
-  ; ii = where(mask gt 9000.)
-  ;if n_elements(rad) eq 0 then aprad=16.7 else aprad = rad
+
   if n_elements(rad) eq 0 then aprad=aperture_radius else aprad = rad
   ii = where(mask gt aprad)
 
@@ -461,26 +445,15 @@ pro salat_alma_polish_tseries, dir = dir, cube = cube, xbd = xbd, ybd = ybd, np 
   SXADDPAR, hdr, 'OBSTIME', 'SEE EXT=1 OF THE FITS FILE'
   SXADDPAR, hdr, 'aprad', aprad
   
-  ; mwrfits, acube, odir+ofil, hdr, /create
-  ; mwrfits, times, odir+ofil
-  
   mwrfits, adata, odir+ofil2, hdr, /create
   mwrfits, times, odir+ofil2
-  
-  ; mwrfits, icube, odir+ofil3, hdr, /create
-  ; mwrfits, times, odir+ofil3
   
   SXADDPAR, hdr, 'LEVEL4', '10-frames boxcar'
   mwrfits, scube, odir+ofil4, hdr, /create
   mwrfits, times, odir+ofil4
   
-  ;original_cube = readfits(wfiles)
-  
   save, tstep, np, rad, shift, time, date, file=odir+filename+'_tseries.calib.sav'
   
   if silent eq 0 then sjim, scube, /mv, /mc, iris='NUV', ref=original_cube, cc=.5, fps=1000.
 
-
-done
-; stop
 end
