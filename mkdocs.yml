@@ -11,6 +11,7 @@ copyright: Copyright &copy; 2021 <a href="https://www.mn.uio.no/rocs/english/pro
 
 nav:
   - Home: index.md
+  - Getting Started: installation.md
   - Categories: categories.md
   - Routines:
     - IDL: idl.md
@@ -42,6 +43,7 @@ extra:
 
 plugins:
     - search
+    - mkdocstrings
 
 # Extensions
 markdown_extensions:
@@ -76,6 +78,8 @@ markdown_extensions:
   - pymdownx.critic
   - pymdownx.details
   - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
       emoji_generator: !!python/name:pymdownx.emoji.to_svg
   - pymdownx.highlight
   - pymdownx.inlinehilite

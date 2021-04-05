@@ -1,3 +1,9 @@
+!!! success "[SALAT_BAND_INFO](idl/salat_band_info.md)"
+	Provide frequencies for ALMA receiver bands (currently only central frequencies)
+	```webidl
+	IDL> info = salat_band_info()
+	```
+
 !!! success "SALAT_READ_FITSDATA"
 	Reads in a FITS file 
 	```webidl
