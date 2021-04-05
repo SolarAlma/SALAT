@@ -10,7 +10,7 @@
 	=== "INPUTS / OPTIONAL KEYWORDS"
 		Option | Type | Description | Default
 		------ | ---- | ----------- | -------
-		**`setup_commands`** | list of str | Run these commands before starting the documentation collection. | `[]`
+		**`input`** | list of str | Run these commands before starting the documentation collection. | `[]`
 	
 	=== "OUTPUTS"
 		Parameter | Type | Description
