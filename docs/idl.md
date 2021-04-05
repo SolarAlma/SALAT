@@ -4,6 +4,12 @@
 	IDL> info = salat_band_info()
 	```
 
+!!! success "[SALAT_CONTRAST](idl/salat_contrast.md)"
+	Compute and plot "mean intensity" and "rms intensity contrast" of a cube and indicate bad/good frames based on a given threshold
+	```webidl
+	IDL> bestframe = salat_contrast(cube, limit=limit, sbadframes=badframes, goodframes=goodframes)
+	```
+
 !!! success "SALAT_READ_FITSDATA"
 	Reads in a FITS file 
 	```webidl
@@ -68,12 +74,6 @@
 	Convery intensity to temperature using a conversion factor's vector
 	```webidl
 	IDL> salat_alma_intensity_to_K
-	```
-
-!!! success "SALAT_CONTRAST"
-	Compute and plot "mean intensity" and "rms intensity contrast" of a cube and indicate bad/good frames based on a given threshold
-	```webidl
-	IDL> bestframe = salat_contrast(cube, limit=limit, sbadframes=badframes, goodframes=goodframes)
 	```
 
 !!! success "SALAT_FITS2CRISPEX"
