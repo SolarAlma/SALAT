@@ -7,7 +7,7 @@
 ;; NOTE: Should be reviewed/updated. 
 ;;================================================================================
 
-function salat_alma_int2brtemp, intensity, lambda, rh=rh
+function salat_int2brtemp, intensity, lambda, rh=rh
 ;;--------------------------------------------------------------------------------
 ;; intensity: intensity in units of erg cm^-2 s^-1 A^-1 sr^-1
 ;; lambda:    wavelength in A 

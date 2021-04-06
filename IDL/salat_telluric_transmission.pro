@@ -1,14 +1,24 @@
-;; --- Solar Alma Library of Auxiliary Tools (SALAT) --- 
-;;================================================================================
-;; IDL - FUNCTION salad_telluric_transmission.pro 
-;; 
-;; PURPOSE: provides transmission of Earth's atmosphere based tabulated data file  
-;;
-;; NOTE: - Should be reviewed/updated and expanded to all receiver bands  
-;;================================================================================
-
+;+
+; NAME: SALAT_MAKE_MOVIE
+;		part of -- Solar Alma Library of Auxiliary Tools (SALAT) --
+;
+; PURPOSE: 
+;	Create ALMA cubes from individual files outputted by SoAP (put them together, remove bad frames 
+;	and polish the cube), i.e., creates both pre-level4 (aka 'clean') and level4 cubes.
+;
+; CALLING SEQUENCE:
+;	info = salad_telluric_transmission(band=band,pwv=pwv_req, frequency=freq_r, out_frequency=out_freq, out_pwv=out_pwv)
+;
+; + INPUTS:
+; 	BAND 		ALMA's band identifier
+;
+; + OPTIONAL KEYWORDS:
+;		
+; + OUTPUTS:
+; 
+; © Sven Wedemeyer (RoCS/SolarALMA)
+;-
 function salad_telluric_transmission, band=band, pwv=pwv_req, frequency=freq_r, out_frequency=out_freq, out_pwv=out_pwv
-;; ALMA 
 	
 if not keyword_set(band) then begin 
    message,'ALMA_transmission> No band specified. Returning Band 6 data.', /continue

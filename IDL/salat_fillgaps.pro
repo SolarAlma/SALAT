@@ -1,16 +1,31 @@
-function salat_alma_fillgaps, cube, cadence, time, boxcar=boxcar, clip=clip, nofillgap=nofillgap, help=help
+;+
+; NAME: SALAT_MAKE_MOVIE
+;		part of -- Solar Alma Library of Auxiliary Tools (SALAT) --
+;
+; PURPOSE: 
+;	Create ALMA cubes from individual files outputted by SoAP (put them together, remove bad frames 
+;	and polish the cube), i.e., creates both pre-level4 (aka 'clean') and level4 cubes.
+;
+; CALLING SEQUENCE:
+;	salat_make_alma_cube, files, savedir=savedir, filename=filename, date=date
+;
+; + INPUTS:
+; 	CUBE 		The input (polished; level4) FITS cube.
+;	CADENCE		Cadence of the observations (in seconds).
+;	TIME		Observing time sequence (in seconds)
+;
+; + OPTIONAL KEYWORDS:
+; 	BOXCAR		If set, a temporal boxcar average (of 10 frames) is applied.
+; 	CLIP		A four elements array to clip the field of view: [x1,x2,y1,y2]
+;	NOFILLGAP	If set, the fill gap option is disabled (e.g., for performing CLIP and/or BOXCAR)
+;		
+; + OUTPUTS:
+;	A new cube, modified based on the options (default: filling gaps)
+; 
+; © Shahin Jafarzadeh (RoCS/SolarALMA)
+;-
+function salat_alma_fillgaps, cube, cadence, time, boxcar=boxcar, clip=clip, nofillgap=nofillgap
 	
-; (1) fill gaps in time-series data by linear interpolation
-; (2) apply a temporal boxcar average
-
-IF keyword_set(help) THEN BEGIN
-  PRINT,' '
-  PRINT,' Calling sequence:
-  PRINT,' salat_alma_fillgaps, cube, cadence, time, boxcar=boxcar, clip=clip, nofillgap=nofillgap'
-  PRINT,' '
-  ; RETURN
-ENDIF
-
 if n_elements(boxcar) eq 0 then boxcar=0
 if n_elements(nofillgap) eq 0 then nofillgap=0
 

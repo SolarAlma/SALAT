@@ -1,9 +1,30 @@
-pro salat_make_movie, almacube, pixelsize=pixelsize, savedir=savedir, filename=filename
+;+
+; NAME: SALAT_MAKE_MOVIE
+;		part of -- Solar Alma Library of Auxiliary Tools (SALAT) --
+;
+; PURPOSE: 
+;	Makes a movie (time series of images) from a polished (e.g., level4) data cube, 
+;	along with an analog clock and beam size/shape depicted.
+;
+; CALLING SEQUENCE:
+;	salat_make_movie, cube, pixelsize=pixelsize, savedir=savedir, filename=filename
+;
+; + INPUTS:
+; 	CUBE 		The input (polished; level4) FITS cube.
+;	PIXELSIZE	Pixel size in arcsec.
+;
+; + OPTIONAL KEYWORDS:
+; 	SAVEDIR		A directory (as a string) in where the JPEG imgaes are stored.
+; 	FILENAME	Base name of the JPEG imgaes, as a string (default = 'im').
+;		
+; + OUTPUTS:
+;	JPEG frames of the movie.
+; 
+; © Shahin Jafarzadeh (RoCS/SolarALMA)
+;-
+pro salat_make_movie, cube, pixelsize=pixelsize, savedir=savedir, filename=filename
 
-; INPUTS
-; ALMACUBE		ALMA (level4) cube
-; +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
+if n_elements(filename) eq 0 then filenames = 'im' else filenames = filename
 
 !p.charsize=1.2
 !x.thick=2.
@@ -12,7 +33,9 @@ pro salat_make_movie, almacube, pixelsize=pixelsize, savedir=savedir, filename=f
 ztitle='Temperature [kK]'
 
 numrad = 350
-	
+
+almacube = cube
+
 alma = readfits(almacube)
 timesec = readfits(almacube,ext=1)
 
@@ -136,7 +159,7 @@ for i=0L, nim-1 do begin
 	BPAm = mean(BPA)
 	sjtvellipse, BMAJm/pixelsize/cc, BMINm/pixelsize/cc, (xlc/2./cc)+(0.2*sides)/cc, ybc/cc/2.+5/cc, 90.+BPAm, cgColor('Black'), /dev, /fill, npoints=1000
 	
-	void = cgSnapshot(filename=savedir+'im'+strtrim(long(1000+i),2), quality=100, /TIFF, /NODIALOG)
+	void = cgSnapshot(filename=savedir+filenames+strtrim(long(1000+i),2), quality=100, /JPEG, /NODIALOG)
 	
 	erase
 

@@ -31,7 +31,6 @@
 ; crop : 
 ; rad  :	Radius of the additional circular aperture, to cover wiggling of the edges! 
 ;			rad=18.4 for band 3, and rad=16.7 for band 6
-
 ;
 ; OUTPUTS:
 ; corrected_cube.fits:			corrected cube
@@ -39,18 +38,13 @@
 ; tseries.calib.sav:			transformation parameters (along with the input values)
 ; 
 ; EXAMPLES:
-;	 salat_alma_polish_tseries,dir='/mn/stornext/d9/shahinj/ALMA/',cube='cube_sw1+scan11.fits',xbd=180,ybd=180,np=3,tstep=6
-;	 salat_alma_polish_tseries,cube='alma_band3_20161222_141921-150715.fits',rad=22,savedir='/mn/stornext/d13/alma/shahin/polished_cubes/',tstep=2,np=7,file='alma_band3_20161222_141921-150715_corrected'
-; 	 salat_alma_polish_tseries,cube='alma_band3_20161222_141921-150715.fits',savedir='/mn/stornext/d13/alma/shahin/polished_cubes/',tstep=2,np=7,rad=18.4,/threeg,time=TIMESTRING,date='2016.12.22'
 ;
 ;	 IDL> cube = 'alma_band3_20170422_172004-175504.fits'
 ;	 IDL> restore, 'obstime_alma_band3_20170422_172004-175504.save'
-;	 IDL> salat_alma_polish_tseries,dir,cube,savedir='~/',tstep=2,np=7,rad=18.4,param=
-;	
-; -- Modifed by SJ for ALMA time-series of images
-; -- based on CRISPRED-pipeline routines
-; -- External routines and DLMs from the CRISPRED pipeline are required
-;-;-----------------------------------------------------------------------------------
+;	 IDL> salat_polish_tseries,dir,cube,param=param,savedir='~/',np=7
+;
+; © Shahin Jafarzadeh (RoCS/SolarALMA)
+;-
 
 function alma_aligncube, cub, np $
                         , xybd = xybd, $
@@ -158,7 +152,7 @@ end
 
 ; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-pro salat_alma_polish_tseries, dir, cube, xybd = xybd, np = np, clip = clip, $
+pro salat_polish_tseries, dir, cube, xybd = xybd, np = np, clip = clip, $
                          	tile = tile, tstep = tstep, scale = scale, date=date, $
                          	ang = ang, shift = shift, square=square, twogirds=twogirds, threegirds=threegirds, $
                          	negang = negang, crop=crop, ext_time = ext_time, noselect=noselect, centered=centered, $
