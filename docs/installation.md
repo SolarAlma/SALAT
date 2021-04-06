@@ -24,7 +24,7 @@ git pull
 	IDL> .r SALAT
 	```
 
-	It is successfully installed if the following is printed:
+	The package is successfully installed if the following is printed:
 
 	```bash
 	Solar Alma Library of Auxiliary Tools (SALAT) 
