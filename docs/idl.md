@@ -1,13 +1,31 @@
-!!! success "[SALAT_BAND_INFO](idl/salat_band_info.md)"
-	Provide frequencies for ALMA receiver bands (currently only central frequencies)
+!!! success "[SALAT_MAKE_ALMA_CUBE](idl/salat_make_alma_cube.md)"
+	Create ALMA cubes from individual files outputted by SoAP (put them together, remove bad frames and polish the cube), i.e., creates both pre-level4 (aka 'clean') and level4 cubes.
 	```webidl
-	IDL> info = salat_band_info()
+	IDL> salat_make_alma_cube, dir, files, savedir=savedir, filename=filename, date=date
+	```
+
+!!! success "[SALAT_ALMA_POLISH_TSERIES](idl/salat_alma_polish_tseries.md)"
+	Corrects for temporal misalignments (i.e., between consecutive images in a time-series) as well as 'destretching' within the individual images (if needed), due to, e.g., seeing variation with time and/or miss-pointing.
+	```webidl
+	IDL> salat_alma_polish_tseries, dir=dir, cube=cube, ...
 	```
 
 !!! success "[SALAT_CONTRAST](idl/salat_contrast.md)"
 	Compute and plot "mean intensity" and "rms intensity contrast" of a cube and indicate bad/good frames based on a given threshold
 	```webidl
 	IDL> bestframe = salat_contrast(cube, limit=limit, sbadframes=badframes, goodframes=goodframes)
+	```
+	
+!!! success "[SALAT_FITS2CRISPEX](idl/salat_fits2crispex.md)"
+	Create a CRISPEX cube from the ALMA fits cube (any level) for quick inspections using the CRISPEX tool.
+	```webidl
+	IDL> salat_fits2crispex, cube, savedir=savedir, filename=filename
+	```
+
+!!! success "[SALAT_BAND_INFO](idl/salat_band_info.md)"
+	Provide frequencies for ALMA receiver bands (currently only central frequencies)
+	```webidl
+	IDL> info = salat_band_info()
 	```
 
 !!! success "SALAT_READ_FITSDATA"
@@ -26,18 +44,6 @@
 	Provides transmission of Earth's atmosphere based tabulated data file  
 	```webidl
 	IDL> salad_telluric_transmission, band=band, pwv=pwv_req, frequency=freq_r, out_frequency=out_freq, out_pwv=out_pwv
-	```
-
-!!! success "SALAT_MAKE_ALMA_CUBE"
-	Create ALMA cubes from individual files outputed by SoAP (put them together, remove bad frames and polish the cube), i.e., creates both pre-level4 and level4 cubes
-	```webidl
-	IDL> salat_make_alma_cube, filesearch, savedir=savedir, filename=filename, date=date
-	```
-
-!!! success "SALAT_ALMA_POLISH_TSERIES"
-	Corrects for miss-alignement between images in a time-series (due to, e.g., seeing variation with time and/or mispointing)
-	```webidl
-	IDL> salat_alma_polish_tseries, dir=dir, cube=cube, ...
 	```
 
 !!! success "SALAT_MAKE_MOVIE"
@@ -75,10 +81,3 @@
 	```webidl
 	IDL> salat_alma_intensity_to_K
 	```
-
-!!! success "SALAT_FITS2CRISPEX"
-	Create a CRISPEX cube from a fits cube (for quick inspection using CRISPEX)
-	```webidl
-	IDL> salat_fits2crispex, fitscube, savedir=savedir, filename=filename
-	```
-

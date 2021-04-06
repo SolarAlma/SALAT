@@ -12,7 +12,7 @@
 ; 	CUBE		The ALMA data cube in [x,y,t] format.
 ;			
 ; + OPTIONAL KEYWORDS:
-; 	FITS		It should be set if the cube is a fits file	optional
+; 	FITS		It should be set if the cube is a fits file.
 ; 	LIMIT		A limit for the rms intensity contrast, with which 'good' and 'bad' frames are identified.
 ; 	SIDE		Number of pixels to be excluded from sides of the field of view prior to calculations of the mean intensity and rms contrast.
 ; 	SHOW_BEST	If set, location of the best frame (i.e., that with the largest rms contrast) is indicated on the plot.
@@ -121,8 +121,8 @@ if alimit eq 1 then begin
 	print, ' >>>>> Good-frame index numbers (gfi):'+gf
 	print, ' '
 	print, ' '
-	goodframes = gf
-	badframes = bf
+	goodframes = iii
+	badframes = ii
 endif
 
 return, bestframe

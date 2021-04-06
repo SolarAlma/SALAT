@@ -1,33 +1,37 @@
 ;+
-; 
-; PURPOSE:
+; NAME: SALAT_ALMA_POLISH_TSERIES
+;		part of -- Solar Alma Library of Auxiliary Tools (SALAT) --
 ;
+; PURPOSE:
 ;    To remove miss-alignement between images in a time-series
 ;	 (due to, e.g., seeing variation with time and/or mispointing)
 ;	 NOTE: The effect usually is corrected by x/y shifts cross correllations, 
 ;	       but it is sometimes more complex and different part of the FoV is destored differently.
 ; 
-; KEYWORDS:
-; 
-; dir  :	Dirrecoty where the input cube is stoted
-; cube :	Name of input fits-cube in this format: (x,y,t)
-; xbd  : 	Size of the box in x within which the transformation params are calculated
-; ybd  : 	Size of the box in y within which the transformation params are calculated
-; time : 	String of observing time of individual frames
-; np  : 	larger shake usually needs larger np. Typically, np = 2, if not helpful then np = 6 or 7, ...
-; clip  : 	
-; tile  : 
-; tstep  : 
-; scale  : 
+; + INPUTS:
+; 	DIR 		Path to the dirrecoty in where the input (clean; bad-frames removed) cube is stoted (default = './').
+; 	CUBE 		Name of input (clean) FITS cube in this format: (x,y,t).
+;	PARAM		An IDL save file including the images parameters.
+;
+; + OPTIONAL KEYWORDS:			
+;	SAVEDIR		A directory (as a string) in where the FITS cubes are stored (default = DIR).
+;	FILENAME	Name of the FITS cubes, as a string (default = same as CUBE + additional keywords).
+; 	XYBD  	 	Size of the box in x and y within which the transformation params are calculated 
+;				(must be within the data values, i.e., no NAN value)
+;	NODESTRETCH If set, destretching is not applied.
+; 	NP  	 	Larger shake usually needs larger np. Typically, np = 4, if not helpful then np = 6 or 7, ...
+; 	CLIP  		Destretching parameter
+; 	TILE		Destretching parameter
+; 	TSTEP		Destretching parameter
+; 	SCALE		Destretching parameter
 ; ang  : 
 ; shift  : 
 ; square : 
 ; negang  : 
 ; crop : 
-; outdir :	Directory for outputs. Default is the same as the input cube
 ; rad  :	Radius of the additional circular aperture, to cover wiggling of the edges! 
 ;			rad=18.4 for band 3, and rad=16.7 for band 6
-; nostretch :	if set, no stretching is applied.
+
 ;
 ; OUTPUTS:
 ; corrected_cube.fits:			corrected cube
@@ -35,13 +39,13 @@
 ; tseries.calib.sav:			transformation parameters (along with the input values)
 ; 
 ; EXAMPLES:
-;	 alma_polish_tseries,dir='/mn/stornext/d9/shahinj/ALMA/',cube='cube_sw1+scan11.fits',xbd=180,ybd=180,np=3,tstep=6
-;	 alma_polish_tseries,cube='alma_band3_20161222_141921-150715.fits',rad=22,outdir='/mn/stornext/d13/alma/shahin/polished_cubes/',tstep=2,np=7,file='alma_band3_20161222_141921-150715_corrected'
-; 	 alma_polish_tseries,cube='alma_band3_20161222_141921-150715.fits',outdir='/mn/stornext/d13/alma/shahin/polished_cubes/',tstep=2,np=7,rad=18.4,/threeg,time=TIMESTRING,date='2016.12.22'
+;	 salat_alma_polish_tseries,dir='/mn/stornext/d9/shahinj/ALMA/',cube='cube_sw1+scan11.fits',xbd=180,ybd=180,np=3,tstep=6
+;	 salat_alma_polish_tseries,cube='alma_band3_20161222_141921-150715.fits',rad=22,savedir='/mn/stornext/d13/alma/shahin/polished_cubes/',tstep=2,np=7,file='alma_band3_20161222_141921-150715_corrected'
+; 	 salat_alma_polish_tseries,cube='alma_band3_20161222_141921-150715.fits',savedir='/mn/stornext/d13/alma/shahin/polished_cubes/',tstep=2,np=7,rad=18.4,/threeg,time=TIMESTRING,date='2016.12.22'
 ;
 ;	 IDL> cube = 'alma_band3_20170422_172004-175504.fits'
 ;	 IDL> restore, 'obstime_alma_band3_20170422_172004-175504.save'
-;	 IDL> alma_polish_tseries,cube=cube,outdir='/mn/stornext/d13/alma/shahin/polished_cubes/',tstep=2,np=7,rad=18.4,time=TIMESTRING,date='2017.04.22',/fits
+;	 IDL> salat_alma_polish_tseries,dir,cube,savedir='~/',tstep=2,np=7,rad=18.4,param=
 ;	
 ; -- Modifed by SJ for ALMA time-series of images
 ; -- based on CRISPRED-pipeline routines
@@ -49,14 +53,31 @@
 ;-;-----------------------------------------------------------------------------------
 
 function alma_aligncube, cub, np $
-                        , xbd = xbd, ybd = ybd $
+                        , xybd = xybd, $
                         , cubic = cubic $
                         , aligncube = aligncube $
                         , xc = xc, yc = yc, centered = centered, noselect=noselect
   
-  if n_elements(xbd) eq 0 then xbd = 200
-  if n_elements(ybd) eq 0 then ybd = 200
-
+  if n_elements(xybd) eq 0 then begin
+	  nx = n_elements(cub[*,0,0])
+	  ny = n_elements(cub[0,*,0])
+	  ar = reform(cub[*,ny/2.,0])
+	  ii = where(~finite(ar),/null,nar)
+	  rad = (nx-nar)/2.
+	  dx = rad*cos(d2r(45))
+	  x0 = (nar/2.)+(rad-dx)
+	  x1 = (nar/2.)+(rad+dx)
+	  dy = dx
+	  y0 = (ny/2.)-dy
+	  y1 = (ny/2.)+dy
+	  xxxx = round(x1-x0)-5.
+	  xbd = xxxx
+	  ybd = xxxx
+  endif else begin
+	  xbd = xybd
+	  ybd = xybd
+  endelse
+  
   inam = 'alma_aligncube : '
   dim = size(cub, /dim)
 
@@ -137,30 +158,25 @@ end
 
 ; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-pro salat_alma_polish_tseries, dir = dir, cube = cube, xbd = xbd, ybd = ybd, np = np, clip = clip, $
+pro salat_alma_polish_tseries, dir, cube, xybd = xybd, np = np, clip = clip, $
                          	tile = tile, tstep = tstep, scale = scale, date=date, $
                          	ang = ang, shift = shift, square=square, twogirds=twogirds, threegirds=threegirds, $
                          	negang = negang, crop=crop, ext_time = ext_time, noselect=noselect, centered=centered, $
-                         	outdir = outdir, rad = rad, ext_date = ext_date, filename=filename, fits=fits, grid=grid, $
-				nostretch=nostretch, silent=silent, badframes=badframes, obstime=obstime, pixelsize=pixelsize
+                         	savedir = savedir, rad = rad, ext_date = ext_date, filename=filename, grid=grid, $
+							nodestretch=nodestretch, silent=silent, param=param, pixelsize=pixelsize
+
+  restore, param
 
   if n_elements(dir) eq 0 then dir = './'
-  if n_elements(outdir) eq 0 then outdir = dir
+  if n_elements(savedir) eq 0 then savedir = dir
   if n_elements(date) eq 0 then date = ' '
-  if n_elements(fits) eq 0 then fits=0
   if n_elements(silent) eq 0 then silent=0
   if n_elements(twogirds) eq 0 then twogirds = 0 else twogirds = 1
   if n_elements(threegirds) eq 0 then threegirds = 0 else threegirds = 1
   if n_elements(noselect) eq 0 then noselect = 0
   if n_elements(centered) eq 0 then centered = 0
-  if n_elements(nostretch) eq 0 then nostretch = 0 else nostretch = 1
-  if n_elements(pixelsize) eq 0 then begin
-	  print, ' '
-	  print, ' pixelsize = ?'
-	  print, ' '
-	  stop
-  endif
-  ;if n_elements(filename) eq 0 then filename = strsplit(cube, /EXTRACT, '.fits')
+  if n_elements(nodestretch) eq 0 then nodestretch = 0 else nodestretch = 1
+  if n_elements(pixelsize) eq 0 then pixelsize=PIXSIZE
   if n_elements(filename) eq 0 then begin
 	  lll = strlen(cube)
 	  filename = strmid(cube,0,lll-5)
@@ -171,16 +187,12 @@ pro salat_alma_polish_tseries, dir = dir, cube = cube, xbd = xbd, ybd = ybd, np 
   time_stamp = 'alma'
 
   ;; read cube
-  if fits eq 1 then begin
-	  wfiles = dir+cube
-	  cub = reform(readfits(wfiles))
-  endif else cub = cube
+  wfiles = dir+cube
+  cub = reform(readfits(wfiles))
   
   nx = n_elements(reform(cub[*,0,0]))
   ny = n_elements(reform(cub[0,*,0]))
   ct = n_elements(reform(cub[0,0,*]))
-  
-  restore, obstime
 
 	;   if n_elements(badframes) gt 0 then begin
 	;   	iremove = badframes[sort(badframes)]
@@ -230,7 +242,7 @@ pro salat_alma_polish_tseries, dir = dir, cube = cube, xbd = xbd, ybd = ybd, np 
      endif
 
      print, '-- aligning images ... ', format = '(A, $)'
-     shift = alma_aligncube(cub, np, xbd = xbd, ybd = ybd, cubic = cubic, /aligncube, noselect=noselect, $
+     shift = alma_aligncube(cub, np, xybd = xybd, cubic = cubic, /aligncube, noselect=noselect, $
 		 centered=centered)
      print, 'done'
   endif else begin
@@ -247,7 +259,7 @@ pro salat_alma_polish_tseries, dir = dir, cube = cube, xbd = xbd, ybd = ybd, np 
   ff = 0
   
   ;; De-stretch
-  if nostretch eq 0 then begin
+  if nodestretch eq 0 then begin
 
   if twogirds eq 1 or threegirds eq 1 then begin
 	clip = [10,8,4,3]
@@ -378,7 +390,7 @@ pro salat_alma_polish_tseries, dir = dir, cube = cube, xbd = xbd, ybd = ybd, np 
   print, '-- aperture radius: ' + strtrim(aperture_radius,2) + ' arcsec'
 
   ;; Save angles, shifts and de-stretch grids
-  odir = outdir
+  odir = savedir
   ; file_mkdir, odir
   ; if n_elements(filename) eq 0 then ofil = 'tseries.calib.sav' else $
   ; 	  ofil = filename+'_tseries.calib.sav'
@@ -406,7 +418,7 @@ pro salat_alma_polish_tseries, dir = dir, cube = cube, xbd = xbd, ybd = ybd, np 
   ofil2 = filename+'_corrected_aper.fits'
   print, '-- saving corrected cube (with additional circular aperture) -> ' + odir + ofil2
   
-  ofil4 = filename+'_sj_level4.fits'
+  ofil4 = filename+'_level4.fits'
   print, '-- saving corrected cube (with additional circular aperture), and boxcar 0f 10 frames -> ' + odir + ofil4
   
   nx = n_elements(acube[*,0,0])
@@ -438,19 +450,37 @@ pro salat_alma_polish_tseries, dir = dir, cube = cube, xbd = xbd, ybd = ybd, np 
   mkhdr, hdr, adata
   
   cad = times[10]-times[9]
-  
+  save,DATEOBS,TIME,BMAJ,BMIN,BPA,RA,DEC,PIXSIZE,FREQ,FREQDEL,RESTFREQ,badframes,file=savedir+filename+'_clean.save'
   SXADDPAR, hdr, 'CADENCE', cad, 'SEC'
   SXADDPAR, hdr, 'PIXELSIZE', pixelsize, 'ARCSEC'
   SXADDPAR, hdr, 'OBSDATE', date
-  SXADDPAR, hdr, 'OBSTIME', 'SEE EXT=1 OF THE FITS FILE'
   SXADDPAR, hdr, 'aprad', aprad
+  SXADDPAR, hdr, 'OBSTIME', 'SEE EXT=1 OF THE FITS FILE'
+  SXADDPAR, hdr, 'FREQUENCY', 'SEE EXT=2 OF THE FITS FILE. Frequency of the 128 Channels in Hz.'
+  SXADDPAR, hdr, 'BMAJ', 'SEE EXT=3 OF THE FITS FILE. Major axis of beam at each time step'
+  SXADDPAR, hdr, 'BMIN', 'SEE EXT=4 OF THE FITS FILE. Minor axis of beam at each time step'
+  SXADDPAR, hdr, 'BPA', 'SEE EXT=5 OF THE FITS FILE. Beam angle at each time step'
+  SXADDPAR, hdr, 'RA', 'SEE EXT=6 OF THE FITS FILE. RA at each time step in deg'
+  SXADDPAR, hdr, 'Dec', 'SEE EXT=7 OF THE FITS FILE. Dec at each time step in deg'
   
   mwrfits, adata, odir+ofil2, hdr, /create
   mwrfits, times, odir+ofil2
+  mwrfits, FREQ, odir+ofil2
+  mwrfits, BMAJ, odir+ofil2
+  mwrfits, BMIN, odir+ofil2
+  mwrfits, BPA, odir+ofil2
+  mwrfits, RA, odir+ofil2
+  mwrfits, DEC, odir+ofil2
   
   SXADDPAR, hdr, 'LEVEL4', '10-frames boxcar'
   mwrfits, scube, odir+ofil4, hdr, /create
   mwrfits, times, odir+ofil4
+  mwrfits, FREQ, odir+ofil4
+  mwrfits, BMAJ, odir+ofil4
+  mwrfits, BMIN, odir+ofil4
+  mwrfits, BPA, odir+ofil4
+  mwrfits, RA, odir+ofil4
+  mwrfits, DEC, odir+ofil4
   
   save, tstep, np, rad, shift, time, date, file=odir+filename+'_tseries.calib.sav'
   

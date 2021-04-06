@@ -5,17 +5,17 @@
 	
 	**CALLING SEQUENCE:**
 	```webidl
-	IDL> bestframe = salat_contrast(cube, limit=limit, sbadframes=badframes, goodframes=goodframes)
+	IDL> bestframe = salat_contrast(cube, limit=limit, badframes=badframes, goodframes=goodframes)
 	```
 	=== "INPUTS / OPTIONAL KEYWORDS"
-		Option | Description | Default
+		Option | Description | Status
 		------ | ----------- | -------
 		**`CUBE`** | The ALMA data cube in `[x,y,t]` format | `required`
-		**`FITS`** | It should be set if the cube is a fits file | `optional`
+		**`FITS`** | It should be set if the cube is a fits file (default = 0). | `optional`
 		**`LIMIT`** | A limit for the rms intensity contrast, with which 'good' and 'bad' frames are identified. | `optional`
-		**`SIDE`** | Number of pixels to be excluded from sides of the field of view prior to calculations of the mean intensity and rms contrast.  | `optional`
-		**`SHOW_BEST`** | If set, location of the best frame (i.e., that with the largest rms contrast) is indicated on the plot.  | `optional`
-		**`TITLE`** | It should be set if the cube is a fits file | `optional`
+		**`SIDE`** | Number of pixels to be excluded from sides of the field of view prior to calculations of the mean intensity and rms contrast (default = 0).  | `optional`
+		**`SHOW_BEST`** | If set, location of the best frame (i.e., that with the largest rms contrast) is indicated on the plot (default = 0).  | `optional`
+		**`TITLE`** | It should be set if the cube is a fits file. | `optional`
 	
 	=== "OUTPUTS"
 		Parameter | Description
