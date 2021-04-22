@@ -30,12 +30,13 @@
 ; negang  : 
 ; crop : 
 ; rad  :	Radius of the additional circular aperture, to cover wiggling of the edges! 
-;			rad=18.4 for band 3, and rad=16.7 for band 6
+;			Hints for cycles 4 and 5 data: rad=18.4 for band 3, and rad=16.7 for band 6
+;			If not set, it is interactively computed (recommended).
 ;
-; OUTPUTS:
-; corrected_cube.fits:			corrected cube
-; corrected_cube_final.fits:	corrected cube, but with an additional circular aperture
-; tseries.calib.sav:			transformation parameters (along with the input values)
+; + OUTPUTS:
+; 	corrected_cube.fits:			corrected cube
+; 	corrected_cube_final.fits:	corrected cube, but with an additional circular aperture
+; 	tseries.calib.sav:			transformation parameters (along with the input values)
 ; 
 ; EXAMPLES:
 ;

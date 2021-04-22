@@ -40,10 +40,10 @@
 	IDL> new_cube = salat_fillgaps(cube, cadence, time)
 	```
 
-!!! success "[SALAT_TELLURIC_TRANSMISSION](idl/salad_telluric_transmission.md)"
+!!! success "[SALAT_TELLURIC_TRANSMISSION](idl/salat_telluric_transmission.md)"
 	Provides transmission of the Earth's atmosphere based tabulated data file.
 	```webidl
-	IDL> info = salad_telluric_transmission(band=band, pwv=pwv_req, frequency=freq_r, out_frequency=out_freq, out_pwv=out_pwv)
+	IDL> info = salat_telluric_transmission(band=band, pwv=pwv_req, frequency=freq_r, out_frequency=out_freq, out_pwv=out_pwv)
 	```
 
 !!! success "[SALAT_INT2BRTEMP](idl/salat_int2brtemp.md)"
@@ -52,13 +52,13 @@
 	IDL> temp = salat_int2brtemp(intensity, lambda, rh=rh)
 	```
 
-!!! success "SALAT_COMBINE_SPECTRALWINDOWS"
+!!! success "[SALAT_COMBINE_SPECTRALWINDOWS](idl/salat_combine_spectralwindows.md)"
 	Combines data cubes for different spectral windows and does check if all time steps do exist in both cubes
 	```webidl
-	IDL> salad_combine_spectralwindows, dsw0, dsw1, nusw0, nusw1, time0, time1, spectralwindow=specwin
+	IDL> combined_cube = salat_combine_spectralwindows(dsw0, dsw1, nusw0, nusw1, time0, time1, spectralwindow=specwin)
 	```
 
-!!! success "SALAT_INTENSITY_TO_K"
+!!! success "~~SALAT_INTENSITY_TO_K~~"
 	Convery intensity to temperature using a conversion factor's vector
 	```webidl
 	IDL> salat_intensity_to_K
@@ -73,7 +73,7 @@
 !!! success "~~SALAT_READ_FITSDATA~~"
 	Reads in a FITS file 
 	```webidl
-	IDL> salad_read_fitsdata, filename
+	IDL> salat_read_fitsdata, filename
 	```
 
 !!! success "~~SALAT_READFITSHEADER~~" 

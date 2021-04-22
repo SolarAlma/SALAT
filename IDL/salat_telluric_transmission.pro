@@ -7,7 +7,7 @@
 ;	and polish the cube), i.e., creates both pre-level4 (aka 'clean') and level4 cubes.
 ;
 ; CALLING SEQUENCE:
-;	info = salad_telluric_transmission(band=band,pwv=pwv_req, frequency=freq_r, out_frequency=out_freq, out_pwv=out_pwv)
+;	info = salat_telluric_transmission(band=band,pwv=pwv_req, frequency=freq_r, out_frequency=out_freq, out_pwv=out_pwv)
 ;
 ; + INPUTS:
 ; 	BAND 		ALMA's band identifier
@@ -18,7 +18,7 @@
 ; 
 ; © Sven Wedemeyer (RoCS/SolarALMA)
 ;-
-function salad_telluric_transmission, band=band, pwv=pwv_req, frequency=freq_r, out_frequency=out_freq, out_pwv=out_pwv
+function salat_telluric_transmission, band=band, pwv=pwv_req, frequency=freq_r, out_frequency=out_freq, out_pwv=out_pwv
 	
 if not keyword_set(band) then begin 
    message,'ALMA_transmission> No band specified. Returning Band 6 data.', /continue

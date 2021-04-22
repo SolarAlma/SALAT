@@ -3,7 +3,7 @@
 #### :round_pushpin: SALAT_READ_FITSDATA
 > Reads in a FITS file 
 ```JavaScript
-IDL> salad_read_fitsdata, filename
+IDL> salat_read_fitsdata, filename
 ```
 
 #### :round_pushpin: SALAT_READFITSHEADER
@@ -15,7 +15,7 @@ IDL> salat_readfitsheader, header
 #### :round_pushpin: SALAT_TELLURIC_TRANSMISSION
 > Provides transmission of Earth's atmosphere based tabulated data file  
 ```JavaScript
-IDL> salad_telluric_transmission, band=band, pwv=pwv_req, frequency=freq_r, out_frequency=out_freq, out_pwv=out_pwv
+IDL> salat_telluric_transmission, band=band, pwv=pwv_req, frequency=freq_r, out_frequency=out_freq, out_pwv=out_pwv
 ```
 
 #### :round_pushpin: SALAT_MAKE_ALMA_CUBE
@@ -39,7 +39,7 @@ IDL> salat_make_movie, almacube, pixelsize=pixelsize, savedir=savedir, filename=
 #### :round_pushpin: SALAT_COMBINE_SPECTRALWINDOWS
 > Combines data cubes for different spectral windows and does check if all time steps do exist in both cubes
 ```JavaScript
-IDL> salad_combine_spectralwindows, dsw0, dsw1, nusw0, nusw1, time0, time1, spectralwindow=specwin
+IDL> salat_combine_spectralwindows, dsw0, dsw1, nusw0, nusw1, time0, time1, spectralwindow=specwin
 ```
 
 #### :round_pushpin: SALAT_INT2BRTEMP

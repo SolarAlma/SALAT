@@ -1,4 +1,21 @@
-pro salat_alma_intensity_to_K
+;+
+; NAME: SALAT_INTENSITY_TO_K
+;		part of -- Solar Alma Library of Auxiliary Tools (SALAT) --
+;
+; PURPOSE:
+;	 Converts intensity to brightness temperature by multiplying the data with the conversion facotr.
+;
+; + INPUT: 
+;   ALMACUBE	The ALMA cube, wither 3D [x,y,t] or 4D [x,y,sw,t]
+;	CONVERSION	The conversion vector: 1D if the there are no spectral windows (SW), or 2D if the ALMA cube is 4D.
+;
+; + OUTPUTS:
+;	CONVERTEDCUBE	The ALMA cube in K (same dimension as the ALMACUBE)
+;	
+; © Shahin Jafarzadeh (RoCS/SolarALMA)
+;-
+
+pro salat_alma_intensity_to_K, ALMAcube, conversion
 
 ; needs a conversion factor's vector
  
