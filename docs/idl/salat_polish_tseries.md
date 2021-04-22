@@ -44,6 +44,6 @@
 		IDL> salat_polish_tseries, dir, cube, param=param, /nodestretch
 		```
 	
-	!!! quote "[Source code](https://github.com/SolarAlma/SALAT/blob/main/IDL/salat_alma_polish_tseries.pro)"
+	!!! quote "[Source code](https://github.com/SolarAlma/SALAT/blob/main/IDL/salat_polish_tseries.pro)"
 
 !!! Success "Back to the list of [IDL Routines](../idl.md)" 
