@@ -3,19 +3,19 @@
 #### :round_pushpin: SALAT_READ_FITSDATA
 > Reads in a FITS file 
 ```JavaScript
-IDL> salad_read_fitsdata, filename
+IDL> salat_read_fitsdata, filename
 ```
 
-#### :round_pushpin: SALAT_ALMA_READFITSHEADER
+#### :round_pushpin: SALAT_READFITSHEADER
 > Reads the FITS header and extracts relevant information 
 ```JavaScript
-IDL> salat_alma_readfitsheader, header
+IDL> salat_readfitsheader, header
 ```
 
 #### :round_pushpin: SALAT_TELLURIC_TRANSMISSION
 > Provides transmission of Earth's atmosphere based tabulated data file  
 ```JavaScript
-IDL> salad_telluric_transmission, band=band, pwv=pwv_req, frequency=freq_r, out_frequency=out_freq, out_pwv=out_pwv
+IDL> salat_telluric_transmission, band=band, pwv=pwv_req, frequency=freq_r, out_frequency=out_freq, out_pwv=out_pwv
 ```
 
 #### :round_pushpin: SALAT_MAKE_ALMA_CUBE
@@ -24,10 +24,10 @@ IDL> salad_telluric_transmission, band=band, pwv=pwv_req, frequency=freq_r, out_
 IDL> salat_make_alma_cube, filesearch, savedir=savedir, filename=filename, date=date
 ```
 
-#### :round_pushpin: SALAT_ALMA_POLISH_TSERIES
+#### :round_pushpin: SALAT_POLISH_TSERIES
 > Corrects for miss-alignement between images in a time-series (due to, e.g., seeing variation with time and/or mispointing)
 ```JavaScript
-IDL> salat_alma_polish_tseries, dir=dir, cube=cube, ...
+IDL> salat_polish_tseries, dir=dir, cube=cube, ...
 ```
 
 #### :round_pushpin: SALAT_MAKE_MOVIE
@@ -39,31 +39,31 @@ IDL> salat_make_movie, almacube, pixelsize=pixelsize, savedir=savedir, filename=
 #### :round_pushpin: SALAT_COMBINE_SPECTRALWINDOWS
 > Combines data cubes for different spectral windows and does check if all time steps do exist in both cubes
 ```JavaScript
-IDL> salad_combine_spectralwindows, dsw0, dsw1, nusw0, nusw1, time0, time1, spectralwindow=specwin
+IDL> salat_combine_spectralwindows, dsw0, dsw1, nusw0, nusw1, time0, time1, spectralwindow=specwin
 ```
 
-#### :round_pushpin: SALAT_ALMA_INT2BRTEMP
+#### :round_pushpin: SALAT_INT2BRTEMP
 > Convert intensity to brightness temperature
 ```JavaScript
-IDL> salat_alma_int2brtemp, intensity, lambda, rh=rh
+IDL> salat_int2brtemp, intensity, lambda, rh=rh
 ```
 
-#### :round_pushpin: SALAT_ALMA_FILLGAPS
+#### :round_pushpin: SALAT_FILLGAPS
 > Fill gaps in time-series data by linear interpolation, and optionally apply a temporal boxcar average
 ```JavaScript
-IDL> salat_alma_fillgaps, cube, cadence, time, boxcar=boxcar
+IDL> salat_fillgaps, cube, cadence, time, boxcar=boxcar
 ```
 
-#### :round_pushpin: SALAT_ALMA_MODIFY_HEADER_AND_INFO
+#### :round_pushpin: SALAT_MODIFY_HEADER_AND_INFO
 > Modify header of old cubes and add missing keywords
 ```JavaScript
-IDL> salat_alma_modify_header_and_info
+IDL> salat_modify_header_and_info
 ```
 
-#### :round_pushpin: SALAT_ALMA_INTENSITY_TO_K
+#### :round_pushpin: SALAT_INTENSITY_TO_K
 > Convery intensity to temperature using a conversion factor's vector
 ```JavaScript
-IDL> salat_alma_intensity_to_K
+IDL> salat_intensity_to_K
 ```
 
 #### :round_pushpin: SALAT_CONTRAST

@@ -1,19 +1,34 @@
-pro salat_fits2crispex, fitscube, savedir=savedir, filename=filename
-
-; FITSCUBE	a fits cube. 
-; 			THe cube should in this format: [x,y,t]
+;+
+; NAME: SALAT_FITS2CRISPEX
+;		part of -- Solar Alma Library of Auxiliary Tools (SALAT) --
 ;
-; SAVEDIR	directory to save the output
-; FILENAME	output file name
+; PURPOSE: 
+;	Create a CRISPEX cube from the ALMA fits cube (any level)
+;	for quick inspections using the CRISPEX tool
 ;
-; @SJ
-; ---------------------------------------------------------------------------------
+; CALLING SEQUENCE:
+;	salat_fits2crispex, cube, savedir=savedir, filename=filename
+;
+; + INPUTS:
+; 	CUBE		The ALMA data cube in [x,y,t] format.
+;			
+; + OPTIONAL KEYWORDS:
+; 	FITS		It should be set if the cube is a fits file (default = 0).
+; 	SAVEDIR		A directory (as a string) in where the CRISPEX (.fcube) file is stored (default = './').
+; 	FILENAME	Name of the CRISPEX cube, as a string (default = 'CRISPEX_cube').
+;			
+; + OUTPUTS:
+;	The CRISPEX cube (.fcube) stored in the given location.
+; 
+; © Shahin Jafarzadeh (RoCS/SolarALMA)
+;-
+pro salat_fits2crispex, cube, savedir=savedir, filename=filename, fits=fits
 
 if n_elements(savedir) eq 0 then savedir='./'
-if n_elements(filename) eq 0 then filename='cube'
-; -----------------------------------------------------------------
+if n_elements(filename) eq 0 then filename='CRISPEX_cube'
+if n_elements(fits) eq 0 then fits=0
 
-imcube = readfits(fitscube,hdr)
+if fits then imcube = readfits(cube,hdr) else imcube = cube
 
 sz = size(imcube)
 nx = sz(1)
@@ -34,7 +49,7 @@ wc2[0]=imcube
 free_lun, luwr
 
 print, ' '
-print, ' >>> finished writing cube: '+imfilename
+print, ' >>> .... writing cube: '+imfilename
+print, ' '
 
-stop
 end

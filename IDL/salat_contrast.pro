@@ -1,6 +1,31 @@
-function salat_contrast, cube, title=title, fits=fits, side=side, limit=limit, show_best=show_best, bestframe=bestframe, badframes=badframes, goodframes=goodframes
-
-; compute "mean intensity" and "rms intensity contrast" of a cube in this format: [x,y,t]
+;+
+; NAME: SALAT_CONTRAST
+;		part of -- Solar Alma Library of Auxiliary Tools (SALAT) --
+;
+; PURPOSE: 
+;	Compute and plot "mean intensity" and "rms intensity contrast" of a cube and indicate bad/good frames based on a given threshold.
+;
+; CALLING SEQUENCE:
+;	bestframe = salat_contrast(cube, limit=limit, badframes=badframes, goodframes=goodframes)
+;
+; + INPUTS:
+; 	CUBE		The ALMA data cube in [x,y,t] format.
+;			
+; + OPTIONAL KEYWORDS:
+; 	FITS		It should be set if the cube is a fits file.
+; 	LIMIT		A limit for the rms intensity contrast, with which 'good' and 'bad' frames are identified.
+; 	SIDE		Number of pixels to be excluded from sides of the field of view prior to calculations of the mean intensity and rms contrast.
+; 	SHOW_BEST	If set, location of the best frame (i.e., that with the largest rms contrast) is indicated on the plot.
+; 	TITLE		It should be set if the cube is a fits file.
+;			
+; + OUTPUTS:
+;	BESTFRAME	Index of the best frame (i.e., that with the largest rms contrast).
+; 	GOODFRAMES	Indices of 'good' frames, i.e., those above the LIMIT, only if the LIMIT is defined (optional)
+; 	BADFRAMES	Indices of 'bad' frames, i.e., those below the LIMIT, only if the LIMIT is defined (optional)
+; 
+; © Shahin Jafarzadeh (RoCS/SolarALMA)
+;-
+function salat_contrast, cube, fits=fits, limit=limit, side=side, show_best=show_best, badframes=badframes, goodframes=goodframes, title=title
 
 if n_elements(title) eq 0 then title=' '
 if n_elements(show_best) eq 0 then show_best=0
@@ -34,11 +59,15 @@ coeffs2 = LINEAR_FIT(x,rmsCont)
 varper1 = (float(((coeffs1(0)+(coeffs1(1)*(nt-1))-coeffs1(0)))/coeffs1(0)))*100.
 varper2 = (float(((coeffs2(0)+(coeffs2(1)*(nt-1))-coeffs2(0)))/coeffs2(0)))*100.
 
+; !p.charsize=2.5
+; !x.thick=3.
+; !y.thick=3.
+!x.ticklen=0.05
+!y.ticklen=0.01
+
 window, 0, xs=2000, ys=1000, title='Variations of: mean brightness (top) & rms intensity contrast (bottom) | '+title
 !P.MULTI=[0,1,2]
-cgplot, imean, /ynozero, xtitle='Frame number', ytitle='Mean brightness', xs=1, pos=[0.1,0.59,0.99,0.99]
-;xyouts, 0.94, 0.93, alignment=1.0, 'Variation: '+strtrim(string(varper1, format='(F20.2)'),2)+' %', $
-;	color=cgColor('RED'), /normal, charsize=1.6, charthick=1.2
+cgplot, imean, /ynozero, ytitle='Mean brightness', xs=1, pos=[0.1,0.59,0.99,0.99]
 
 cgplot, rmsCont*100, /ynozero, xtitle='Frame number', ytitle='RMS intensity contrast [%]', xs=1, pos=[0.1,0.1,0.99,0.49]
 ii= where(rmsCont*100 eq max(rmsCont*100))
@@ -48,15 +77,13 @@ indx = sort(rmsc)
 rmconts = rmsc(indx)
 nrmscs = n_elements(rmsc)
 if alimit eq 1 then sjhline, limit, color=cgColor('RED')
-;xyouts, 0.94, 0.43, alignment=1.0, 'Variation: '+strtrim(string(varper2, format='(F20.2)'),2)+' %', $
-;	color=cgColor('RED'), /normal, charsize=1.6, charthick=1.2
 
 if show_best then begin
 	sjvline, xmax, thick=2, color=cgColor('DodgerBlue'), linestyle=2
 	xyouts, 0.14, 0.43, alignment=0.0, 'Best frame no.: '+strtrim(fix(xmax), 2), $
-		color=cgColor('DodgerBlue'), /normal, charsize=1.6, charthick=1.2
+		color=cgColor('DodgerBlue'), /normal, charsize=2., charthick=1.2
 	xyouts, 0.94, 0.43, alignment=1.0, 'Variation: '+strtrim(string(varper2, format='(F20.2)'),2)+' %', $
-		color=cgColor('RED'), /normal, charsize=1.6, charthick=1.2
+		color=cgColor('RED'), /normal, charsize=2., charthick=1.2
 endif
 
 bestframe = xmax
@@ -94,8 +121,8 @@ if alimit eq 1 then begin
 	print, ' >>>>> Good-frame index numbers (gfi):'+gf
 	print, ' '
 	print, ' '
-	goodframes = gf
-	badframes = bf
+	goodframes = iii
+	badframes = ii
 endif
 
 return, bestframe

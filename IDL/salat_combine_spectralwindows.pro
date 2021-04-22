@@ -1,17 +1,21 @@
-;; --- Solar Alma Library of Auxiliary Tools (SALAT) --- 
-;;================================================================================
-;; IDL - FUNCTION salad_combine_spectralwindows.pro 
-;; 
-;; PURPOSE: combines data cubes for different spectral windows and does check if all 
-;;          time steps do exist in both cubes 
-;;
-;; KEYWORDS: 
-;; - MIDNIGHTHOUR	If set, time is expected as seconds after midnight. Otherwise, Julian dates are expected by default.
-;;
-;; NOTE: to be reviewed. 
-;;       - currently handles only two windows but should be more flexible 
-;;================================================================================
-function salad_combine_spectralwindows, dsw0, dsw1, nusw0, nusw1, time0, time1, $ 
+;+
+; NAME: SALAT_COMBINE_SPECTRALWINDOWS
+;		part of -- Solar Alma Library of Auxiliary Tools (SALAT) --
+;
+; PURPOSE:
+;	 Combines data cubes for different spectral windows and 
+;	 does check if all time steps do exist in both cubes 
+;
+; KEYWORDS: 
+; - MIDNIGHTHOUR	If set, time is expected as seconds after midnight. Otherwise, Julian dates are expected by default.
+;
+; NOTE: to be reviewed. 
+;       - currently handles only two windows but should be more flexible 
+;
+; © Sven Wedemeyer (RoCS/SolarALMA)
+;-
+
+function salat_combine_spectralwindows, dsw0, dsw1, nusw0, nusw1, time0, time1, $ 
     spectralwindow=specwin, $ ;; --- prescribed ID 
 	error=timeerrs, $ 
     time=out_time, $ 

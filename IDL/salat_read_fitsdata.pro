@@ -1,6 +1,6 @@
 ;; --- Solar Alma Library of Auxiliary Tools (SALAT) --- 
 ;;================================================================================
-;; IDL - FUNCTION salad_read_fitsdata.pro 
+;; IDL - FUNCTION salat_read_fitsdata.pro 
 ;; 
 ;; PURPOSE: reads in a FITS file 
 ;;
@@ -15,7 +15,7 @@
 ;;       - Functions like removal of NaNs and Tb conversion should be done as a call
 ;;         to other functions
 ;;================================================================================
-function salad_read_fitsdata, filename, nu=nu, $ 
+function salat_read_fitsdata, filename, nu=nu, $ 
          time=time, $ 
 	     header=out_header, $ 
 	     kelvin=flag_kelvin, $ 
@@ -74,7 +74,7 @@ for i=0,nt-1 do begin
 		nt=sz[3]
 	endif 	
 	;;
-	hd=salad_read_fitsheader(h) 
+	hd=salat_read_fitsheader(h) 
 	if total(hd.dateobs_jul) eq 0.0 or multitime eq 1 then begin 
 		message,'WARNING! Missing time information. Reading header extension 1.', /continue
 		time=readfits(fn[i], ext=1)
