@@ -47,11 +47,11 @@
 ; © Shahin Jafarzadeh (RoCS/SolarALMA)
 ;-
 
-function alma_aligncube, cub, np $
-                        , xybd = xybd, $
-                        , cubic = cubic $
-                        , aligncube = aligncube $
-                        , xc = xc, yc = yc, centered = centered, noselect=noselect
+function alma_aligncube, cub, np, $
+                         xybd = xybd, $
+                         cubic = cubic, $
+                         aligncube = aligncube, $
+                         xc = xc, yc = yc, centered = centered, noselect=noselect
   
   if n_elements(xybd) eq 0 then begin
 	  nx = n_elements(cub[*,0,0])
