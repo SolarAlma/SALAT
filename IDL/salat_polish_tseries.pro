@@ -144,8 +144,7 @@ function alma_aligncube, cub, np, $
   shifts[1,*] -= median(shifts[1,*])
   
   if keyword_set(aligncube) then for ii = 0L, dim[2]-1 do $
-    cub[*, *, ii] = red_shift_im(cub[*, *, ii], shifts[0, ii], shifts[1, ii] $
-                                 , cubic = cubic)
+    cub[*, *, ii] = red_shift_im(cub[*, *, ii], shifts[0, ii], shifts[1, ii], cubic = cubic)
 
   return, shifts
   
@@ -160,7 +159,7 @@ pro salat_polish_tseries, dir, cube, xybd = xybd, np = np, clip = clip, $
                          	savedir = savedir, rad = rad, ext_date = ext_date, filename=filename, grid=grid, $
 							nodestretch=nodestretch, silent=silent, param=param, pixelsize=pixelsize
 
-  restore, param
+  restore, dir+param
 
   if n_elements(dir) eq 0 then dir = './'
   if n_elements(savedir) eq 0 then savedir = dir
@@ -176,6 +175,8 @@ pro salat_polish_tseries, dir, cube, xybd = xybd, np = np, clip = clip, $
 	  lll = strlen(cube)
 	  filename = strmid(cube,0,lll-5)
   endif
+
+  pixelsize = pixelsize[0]
 
   data_dir = dir
 
@@ -233,12 +234,11 @@ pro salat_polish_tseries, dir, cube, xybd = xybd, np = np, clip = clip, $
   if(~keyword_set(shift)) then begin
      if(~keyword_set(np)) then begin
         np = 0L
-        read, np, prompt =  '-- Please introduce the factor to recompute the reference image: '
+        read, np, prompt =  '-- Please introduce the np factor to recompute the reference image: '
      endif
 
      print, '-- aligning images ... ', format = '(A, $)'
-     shift = alma_aligncube(cub, np, xybd = xybd, cubic = cubic, /aligncube, noselect=noselect, $
-		 centered=centered)
+     shift = alma_aligncube(cub, np, xybd = xybd, cubic = cubic, /aligncube, noselect=noselect, centered=centered)
      print, 'done'
   endif else begin
      print, '-- Using external shifts'
@@ -248,8 +248,7 @@ pro salat_polish_tseries, dir, cube, xybd = xybd, np = np, clip = clip, $
         return
      endif 
 
-     for ii = 0L, ct - 1 do cub[*,*,ii] = red_shift_im(cub[*,*,ii], reform(shift[0,ii]), $
-		 reform(shift[1,ii]) , cubic = cubic)
+     for ii = 0L, ct - 1 do cub[*,*,ii] = red_shift_im(cub[*,*,ii], reform(shift[0,ii]), reform(shift[1,ii]) , cubic = cubic)
   endelse
   ff = 0
   
@@ -480,5 +479,9 @@ pro salat_polish_tseries, dir, cube, xybd = xybd, np = np, clip = clip, $
   save, tstep, np, rad, shift, time, date, file=odir+filename+'_tseries.calib.sav'
   
   if silent eq 0 then sjim, scube, /mv, /mc, iris='NUV', ref=original_cube, cc=.5, fps=1000.
+  
+  PRINT
+  PRINT, ' DONE '
+  PRINT
 
 end

@@ -1,0 +1,7 @@
+MODULE MOMFBD
+DESCRIPTION IDL MOMFBD file read support
+VERSION 0.0.2
+SOURCE Michiel van Noort
+BUILD_DATE JUN 17 2008
+FUNCTION        MOMFBD_READ      1       1  
+FUNCTION        MOZAIC           5       5         KEYWORDS

@@ -136,7 +136,7 @@ here:
 ;------- Creating a 'clean' cube, where 'bad' frames are excluded.
 
 restore, savedir+filename+'_original.save'
-cube = rf(savedir+filename+'_original.fits',hdr)
+cube = readfits(savedir+filename+'_original.fits',hdr)
 
 nx = n_elements(reform(cube[*,0,0]))
 ny = n_elements(reform(cube[0,*,0]))
@@ -220,7 +220,7 @@ READ, selection, PROMPT=' -- Run the SALAT_ALMA_POLISH_TSERIES procedure (to cre
 if selection eq 1 then GOTO, pos1 else GOTO, pos2
 pos1:
 
-aa = rf(savedir+filename+'_clean.fits',hdr,/silent)
+aa = readfits(savedir+filename+'_clean.fits',hdr,/silent)
 restore, savedir+filename+'_clean.save'
 
 nx = n_elements(aa[*,0,0])

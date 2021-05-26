@@ -119,9 +119,11 @@ for i=0L, nim-1 do begin
 	ytc2 = (((ytc/cc)+((ny-ytc)/2./cc))+(2.5/cc))-(5.5/cc)
 	
 	myTICKINTERVAL=1
-	if ifn eq 1 then myTICKINTERVAL=2
-	if ifn eq 2 then myTICKINTERVAL=2
-	if ifn eq 3 then myTICKINTERVAL=2
+	; if ifn eq 1 then myTICKINTERVAL=2
+	; if ifn eq 2 then myTICKINTERVAL=2
+	; if ifn eq 3 then myTICKINTERVAL=2
+	
+	myTICKINTERVAL=2
 	
 	IRIS_LCT, 'FUV', r, g, b
 	; cgColorbar, Range=[ascale[0]/1000.,ascale[1]/1000.], position=[xtc1/((nx-1)/cc),ytc1/((ny-1)/cc),xtc2/((nx-1)/cc),ytc2/((ny-1)/cc)], $
@@ -139,25 +141,25 @@ for i=0L, nim-1 do begin
 	xt2 = ((nx-1)/cc)-rightside
 	xt1 = xt2-numpix
 	
-	cgplots,[xt1,xt2], [ybc/cc/2.+5/cc,ybc/cc/2.+5/cc], thick=4, color=cgcolor('Black'), /dev
+	; cgplots,[xt1,xt2], [ybc/cc/2.+5/cc,ybc/cc/2.+5/cc], thick=4, color=cgcolor('Black'), /dev
+	;
+	; cgplots,[xt1,xt1], [(ybc/cc/2.)-(3/cc)+5/cc,(ybc/cc/2.)+(3/cc)+5/cc], thick=3, color=cgcolor('Black'), /dev
+	; cgplots,[xt2,xt2], [(ybc/cc/2.)-(3/cc)+5/cc,(ybc/cc/2.)+(3/cc)+5/cc], thick=3, color=cgcolor('Black'), /dev
 
-	cgplots,[xt1,xt1], [(ybc/cc/2.)-(3/cc)+5/cc,(ybc/cc/2.)+(3/cc)+5/cc], thick=3, color=cgcolor('Black'), /dev
-	cgplots,[xt2,xt2], [(ybc/cc/2.)-(3/cc)+5/cc,(ybc/cc/2.)+(3/cc)+5/cc], thick=3, color=cgcolor('Black'), /dev
-
-	if ifn lt 3 then $
-		cgText, xt1+(numpix/2.), (ybc/cc/2.)-(12./cc)+5/cc, ALIGNMENT=0.5, CHARSIZE=1., color=cgColor('Black'), '10 arcsec', /dev else $
-			cgText, xt1+(numpix/2.), (ybc/cc/2.)-(12./cc)+5/cc, ALIGNMENT=0.5, CHARSIZE=1., color=cgColor('Black'), '5 arcsec', /dev
+	; if ifn lt 3 then $
+	; 	cgText, xt1+(numpix/2.), (ybc/cc/2.)-(12./cc)+5/cc, ALIGNMENT=0.5, CHARSIZE=1., color=cgColor('Black'), '10 arcsec', /dev else $
+	; 		cgText, xt1+(numpix/2.), (ybc/cc/2.)-(12./cc)+5/cc, ALIGNMENT=0.5, CHARSIZE=1., color=cgColor('Black'), '5 arcsec', /dev
 	
 	
 	cgplots,[0,nx/cc-1], [(ny0+((ny-ny0)/2.))/cc,(ny0+((ny-ny0)/2.))/cc], thick=(0.5*sides)/cc, /dev, color=cgcolor('Black')
-	cgText, 0.02*diameter/cc, (ny-2-((0.5*sides)/2.))/cc-2., ALIGNMENT=0., CHARSIZE=1., color=cgColor('White'), databand[ifn], /dev
-	cgText, ((nx-1)/cc)-(0.03*diameter/cc), (ny-2-((0.5*sides)/2.))/cc-2., ALIGNMENT=1., CHARSIZE=1., color=cgColor('White'), datalabel[ifn], /dev
+	; cgText, 0.02*diameter/cc, (ny-2-((0.5*sides)/2.))/cc-2., ALIGNMENT=0., CHARSIZE=1., color=cgColor('White'), databand[ifn], /dev
+	; cgText, ((nx-1)/cc)-(0.03*diameter/cc), (ny-2-((0.5*sides)/2.))/cc-2., ALIGNMENT=1., CHARSIZE=1., color=cgColor('White'), datalabel[ifn], /dev
 	
 	; beam
-	BMAJm = mean(BMAJ)*3600./2.
-	BMINm = mean(BMIN)*3600./2.
-	BPAm = mean(BPA)
-	sjtvellipse, BMAJm/pixelsize/cc, BMINm/pixelsize/cc, (xlc/2./cc)+(0.2*sides)/cc, ybc/cc/2.+5/cc, 90.+BPAm, cgColor('Black'), /dev, /fill, npoints=1000
+	; BMAJm = mean(BMAJ)*3600./2.
+	; BMINm = mean(BMIN)*3600./2.
+	; BPAm = mean(BPA)
+	; sjtvellipse, BMAJm/pixelsize/cc, BMINm/pixelsize/cc, (xlc/2./cc)+(0.2*sides)/cc, ybc/cc/2.+5/cc, 90.+BPAm, cgColor('Black'), /dev, /fill, npoints=1000
 	
 	void = cgSnapshot(filename=savedir+filenames+strtrim(long(1000+i),2), quality=100, /JPEG, /NODIALOG)
 	

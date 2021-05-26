@@ -24,10 +24,12 @@
 ; 
 ; © Shahin Jafarzadeh (RoCS/SolarALMA)
 ;-
-function salat_alma_fillgaps, cube, cadence, time, boxcar=boxcar, clip=clip, nofillgap=nofillgap
+function salat_fillgaps, cube, cadence, time, boxcar=boxcar, clip=clip, nofillgap=nofillgap
 	
 if n_elements(boxcar) eq 0 then boxcar=0
 if n_elements(nofillgap) eq 0 then nofillgap=0
+
+cube = readfits(cube)
 
 nx = n_elements(cube[*,0,0])
 ny = n_elements(cube[0,*,0])
@@ -57,5 +59,9 @@ if nofillgap eq 0 then begin
 endif else interpolatedcube = cube
 
 return, interpolatedcube
+
+PRINT
+PRINT, ' DONE '
+PRINT
 
 end

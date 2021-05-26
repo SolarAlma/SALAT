@@ -22,8 +22,8 @@
 		```webidl
 		IDL> dir = '/mn/stornext/d13/alma/shahin/almaobs_level4/b3__2017-04-23/'
 		IDL> cube = 'solaralma.b3.2017-04-23.17:19:19-18:52:54__2016.1.01129.S_clean_inK_sj_level4.fits'
-		IDL> time = readfits(cube, ext=1)
-		IDL> new_cube = salat_fillgaps(cube, 2, time)
+		IDL> time = readfits(dir+cube, ext=1)
+		IDL> new_cube = salat_fillgaps(dir+cube, 2, time)
 		```
 	
 	!!! quote "[Source code](https://github.com/SolarAlma/SALAT/blob/main/IDL/salat_fillgaps.pro)"
