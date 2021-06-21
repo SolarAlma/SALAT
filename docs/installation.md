@@ -21,7 +21,7 @@ git pull
     
 	To test the successful installation, start **IDL** in, e.g., your home directory:
 	```webidl
-	IDL> .r SALAT
+	IDL> .r salat
 	```
 
 	The package is successfully installed if the following is printed:
