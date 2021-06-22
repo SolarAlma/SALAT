@@ -5,16 +5,16 @@
 	
 	**CALLING SEQUENCE:**
 	```webidl
-	IDL> combined_cube = salat_combine_spectralwindows(dsw0, dsw1, nusw0, nusw1, time0, time1, spectralwindow=specwin)
+	IDL> salat_alma_intensity_to_K, ALMAcube, conversion
 	```
 	=== "INPUTS / OPTIONAL KEYWORDS"
 		Option | Description | Status
 		------ | ----------- | -------
-		**`MIDNIGHTHOUR`** | If set, time is expected as seconds after midnight. Otherwise, Julian dates are expected by default. | `optional`
-		.... | .... | ....
+		**`ALMAcube`** | The ALMA cube, wither 3D [x,y,t] or 4D [x,y,sw,t] in intensity units | `required`
+		**`conversion`** | The conversion vector: 1D if the there are no spectral windows (SW), or 2D if the ALMA cube is 4D. | `required`
 	
 	=== "OUTPUTS"
-		Combined data cubes for different spectral windows
+		CONVERTEDCUBE:	The ALMA cube in K (same dimension as the ALMACUBE)
 		
 	=== "EXAMPLE"
         To be added ....

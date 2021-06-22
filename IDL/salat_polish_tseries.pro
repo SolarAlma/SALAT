@@ -1,5 +1,5 @@
 ;+
-; NAME: SALAT_ALMA_POLISH_TSERIES
+; NAME: SALAT_POLISH_TSERIES
 ;		part of -- Solar Alma Library of Auxiliary Tools (SALAT) --
 ;
 ; PURPOSE:

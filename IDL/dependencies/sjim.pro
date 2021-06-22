@@ -238,7 +238,7 @@ endelse
 	 clip = [sideclip,szim[1]-sideclip-1,sideclip,szim[2]-sideclip-1]
  endif
  
- if agamma then image=GmaScl(image,gamma=gamma)
+ if agamma then image=cggmascl(image,gamma=gamma)
  
  if nocolor eq 0 then loadct, ct, /SILENT, bottom=bottom, ncolor=ncolor
  if velclt then begin
@@ -830,20 +830,20 @@ endelse
 			 if not actual then begin
 				 if aref then begin
 					wset, 0
-					if agamma then tvscl, GmaScl(congrid(iris_histo_opt(im),nxt/xcc,nyt/ycc,/INTERP, /CENTER, /MINUS_ONE, $
+					if agamma then tvscl, cggmascl(congrid(iris_histo_opt(im),nxt/xcc,nyt/ycc,/INTERP, /CENTER, /MINUS_ONE, $
 						cubic=-0.5),gamma=gamma), /nan  else $
 				 	tvscl, congrid(iris_histo_opt(im),nx/xcc,ny/ycc, /INTERP, /CENTER, /MINUS_ONE,cubic=-0.5), /nan 
 					if atime then sjclock, time[i], pos=[10,(ny/ycc)-((nx/ycc)*0.14)-10], size=(nx/xcc)*0.14, thick=4, /dev, col=clockcolor
 					if atiffsavedir then $
 						void = cgSnapshot(filename=savedir+'im'+strtrim(long(1000+i),2), quality=100, /PNG, /NODIALOG)
 				 	wset, 2
-					if agamma then tvscl, GmaScl(congrid(iris_histo_opt(imr),nxt/xcc,nyt/ycc,/INTERP, /CENTER, /MINUS_ONE, $
+					if agamma then tvscl, cggmascl(congrid(iris_histo_opt(imr),nxt/xcc,nyt/ycc,/INTERP, /CENTER, /MINUS_ONE, $
 						cubic=-0.5),gamma=gamma), /nan  else $
 					tvscl, congrid(iris_histo_opt(imr),nx/xcc,ny/ycc, /INTERP, /CENTER, /MINUS_ONE,cubic=-0.5), /nan 
 					if atiffsavedir then $
 					void = cgSnapshot(filename=savedir+'imr'+strtrim(long(1000+i),2), quality=100, /PNG, /NODIALOG)
 				 endif else begin
-					if agamma then tvscl, GmaScl(congrid(iris_histo_opt(im),nxt/xcc,nyt/ycc,/INTERP, /CENTER, /MINUS_ONE, $
+					if agamma then tvscl, cggmascl(congrid(iris_histo_opt(im),nxt/xcc,nyt/ycc,/INTERP, /CENTER, /MINUS_ONE, $
 						cubic=-0.5),gamma=gamma), /nan  else $
 				 	tvscl, congrid(iris_histo_opt(im),nx/xcc,ny/ycc,/INTERP, /CENTER, /MINUS_ONE, cubic=-0.5), /nan 
 					if atime then sjclock, time[i], pos=[10,(ny/ycc)-((nx/ycc)*0.14)-10], size=(nx/xcc)*0.14, thick=4, /dev, col=clockcolor
@@ -857,18 +857,18 @@ endelse
 		 	 endif else begin
 				 if aref then begin
 					wset, 0
-					if agamma then tvscl, GmaScl(congrid(iris_histo_opt(im),nxt/xcc,nyt/ycc),gamma=gamma), /nan  else $
+					if agamma then tvscl, cggmascl(congrid(iris_histo_opt(im),nxt/xcc,nyt/ycc),gamma=gamma), /nan  else $
 				 	tvscl, congrid(iris_histo_opt(im),nx/xcc,ny/ycc), /nan 
 					if atime then sjclock, time[i], pos=[10,(ny/ycc)-((ny/ycc)*0.14)-10], size=(nx/xcc)*0.14, thick=4, /dev, col=clockcolor
 					if atiffsavedir then $
 						void = cgSnapshot(filename=savedir+'im'+strtrim(long(1000+i),2), quality=100, /PNG, /NODIALOG)
 				 	wset, 2
-					if agamma then tvscl, GmaScl(congrid(iris_histo_opt(imr),nxt/xcc,nyt/ycc),gamma=gamma), /nan  else $
+					if agamma then tvscl, cggmascl(congrid(iris_histo_opt(imr),nxt/xcc,nyt/ycc),gamma=gamma), /nan  else $
 					tvscl, congrid(iris_histo_opt(imr),nx/xcc,ny/ycc), /nan 
 					if atiffsavedir then $
 					void = cgSnapshot(filename=savedir+'imr'+strtrim(long(1000+i),2), quality=100, /PNG, /NODIALOG)
 				 endif else begin
-					if agamma then tvscl, GmaScl(congrid(iris_histo_opt(im),nxt/xcc,nyt/ycc),gamma=gamma), /nan  else $
+					if agamma then tvscl, cggmascl(congrid(iris_histo_opt(im),nxt/xcc,nyt/ycc),gamma=gamma), /nan  else $
 				 	tvscl, congrid(iris_histo_opt(im),nx/xcc,ny/ycc), /nan 
 					if atime then sjclock, time[i], pos=[10,(ny/ycc)-((ny/ycc)*0.14)-10], size=(nx/xcc)*0.14, thick=4, /dev, col=clockcolor
 					if scan then begin
@@ -1011,16 +1011,16 @@ endelse
 				if not actual then begin
 					if aref then begin
 						wset, 0
-						if agamma then tvscl, GmaScl(congrid(iris_histo_opt(im),nxt/xcc,nyt/ycc,/INTERP, /CENTER, /MINUS_ONE, $
+						if agamma then tvscl, cggmascl(congrid(iris_histo_opt(im),nxt/xcc,nyt/ycc,/INTERP, /CENTER, /MINUS_ONE, $
 							cubic=-0.5),gamma=gamma), /nan  else $
 	   			 		tvscl, congrid(iris_histo_opt(im),nxt/xcc,nyt/ycc, /INTERP, /CENTER, /MINUS_ONE,cubic=-0.5), /nan 
 	   			 		if atime then sjclock, time[mk], pos=[10,(nyt/ycc)-((nxt/ycc)*0.14)-10], size=(nxt/xcc)*0.14, thick=4, /dev, col=clockcolor
 						wset, 2
-						if agamma then tvscl, GmaScl(congrid(iris_histo_opt(imr),nxt/xcc,nyt/ycc,/INTERP, /CENTER, /MINUS_ONE, $
+						if agamma then tvscl, cggmascl(congrid(iris_histo_opt(imr),nxt/xcc,nyt/ycc,/INTERP, /CENTER, /MINUS_ONE, $
 							cubic=-0.5),gamma=gamma), /nan  else $
 	   					tvscl, congrid(iris_histo_opt(imr),nxt/xcc,nyt/ycc, /INTERP, /CENTER, /MINUS_ONE,cubic=-0.5), /nan 
 	   			 	endif else begin
-						if agamma then tvscl, GmaScl(congrid(iris_histo_opt(im),nxt/xcc,nyt/ycc,/INTERP, /CENTER, /MINUS_ONE, $
+						if agamma then tvscl, cggmascl(congrid(iris_histo_opt(im),nxt/xcc,nyt/ycc,/INTERP, /CENTER, /MINUS_ONE, $
 							cubic=-0.5),gamma=gamma), /nan  else $
 						tvscl, congrid(iris_histo_opt(im),nxt/xcc,nyt/ycc,/INTERP, /CENTER, /MINUS_ONE, cubic=-0.5), /nan
 						if atime then sjclock, time[mk], pos=[10,(nyt/ycc)-((nxt/ycc)*0.14)-10], size=(nxt/xcc)*0.14, thick=4, /dev, col=clockcolor
@@ -1033,14 +1033,14 @@ endelse
 				endif else begin
 	   			 	if aref then begin
 						wset, 0
-						if agamma then tvscl, GmaScl(congrid(iris_histo_opt(im),nxt/xcc,nyt/ycc),gamma=gamma), /nan  else $
+						if agamma then tvscl, cggmascl(congrid(iris_histo_opt(im),nxt/xcc,nyt/ycc),gamma=gamma), /nan  else $
 	   			 		tvscl, congrid(iris_histo_opt(im),nxt/xcc,nyt/ycc), /nan 
 	   			 		if atime then sjclock, time[mk], pos=[10,(nyt/ycc)-((nxt/ycc)*0.14)-10], size=(nxt/xcc)*0.14, thick=4, /dev, col=clockcolor
 						wset, 2
-						if agamma then tvscl, GmaScl(congrid(iris_histo_opt(imr),nxt/xcc,nyt/ycc),gamma=gamma), /nan  else $
+						if agamma then tvscl, cggmascl(congrid(iris_histo_opt(imr),nxt/xcc,nyt/ycc),gamma=gamma), /nan  else $
 	   					tvscl, congrid(iris_histo_opt(imr),nxt/xcc,nyt/ycc), /nan 
 	   			 	endif else begin
-						if agamma then tvscl, GmaScl(congrid(iris_histo_opt(im),nxt/xcc,nyt/ycc),gamma=gamma), /nan  else $
+						if agamma then tvscl, cggmascl(congrid(iris_histo_opt(im),nxt/xcc,nyt/ycc),gamma=gamma), /nan  else $
 						tvscl, congrid(iris_histo_opt(im),nxt/xcc,nyt/ycc), /nan
 						if atime then sjclock, time[mk], pos=[10,(nyt/ycc)-((nxt/ycc)*0.14)-10], size=(nxt/xcc)*0.14, thick=4, /dev, col=clockcolor
 						device, decomposed=0
@@ -1152,7 +1152,7 @@ endelse
 				
 				if aclip then im = im[clip[0]:clip[1],clip[2]:clip[3]]
 				
-				if agamma then im=GmaScl(im,gamma=gamma)
+				if agamma then im=cggmascl(im,gamma=gamma)
 				if not actual then tvscl, congrid(iris_histo_opt(im),nxt/xcc,nyt/ycc,/INTERP, /CENTER, /MINUS_ONE, cubic=-0.5), /nan else $
 					tvscl, congrid(iris_histo_opt(im),nxt/xcc,nyt/ycc), /nan 
 	   	 	 	if cb then cgColorbar, Range=[min(im),max(im)], /vertical, color=clbcolor
@@ -1221,7 +1221,7 @@ endelse
 				; if mcube[2] eq -1 and mcube[3] eq -1 then im = reform(im(mcube[0],mcube[1],*,*,mk))
 				; im = smooth(im,smt)
 ;				if aclip then im = im[clip[0]:clip[1],clip[2]:clip[3]]
-				if agamma then im=GmaScl(im,gamma=gamma)
+				if agamma then im=cggmascl(im,gamma=gamma)
 				if not actual then tvscl, congrid(iris_histo_opt(im),nxt/xcc,nyt/ycc, /INTERP, /CENTER, /MINUS_ONE, CUBIC=-0.5), /nan else $
 					tvscl, congrid(iris_histo_opt(im),nxt/xcc,nyt/ycc), /nan
 	   	 	 	if cb then cgColorbar, Range=[min(im),max(im)], /vertical, color=clbcolor
