@@ -62,6 +62,7 @@ def ALMA_fits_reader(path_alma_fba,Shahin_format=False):
     if Shahin_format:
 
         dfba = fits.open(path_alma_fba)[0].data
+        banda = int(path_alma_fba.split("/")[-1].split(".")[1][1])
         afi_all = []
         aii_all = []
         #Finding cropping indexes
@@ -90,6 +91,7 @@ def ALMA_fits_reader(path_alma_fba,Shahin_format=False):
 
     else:
         f_nof = sorted(glob.glob(path_alma_fba+'*.image.pbcor.in_K.nof.fits')) #read and sort files names
+        banda = int(f_nof[0].split(".")[1][1])
         dfba_alma = []
         tfba_alma = []
         afi_all = []
@@ -117,4 +119,4 @@ def ALMA_fits_reader(path_alma_fba,Shahin_format=False):
         #get arcpix ALMA
         arpx_alma = np.abs((fits.open(f_nof[0])[0].header['cdelt2']*u.deg).to(u.arcsec).value)
 
-        return dfba_alma,tfba_alma,arpx_alma
+        return dfba_alma,tfba_alma,arpx_alma,banda
