@@ -13,7 +13,7 @@ from mpl_toolkits.axes_grid1 import make_axes_locatable
 from datetime import datetime,timedelta
 
 
-def plotframeandbeam(path_alma,scnum=True,plarcs=True):
+def plotALMAframe(path_alma,scnum=True,plarcs=True):
     """
 	Author: Guevara Gomez J.C.
 
@@ -61,7 +61,7 @@ def plotframeandbeam(path_alma,scnum=True,plarcs=True):
     
     if scnum == False:
         scnum = eval(input("Input desired scan: "))
-        frnum = eval(input("Input desired fram: "))
+        frnum = eval(input("Input desired frame: "))
         
     else:
         scnum = 0 #By default scnum 0

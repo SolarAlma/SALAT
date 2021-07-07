@@ -87,7 +87,7 @@ def ALMA_fits_reader(path_alma_fba,Shahin_format=False):
         #get ARCPIX ALMA
         arpx_alma = fits.open(path_alma_fba)[0].header['PIXELSIZ']
 
-        return dfba_alma,tfba_alma,arpx_alma
+        return dfba_alma,tfba_alma,arpx_alma,banda
 
     else:
         f_nof = sorted(glob.glob(path_alma_fba+'*.image.pbcor.in_K.nof.fits')) #read and sort files names
