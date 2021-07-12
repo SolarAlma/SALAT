@@ -3,11 +3,10 @@
 ;		part of -- Solar Alma Library of Auxiliary Tools (SALAT) --
 ;
 ; PURPOSE: 
-;	Create ALMA cubes from individual files outputted by SoAP (put them together, remove bad frames 
-;	and polish the cube), i.e., creates both pre-level4 (aka 'clean') and level4 cubes.
+;	Provides transmission of the Earth's atmosphere based tabulated data file.
 ;
 ; CALLING SEQUENCE:
-;	info = salat_telluric_transmission(band=band,pwv=pwv_req, frequency=freq_r, out_frequency=out_freq, out_pwv=out_pwv)
+;	info = salat_telluric_transmission(band=band, pwv=pwv_req, frequency=freq_r, out_frequency=out_freq, out_pwv=out_pwv)
 ;
 ; + INPUTS:
 ; 	BAND 		ALMA's band identifier
