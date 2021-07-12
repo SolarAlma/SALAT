@@ -102,3 +102,5 @@ def plotALMAframe(path_alma,scnum=True,plarcs=True):
     cb.set_label(label='Temperature [K]', fontsize=22)
     cb.ax.tick_params(labelsize=18)
     plt.tight_layout()
+
+    plt.savefig('ALMA_sc%i_fr%i_%s'%(scnum,frnum,datetime.strftime(imtime,"%Y%d%m")),dpi=150)
