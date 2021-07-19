@@ -27,8 +27,8 @@
 ; EXAMPLE:
 ;   IDL> cube = './solaralma.b3.fba.20161222_141931-150707.2016.1.00423.S.level4.k.fits'
 ;   IDL> result = salat_timeline(cube, time=time, stime=stime)
-;	IDL> help, time, stime
-;	IDL> print, time[result[0,1]], time[result[1,0]] ; time interval of first gap (if any)
+;   IDL> help, time, stime
+;   IDL> print, time[result[0,1]], time[result[1,0]] ; time interval of first gap (if any)
 ;
 ; MODIFICATION HISTORY:
 ;   Shahin Jafarzadeh (Rosseland Centre for Solar Physics, University of Oslo, Norway), July 2021

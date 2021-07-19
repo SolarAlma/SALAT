@@ -4,7 +4,7 @@
 ;
 ; PURPOSE: 
 ;   Print statistics aboout synthesised beam
-;	and plot variation of the beam parameters with time.
+;   and plot variation of the beam parameters with time.
 ;
 ; CALLING SEQUENCE:
 ;   salat_beam_stats, cube
@@ -13,7 +13,7 @@
 ;   CUBE    The SALSA data cube in FITS format
 ;
 ; + OUTPUTS:
-; 	The plotted statistics.
+;   The plotted statistics.
 ;
 ; + RESTRICTIONS:
 ;   None
@@ -65,12 +65,12 @@ window, 8, xs=800, ys=800, title='Beam Statistics'
 pos = cgLayout([2,2], OXMargin=[10,4], OYMargin=[7,5], XGap=12, YGap=12)
 
 cgplot, time-time[0], BMAJ, xtitle='time (s)', ytitle='Major axis (arcsec)', thick=2, color=cgColor('DarkGreen'), $
-	pos=pos[*,0], xs=1, yr=[min(BMAJ)-0.5*(max(BMAJ)-min(BMAJ)),max(BMAJ)+0.5*(max(BMAJ)-min(BMAJ))]
+    pos=pos[*,0], xs=1, yr=[min(BMAJ)-0.5*(max(BMAJ)-min(BMAJ)),max(BMAJ)+0.5*(max(BMAJ)-min(BMAJ))]
 
 cgplot, time-time[0], BMIN, xtitle='time (s)', ytitle='Minor axis (arcsec)', thick=2, color=cgColor('DarkGreen'), $
-	pos=pos[*,1], xs=1, yr=[min(BMIN)-0.5*(max(BMIN)-min(BMIN)),max(BMIN)+0.5*(max(BMIN)-min(BMIN))]
+    pos=pos[*,1], xs=1, yr=[min(BMIN)-0.5*(max(BMIN)-min(BMIN)),max(BMIN)+0.5*(max(BMIN)-min(BMIN))]
 
 cgplot, time-time[0], BPA, xtitle='time (s)', ytitle='Angle (degrees)', thick=2, color=cgColor('DarkGreen'), $
-	pos=pos[*,2], xs=1, yr=[min(BPA)-0.5*(max(BPA)-min(BPA)),max(BPA)+0.5*(max(BPA)-min(BPA))]
+    pos=pos[*,2], xs=1, yr=[min(BPA)-0.5*(max(BPA)-min(BPA)),max(BPA)+0.5*(max(BPA)-min(BPA))]
 
 end
