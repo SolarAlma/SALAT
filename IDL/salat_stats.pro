@@ -8,7 +8,7 @@
 ;   and print them in terminal (optional). A histogram is also plotted (optional)
 ;
 ; CALLING SEQUENCE:
-;   salat_stats, cube
+;   result = salat_stats(cube, /histogram)
 ;
 ; + INPUTS:
 ;   CUBE        The SALSA data cube in FITS format
@@ -28,7 +28,8 @@
 ;
 ; EXAMPLE:
 ;   IDL> cube = './solaralma.b3.fba.20161222_141931-150707.2016.1.00423.S.level4.k.fits'
-;   IDL> salat_stats, cube, /histogram
+;   IDL> result = salat_stats(cube, /histogram)
+;	IDL> help, result
 ;
 ; MODIFICATION HISTORY:
 ;   Shahin Jafarzadeh (Rosseland Centre for Solar Physics, University of Oslo, Norway), July 2021
@@ -39,7 +40,7 @@ data = reform(readfits(cube))
 
 if n_elements(frame) ne 0 then data = reform(data[*,*,frame])
 
-sz = size(alma)
+sz = size(data)
 dimension = sz[0]
 nx = sz[1]
 ny = sz[2]
@@ -83,10 +84,15 @@ endif else modef = 0
 nx=(size(data))[1]  &  ny=(size(data))[2]
 med=median(data)
 
+aa=where(finite(data) eq 1)
+data=data[aa]
+percentile1 = cgPercentiles(data, Percentiles=[0.01,0.99])
+percentile5 = cgPercentiles(data, Percentiles=[0.05,0.95])
+
 if n_elements(silent) eq 0 then begin
     print, '  '
     print, ' ----------------------------------------------'
-    print, ' |  Statistics:'
+    print, ' |  Statistics (data unit: K):'
     print, ' ----------------------------------------------'
     if dimension eq 3 then $
     print, ' |  Array size:  x = '+strtrim(nx,2)+'  y = '+strtrim(ny,2)+'  t = '+strtrim(nt,2) else $
@@ -103,6 +109,8 @@ if n_elements(silent) eq 0 then begin
     print, ' |  Variance = '+strtrim(var,2)
     print, ' |  Skew = '+strtrim(skew,2)
     print, ' |  Kurtosis = '+strtrim(kurt,2)
+	print, ' |  Percentile1 (value range between the 1st and 99th percentile)= '+strtrim(percentile1[0],2)+' - '+strtrim(percentile1[1],2)
+	print, ' |  Percentile5 (value range between the 5th and 95th percentile)= '+strtrim(percentile5[0],2)+' - '+strtrim(percentile5[1],2)
     print, ' ----------------------------------------------'
     print, '  '
 endif
@@ -118,7 +126,9 @@ stats = create_struct( $
     'Standard_deviation', stddev, $
     'Variance', var, $
     'Skew', skew, $
-    'Kurtosis', kurt $
+    'Kurtosis', kurt, $
+	'Percentile1', percentile1, $
+	'Percentile5', percentile5 $
         )
 
 if n_elements(histogram) ne 0 then begin
