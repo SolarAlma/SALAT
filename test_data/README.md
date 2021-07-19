@@ -1,4 +1,17 @@
 ## SALAT | Test data
 
-Test data can be found at:
-...
+### Reference test data (final level4 cubes):
+
+**Primary data cube:**
+```JavaScript
+/mn/stornext/d13/alma/shahin/almaobs_level4/b3__2016-12-22/solaralma.b3.fba.20161222_141931-150707.2016.1.00423.S.level4.k.fits
+```
+
+**Other data cubes:**
+```JavaScript
+/mn/stornext/d13/alma/almaobs_final/reference/solaralma.b6.fba.20170422_153917-164326.2016.1.00050.S.level4.k.fits
+```
+
+```JavaScript
+/mn/stornext/d13/alma/almaobs_final/reference/solaralma.b6.fba.20170328_150920-161212.2016.1.00788.S.level4.k.fits
+```
