@@ -75,8 +75,6 @@ x1 = x0+diameter
 y0 = (ny-diameter)/2.
 y1 = y0+diameter
 
-; sides = 0.05*diameter
-
 clip = [round(x0)-sides,round(x1)+sides,round(y0)-sides,round(y1)+(1.5*sides)]
 
 alma = alma[clip[0]:clip[1],clip[2]:clip[3],*]
@@ -159,8 +157,6 @@ for i=0L, nim-1 do begin
         TITLE=ztitle, MINOR=1, /TOP, TICKLEN=-0.4, TICKINTERVAL=myTICKINTERVAL
 
     draw_circle, nx/cc/2., (ny-(0.5*sides))/cc/2., ((diameter/2.)/cc)-(2.5/cc), thick=2, linestyle=0, color=cgColor('Black'), /dev
-
-    ; sjbox, left=0, bottom=ytc, w=0, cc=cc, right=xlc, top=ny-1, /plotbox
 
     if n_elements(clock) ne 0 then $
     sjclock, time2string(timesec[i]), pos=[0.02*diameter/cc,(ytc/cc)-(0.01*diameter/cc)], size=(xlc/cc)-(0.015*diameter/cc), col=0, thick=5., /dev
