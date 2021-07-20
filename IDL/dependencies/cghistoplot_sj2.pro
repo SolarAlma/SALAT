@@ -333,7 +333,7 @@ PRO cgHistoplot_SJ2, $                    ; The program name.
                BACKCOLORNAME=backcolorName, $   ; The background color.
                CHARSIZE=charsize, $
                DATACOLORNAME=datacolorName, $   ; The data color.
-               _REF_EXTRA=extra, $              ; For passing extra keywords.
+               ;_REF_EXTRA=extra, $              ; For passing extra keywords.
                FILE=file, $                     ; For specifying a color name file.
                FREQUENCY=frequency, $           ; Plot relative frequency, rather than density.
                NFREQUENCY=nfrequency, $    ; Plot normalised frequency, rather than density.
@@ -387,7 +387,7 @@ PRO cgHistoplot_SJ2, $                    ; The program name.
                BACKCOLORNAME=backcolorName, $   ; The background color.
                CHARSIZE=charsize, $
                DATACOLORNAME=datacolorName, $   ; The data color.
-               _REF_EXTRA=extra, $              ; For passing extra keywords.
+               ;_REF_EXTRA=extra, $              ; For passing extra keywords.
                FILE=file, $                     ; For specifying a color name file.
                FREQUENCY=frequency, $           ; Plot relative frequency, rather than density.
                NFREQUENCY=nfrequency, $    ; Plot normalised frequency, rather than density.
