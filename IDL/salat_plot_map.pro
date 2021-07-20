@@ -37,7 +37,7 @@
 ;-
 pro salat_plot_map, cube, color_legend=color_legend, beam=beam, average=average, timestep=timestep, savedir=savedir, clock=clock
 
-!p.charsize=1.2
+!p.charsize=1.8
 !x.thick=2.
 !y.thick=2.
 
@@ -99,10 +99,10 @@ ytc = (ny0/2.)+dy
 colset
 device, decomposed=0
 
-!P.FONT = 0
-thisWindow = !D.Window
-DEVICE, SET_FONT = 'lucidasanstypewriter-bold-18'
-WDelete, !D.Window
+; !P.FONT = 0
+; thisWindow = !D.Window
+; DEVICE, SET_FONT = 'lucidasanstypewriter-bold-18'
+; WDelete, !D.Window
 
 cc = 0.35
 
@@ -171,12 +171,12 @@ for i=0L, nim-1 do begin
     cgplots,[xt1,xt2], [ybc/cc/2.+5/cc,ybc/cc/2.+5/cc], thick=4, color=cgcolor('Black'), /dev
     cgplots,[xt1,xt1], [(ybc/cc/2.)-(3/cc)+5/cc,(ybc/cc/2.)+(3/cc)+5/cc], thick=3, color=cgcolor('Black'), /dev
     cgplots,[xt2,xt2], [(ybc/cc/2.)-(3/cc)+5/cc,(ybc/cc/2.)+(3/cc)+5/cc], thick=3, color=cgcolor('Black'), /dev
-    cgText, xt1+(numpix/2.), (ybc/cc/2.)-(12./cc)+5/cc, ALIGNMENT=0.5, CHARSIZE=1., color=cgColor('Black'), scale, /dev
+    cgText, xt1+(numpix/2.), (ybc/cc/2.)-(12./cc)+5/cc, ALIGNMENT=0.5, color=cgColor('Black'), scale, /dev
 
 
     cgplots,[0,nx/cc-1], [(ny0+((ny-ny0)/2.))/cc,(ny0+((ny-ny0)/2.))/cc], thick=(0.5*sides)/cc, /dev, color=cgcolor('Black')
-    cgText, 0.02*diameter/cc, (ny-2-((0.5*sides)/2.))/cc-2., ALIGNMENT=0., CHARSIZE=1., color=cgColor('White'), databand, /dev
-    cgText, ((nx-1)/cc)-(0.03*diameter/cc), (ny-2-((0.5*sides)/2.))/cc-2., ALIGNMENT=1., CHARSIZE=1., color=cgColor('White'), date, /dev
+    cgText, 0.02*diameter/cc, (ny-2-((0.5*sides)/2.))/cc-2., ALIGNMENT=0., color=cgColor('White'), databand, /dev
+    cgText, ((nx-1)/cc)-(0.03*diameter/cc), (ny-2-((0.5*sides)/2.))/cc-2., ALIGNMENT=1., color=cgColor('White'), date, /dev
 
     if n_elements(beam) ne 0 then $
     sjtvellipse, (BMAJ[i]/2.)/pixelsize/cc, (BMIN[i]/2.)/pixelsize/cc, (xlc/2./cc)+(0.2*sides)/cc, ybc/cc/2.+5/cc, 90.+BPA[i], cgColor('Black'), /dev, /fill, npoints=1000
