@@ -10,7 +10,7 @@
 ;   Thus, depending on the availability of full spectra and/or Stokes parameters, the cube may have 3-5 dimensions.
 ;
 ; CALLING SEQUENCE:
-;   alma = salat_read(cube, header=header, time=time, beammajor=beammajor, beamminor=beamminor, beamangle=beamangle)
+;   alma = salat_read(cube, header=header, time=time, beam_major=beam_major, beam_minor=beam_minor, beam_angle=beam_angle)
 ;
 ; + INPUTS:
 ;   CUBE        The SALSA data cube in FITS format
@@ -29,17 +29,18 @@
 ;   TIME        Name of a variable for observing time, in seconds from UTC midnight (optional)
 ;   BEAM_MAJOR  Name of a variable for Major axis of the beam (i.e., ALMA's sampling beam) in degrees (optional)
 ;   BEAM_MINOR  Name of a variable for Minor axis of the beam in degrees (optional)
-;   BEAM_ANGLE  Name of a variable for Angle of the beam in respect to .... in degrees (optional)
+;   BEAM_ANGLE  Name of a variable for Angle of the beam (in degrees) 
+;               which is defined as angle of the Sun with respect to the north celestial pole, i.e. the ‘position angle’ (optional)
 ;
 ; + RESTRICTIONS:
 ;   Currently wroks with SALSA level4 3D datacubes (i.e., no spectral and Stokes data)
 ;
 ; EXAMPLE:
 ;   IDL> cube = './solaralma.b3.fba.20161222_141931-150707.2016.1.00423.S.level4.k.fits'
-;   IDL> alma = salat_read(cube, header=header, time=time, beammajor=beammajor, beamminor=beamminor, beamangle=beamangle)
+;   IDL> alma = salat_read(cube, header=header, time=time, beam_major=beam_major, beam_minor=beam_minor, beam_angle=beam_angle)
 ;   IDL> help, header
 ;   IDL> print, header.pixel_size
-;   IDL> help, time, beammajor, beamminor, beamangle
+;   IDL> help, time, beam_major, beam_minor, beam_angle
 ;
 ; MODIFICATION HISTORY:
 ;   Shahin Jafarzadeh (Rosseland Centre for Solar Physics, University of Oslo, Norway), July 2021
