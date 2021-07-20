@@ -33,6 +33,7 @@
 ;
 ; MODIFICATION HISTORY:
 ;   Shahin Jafarzadeh (Rosseland Centre for Solar Physics, University of Oslo, Norway), July 2021
+;   Stian Aannerud (University of Oslo, Norway), July 2021: testing/debugging
 ;-
 function salat_stats, cube, frame=frame, histogram=histogram, silent=silent
 
