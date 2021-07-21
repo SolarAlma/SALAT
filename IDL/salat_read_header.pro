@@ -1,5 +1,5 @@
 ;+
-; NAME: SALAT_READ_HEADER --> NOT WORKING YET!
+; NAME: SALAT_READ_HEADER
 ;       part of -- Solar Alma Library of Auxiliary Tools (SALAT) --
 ;
 ; PURPOSE: 
