@@ -104,7 +104,7 @@ if n_elements(silent) eq 0 then begin
     print, ' -----------------------------------------------------------'
     print, ' |  Time of observations: '+strtrim(sxpar(hd,'DATE-OBS'),2)
     print, ' |  ALMA Band: '+strtrim(sxpar(hd,'INSTRUME'),2)
-    print, ' |  ALMA_project_id: '+strtrim(sxpar(hd,'PROPCODE'),2)
+    print, ' |  ALMA Project ID: '+strtrim(sxpar(hd,'PROPCODE'),2)
     print, ' |  Solar x (arcsec) ~ '+strtrim(sxpar(hd,'CRVAL1A'),2)
     print, ' |  Solar y (arcsec) ~ '+strtrim(sxpar(hd,'CRVAL2A'),2)
     print, ' |  Pixel size (arcsec): '+strtrim(sxpar(hd,'CDELT1A'),2)
