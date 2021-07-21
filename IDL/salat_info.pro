@@ -25,7 +25,7 @@
 ;   Shahin Jafarzadeh (Rosseland Centre for Solar Physics, University of Oslo, Norway), July 2021
 ;-
 pro salat_info, cube
-	
+    
 hd = headfits(cube)
 variables = reform(readfits(cube,header_var,ext=1,/silent))
 
