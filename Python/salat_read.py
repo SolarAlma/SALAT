@@ -32,7 +32,7 @@ def salat_read(file,fillNan=False,timeout=False,beamout=False,NO_HEADER=False,SI
 	beamout: Boolean, False  default
 		If True it returns 3 arrays being beam axes ang angles
 	NO_HEADER: Boolean, False default
-		If True it returns headers (make use of salat_read_header)
+		If True it returns original header (make use of salat_read_header)
 	SILENT: Boolean, False default
 		If True it does not print out info in terminal
 
@@ -40,8 +40,8 @@ def salat_read(file,fillNan=False,timeout=False,beamout=False,NO_HEADER=False,SI
 	-------
 	sqcubecrop: np.array
 		Squeezed and cropped ALMA cube with dimensions [t,x,y]
-	hdrs: astropy.io.fits.header.Header [hdr0,hdr1,hdr2]
-		Optional, list with headers for main and ext1 and ext2
+	hdr: astropy.io.fits.header.Header
+		main header
 	timesec: np.array
 		Optional, array with time in seconds (0 s is start observation)
 	timeutc: np.array of datetime.datetime
@@ -70,8 +70,9 @@ def salat_read(file,fillNan=False,timeout=False,beamout=False,NO_HEADER=False,SI
 	"""
 
 	print("")
-	print("----------------------------------------------")
-	print("SALAT READ part of -- Solar Alma Library of Auxiliary Tools (SALAT) --")
+	print("---------------------------------------------------")
+	print("--------------- SALAT READ part of ----------------")
+	print("-- Solar Alma Library of Auxiliary Tools (SALAT) --")
 	print("")
 	print("Reading ALMA cube")
 	print("")
@@ -107,7 +108,7 @@ def salat_read(file,fillNan=False,timeout=False,beamout=False,NO_HEADER=False,SI
 
 	############### Read header ################
 
-	hdr0,hdr1,hdr2 = srhdr.salat_read_header(file,SILENT=True)
+	hdr0 = srhdr.salat_read_header(file,ALL=True,ORIGINAL=True,SILENT=True)
 
 	############### Reading Times ################
 
@@ -145,7 +146,7 @@ def salat_read(file,fillNan=False,timeout=False,beamout=False,NO_HEADER=False,SI
 		print("----------------------------------------------")
 		print("|  About this dataset: ")
 		print("----------------------------------------------")
-		print("|  ALMA BAND: ",int(hdr0["BAND"][-1]))
+		print("|  ALMA BAND: ",hdr0['INSTRUME'])
 		print("|  Obs. Date: ",hdr0["DATE-OBS"][:10])
 		print("|  Pix. Unit: ",hdr0["BUNIT"])
 		print("|  Pix. Size: ",hdr0["CDELT1A"]," arcsec.")
@@ -160,7 +161,7 @@ def salat_read(file,fillNan=False,timeout=False,beamout=False,NO_HEADER=False,SI
 	# If options are False, variables are None
 	print("Done!")
 	if NO_HEADER == True:
-		hdr0,hdr1,hdr2 = None,None,None
-		return sqcubecrop,[hdr0,hdr1,hdr2],timesec,timeutc,beammajor,beamminor,beamangle
+		hdr0 = None
+		return sqcubecrop,hdr0,timesec,timeutc,beammajor,beamminor,beamangle
 	else:
-		return sqcubecrop,[hdr0,hdr1,hdr2],timesec,timeutc,beammajor,beamminor,beamangle
+		return sqcubecrop,hdr0,timesec,timeutc,beammajor,beamminor,beamangle
