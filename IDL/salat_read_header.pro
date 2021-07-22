@@ -33,7 +33,7 @@
 ; + IMPORTANT NOTE:
 ;   -- Please check the original header, always stored in the outputted structure as a string (called: 'ORIGINAL_HEADER') 
 ;      for comments on and unit of the parameters.
-;	-- Please note that all hyphens (-) in the original header's tag names are converted to underlines (_) in the outputted structures.
+;   -- Please note that all hyphens (-) in the original header's tag names are converted to underlines (_) in the outputted structures.
 ;   -- SOLARX and SOLARY parameters are SOLAR coordinates based on pointing information 
 ;      and may have offsets from the actual coordinates.
 ;
@@ -115,11 +115,11 @@ if n_elements(silent) eq 0 then begin
     print, ' |  Frequency (Hz): '+strtrim(sxpar(hd,'CRVAL3'),2)
     print, ' |  Water Vapour: '+strtrim(sxpar(hd,'PWV'),2)
     print, ' -----------------------------------------------------------'
-	print
-	print, ' ---------------------------------------------------'
-	print, ' -- Solar Alma Library of Auxiliary Tools (SALAT) --'
-	print, ' ---------------------------------------------------'
-	print
+    print
+    print, ' ---------------------------------------------------'
+    print, ' -- Solar Alma Library of Auxiliary Tools (SALAT) --'
+    print, ' ---------------------------------------------------'
+    print
 end
 
   return, header_structure
