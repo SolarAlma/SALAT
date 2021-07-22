@@ -114,14 +114,12 @@ if n_elements(silent) eq 0 then begin
     print, ' |  Frequency (Hz): '+strtrim(sxpar(hd,'CRVAL3'),2)
     print, ' |  Water Vapour: '+strtrim(sxpar(hd,'PWV'),2)
     print, ' -----------------------------------------------------------'
-    print, '  '
-endif
-
-print
-print, ' ---------------------------------------------------'
-print, ' -- Solar Alma Library of Auxiliary Tools (SALAT) --'
-print, ' ---------------------------------------------------'
-print
+	print
+	print, ' ---------------------------------------------------'
+	print, ' -- Solar Alma Library of Auxiliary Tools (SALAT) --'
+	print, ' ---------------------------------------------------'
+	print
+end
 
   return, header_structure
 end

@@ -27,7 +27,8 @@
 ;
 ; EXAMPLE:
 ;   IDL> cube = './solaralma.b3.fba.20161222_141931-150707.2016.1.00423.S.level4.k.fits'
-;   IDL> bestframe = salat_contrast(cube, /show_best)
+;   IDL> bestframe = salat_contrast(cube, /show_best, time_index=time_index)
+;	IDL> best_five_frames = cube[*,*,time_index[0:9]]
 ;
 ; MODIFICATION HISTORY:
 ;   Shahin Jafarzadeh (Rosseland Centre for Solar Physics, University of Oslo, Norway), July 2021
