@@ -33,6 +33,7 @@
 ; + IMPORTANT NOTE:
 ;   -- Please check the original header, always stored in the outputted structure as a string (called: 'ORIGINAL_HEADER') 
 ;      for comments on and unit of the parameters.
+;	-- Please note that all hyphens (-) in the original header's tag names are converted to underlines (_) in the outputted structures.
 ;   -- SOLARX and SOLARY parameters are SOLAR coordinates based on pointing information 
 ;      and may have offsets from the actual coordinates.
 ;
