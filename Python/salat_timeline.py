@@ -101,6 +101,7 @@ def salat_timeline(timesec,gap=30):
     ax.set_title(r'Observation timeline',fontsize=22)
     ax.set_xlabel(r'Time [s]',fontsize=20)
     plt.tight_layout()
+    plt.show()
 
     ############### Returning variable ################
 
