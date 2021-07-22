@@ -6,7 +6,7 @@
     <a href="https://opensource.org/licenses/MIT" title="" target="_blank"><img src="https://img.shields.io/badge/license-MIT-yellow.svg"></a>
 </p>
 
-A collection of routines (programmed in IDL and/or Python) linked to post restorations and simple analysis/exploration of Solar ALMA data sets reduced with SoAP. Description of all codes, along with working examples, have been provided in this document. See each code's header for further explanations and keywords.
+A collection of routines (programmed in both IDL and Python) for simple analysis/exploration of Solar ALMA datasets reduced with SoAP (i.e., SALSA level4 datacubes). Description of all codes, along with working examples, have been provided in this document. See each code's header for further explanations and keywords.
 
 
 <a href="https://solaralma.github.io/SALAT/" target="_blank"><img align="right" src="docs/images/docsScreenshot.jpg" alt="" width="485" height="auto" /></a>
