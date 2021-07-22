@@ -13,10 +13,9 @@
 ;   CUBE        The ALMA FITS cube in [x,y,t] format.
 ;           
 ; + OPTIONAL KEYWORDS/INPUT PARAMETERS:
-;   LIMIT       A limit for the rms intensity contrast, using which 'good' and 'bad' frames are identified.
-;   SIDE        Number of pixels to be excluded from sides of the field of view prior to calculations of the mean intensity and rms contrast.
 ;   SHOW_BEST   If set, location of the best frame (i.e., that with the largest rms contrast) is indicated on the plot.
 ;   TITLE       It should be set if the cube is a fits file.
+;   SIDE        Number of pixels to be excluded from sides of the field of view prior to calculations of the mean intensity and rms contrast.
 ;          
 ; + OUTPUTS:
 ;   BESTFRAME   Index of the best frame (i.e., that with the largest rms contrast).
@@ -28,18 +27,19 @@
 ; EXAMPLE:
 ;   IDL> cube = './solaralma.b3.fba.20161222_141931-150707.2016.1.00423.S.level4.k.fits'
 ;   IDL> bestframe = salat_contrast(cube, /show_best, time_index=time_index)
-;	IDL> best_five_frames = cube[*,*,time_index[0:9]]
+;	IDL> im = readfits(cube)
+;	IDL> best_ten_frames_cube = im[*,*,time_index[0:9]]
 ;
 ; MODIFICATION HISTORY:
 ;   Shahin Jafarzadeh (Rosseland Centre for Solar Physics, University of Oslo, Norway), July 2021
 ;-
-function salat_contrast, cube, fits=fits, limit=limit, side=side, show_best=show_best, time_index=time_index, title=title
+function salat_contrast, cube, fits=fits, show_best=show_best, time_index=time_index, title=title, side=side
 
 if n_elements(show_best) eq 0 then show_best = 0
 if n_elements(side) eq 0 then side = 5
-if n_elements(limit) eq 0 then alimit = 0 else alimit=1
 
 im = reform(readfits(cube,hd))
+
 variables = reform(readfits(cube,header_var,ext=1,/silent))
 time = reform(variables[*,3]) ; in sec
 
@@ -109,7 +109,6 @@ rmsc = rmsCont*100
 indx = sort(rmsc)
 rmconts = rmsc(indx)
 nrmscs = n_elements(rmsc)
-if alimit eq 1 then sjhline, limit, color=cgColor('RED')
 
 if show_best then begin
     sjvline, xmaxt, thick=3, color=cgColor('DarkRED'), linestyle=1
