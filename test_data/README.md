@@ -4,7 +4,7 @@
 
 **Primary data cube:**
 ```JavaScript
-/mn/stornext/d13/alma/shahin/almaobs_level4/b3__2016-12-22/solaralma.b3.fba.20161222_141931-150707.2016.1.00423.S.level4.k.fits
+/mn/stornext/d13/alma/almaobs_final/reference/solaralma.b3.fba.20161222_141931-150707.2016.1.00423.S.level4.k.fits
 ```
 
 **Other data cubes:**
@@ -14,4 +14,11 @@
 
 ```JavaScript
 /mn/stornext/d13/alma/almaobs_final/reference/solaralma.b6.fba.20170328_150920-161212.2016.1.00788.S.level4.k.fits
+```
+
+**An example image for the SALAT_CONVOLVE_BEAM routine:**
+
+:round_pushpin: from Bifrost simulation (synthetic band 3):
+```JavaScript
+/mn/stornext/d13/alma/almaobs_final/reference/bifrost_b3_frame400.fits
 ```
