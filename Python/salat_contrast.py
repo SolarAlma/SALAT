@@ -6,7 +6,7 @@ def salat_contrast(almadata,timesec,side=5,show_best=False):
 	Name: salat_convolve_beam
 		part of -- Solar Alma Library of Auxiliary Tools (SALAT) --
 
-	Purpose: This function makes beam convolution with any data with pxsize 
+	Purpose: This function calcualte RMS contrast and sort best frames
 
 	Parameters
 	----------
@@ -26,6 +26,7 @@ def salat_contrast(almadata,timesec,side=5,show_best=False):
 
 	Examples
 	--------
+		>>> bfrs = slc.salat_contrast(almacube,timesec,show_best=True)
 
 	Modification history:
 	---------------------
