@@ -11,13 +11,13 @@
 ;   salat_salsa_to_crispex, cube, savedir=savedir
 ;
 ; + INPUTS:
-;   CUBE        The SALSA data cube in FITS format
+;   CUBE        The SALSA level4 data cube in FITS format
 ;       
 ; + OPTIONAL KEYWORDS/INPUT PARAMETERS:
 ;   SAVEDIR     A directory (as a string) in where the CRISPEX (.fcube) file is stored (default = './')
 ;
 ; + OUTPUTS:
-;   The CRISPEX cube (.fcube) stored in the given location (i.e., SAVEDIR)
+;   The CRISPEX cube (.fcube) stored in the given location (i.e., SAVEDIR), with the same name as the input CUBE.
 ;
 ; + RESTRICTIONS:
 ;   Currently for 3D [x,y,t] cubes only. 
