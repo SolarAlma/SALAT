@@ -16,7 +16,7 @@
 /mn/stornext/d13/alma/almaobs_final/reference/solaralma.b6.fba.20170328_150920-161212.2016.1.00788.S.level4.k.fits
 ```
 
-**An example image for the SALAT_CONVOLVE_BEAM routine:**
+**An example image for the `SALAT_CONVOLVE_BEAM` routine:**
 
 :round_pushpin: from Bifrost simulation (synthetic band 3):
 ```bash
