@@ -34,8 +34,9 @@
 ;
 ; MODIFICATION HISTORY:
 ;   Shahin Jafarzadeh (Rosseland Centre for Solar Physics, University of Oslo, Norway), July 2021
+;   Stian Aannerud (University of Oslo, Norway), July 2021: testing/debugging
 ;-
-pro salat_plot_map, cube, color_legend=color_legend, beam=beam, average=average, timestep=timestep, savedir=savedir, clock=clock
+pro salat_plot_map, cube, color_legend=color_legend, beam=beam, average=average, timestep=timestep, savedir=savedir, jpg=jpg, png=png, clock=clock
 
 !p.charsize=1.8
 !x.thick=2.

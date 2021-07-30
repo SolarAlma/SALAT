@@ -3,7 +3,7 @@
 ;       part of -- Solar Alma Library of Auxiliary Tools (SALAT) --
 ;
 ; PURPOSE: 
-;   Convolve a specified synthetic beam (from an ALMA observations) to a user-provided map 
+;   Convolve a specified synthetic beam (from an ALMA observation) to a user-provided map 
 ;   (e.g. from a simulation or observations with other instruments)
 ;
 ; CALLING SEQUENCE:
@@ -28,11 +28,11 @@
 ;
 ; EXAMPLE:
 ;   IDL> data = './bifrost_b3_frame400.fits'
-;	IDL> pixel_size = 0.066 ; arcsec
-;	IDL> alma_cube = './solaralma.b3.fba.20161222_141931-150707.2016.1.00423.S.level4.k.fits'
+;   IDL> pixel_size = 0.066 ; arcsec
+;   IDL> alma_cube = './solaralma.b3.fba.20161222_141931-150707.2016.1.00423.S.level4.k.fits'
 ;   IDL> convolved = salat_convolve_beam(data, pixel_size=pixel_size, alma_cube=alma_cube)
-;	IDL> sjim, data, /fits, w=4, iris='FUV', title='original input image'
-;	IDL> sjim, convolved, w=6, iris='FUV', title='convolved image'
+;   IDL> sjim, data, /fits, w=4, iris='FUV', title='original input image'
+;   IDL> sjim, convolved, w=6, iris='FUV', title='convolved image'
 ;
 ; MODIFICATION HISTORY:
 ;   Shahin Jafarzadeh (Rosseland Centre for Solar Physics, University of Oslo, Norway), July 2021
