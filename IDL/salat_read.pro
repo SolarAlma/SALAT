@@ -26,6 +26,7 @@
 ;   HEADER      Name of a an IDL structure to store header of the FITS cube (calls salat_load_header.pro)
 ;               By default, the most important header's parameters with meaningful tag names are outputted as a structure.
 ;               Extra keywords: add /all for all parameters in the header, and/or /original for their original tag names/abbreviations 
+;	NO_HEADER	If set, the header is not read/outputted.
 ;   TIME        Name of a variable for observing time, in seconds from UTC midnight (optional)
 ;   BEAM_MAJOR  Name of a variable for Major axis of the beam (i.e., ALMA's sampling beam) in degrees (optional)
 ;   BEAM_MINOR  Name of a variable for Minor axis of the beam in degrees (optional)

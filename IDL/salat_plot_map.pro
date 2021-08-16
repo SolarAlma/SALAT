@@ -15,7 +15,7 @@
 ; + OPTIONAL KEYWORDS/INPUT PARAMETERS:
 ;   COLOR_LEGEND    If set, a colorbar is also plotted
 ;   BEAM            If set, the beam shape/size is also depicted
-;   AVERAGE         If set, average of the entire time series is plotted
+;   AVERAGE         If set, the average image over the entire time series is plotted
 ;   TIMESTEP        The index of a frame to be plotted. If set, no movie is plotted.
 ;   SAVEDIR         A directory's location in which images are stored.
 ;   JPG             If SAVEDIR is defined, type of the stored image(s) is JPG
@@ -126,9 +126,14 @@ if n_elements(timestep) ne 0 then begin
     nim = 1
 endif
 
+if n_elements(average) ne 0 then begin
+	imavg = mean(alma,dimension=3,/nan)
+	nim=1
+endif
+
 for i=0L, nim-1 do begin
 
-    im = reform(alma[*,*,i])
+    if n_elements(average) eq 0 then im = reform(alma[*,*,i]) else im = imavg
 
     imm = congrid(iris_histo_opt(im),nx/cc, ny/cc, /INTERP, /CENTER, /MINUS_ONE,cubic=-0.5)
 
@@ -159,7 +164,7 @@ for i=0L, nim-1 do begin
 
     draw_circle, nx/cc/2., (ny-(0.5*sides))/cc/2., ((diameter/2.)/cc)-(2.5/cc), thick=2, linestyle=0, color=cgColor('Black'), /dev
 
-    if n_elements(clock) ne 0 then $
+    if n_elements(clock) ne 0 then if n_elements(average) ne 0 then $
     sjclock, time2string(timesec[i]), pos=[0.02*diameter/cc,(ytc/cc)-(0.01*diameter/cc)], size=(xlc/cc)-(0.015*diameter/cc), col=0, thick=5., /dev
 
     numpix = 10./(pixelsize*cc)

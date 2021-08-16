@@ -14,7 +14,7 @@
 ;           
 ; + OPTIONAL KEYWORDS/INPUT PARAMETERS:
 ;   SHOW_BEST   If set, location of the best frame (i.e., that with the largest rms contrast) is indicated on the plot.
-;   TITLE       It should be set if the cube is a fits file.
+;   TITLE       Costum title of the plotted window (as a string), if desired.
 ;   SIDE        Number of pixels to be excluded from sides of the field of view prior to calculations of the mean intensity and rms contrast.
 ;          
 ; + OUTPUTS:
@@ -33,7 +33,7 @@
 ; MODIFICATION HISTORY:
 ;   Shahin Jafarzadeh (Rosseland Centre for Solar Physics, University of Oslo, Norway), July 2021
 ;-
-function salat_contrast, cube, fits=fits, show_best=show_best, time_index=time_index, title=title, side=side
+function salat_contrast, cube, show_best=show_best, time_index=time_index, title=title, side=side
 
 if n_elements(show_best) eq 0 then show_best = 0
 if n_elements(side) eq 0 then side = 5
