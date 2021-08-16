@@ -55,12 +55,12 @@ print, '... number of frames: '+strtrim(nt,2)
 
 imfilename=savedir+filename+'_modified-dimension.fits'
 
-writefits, imfilename, imcube, hd
+writefits, imfilename, imcube;, hd
 imcube = readfits(imfilename,hd,/silent)
 
 mwrfits, imcube, imfilename, hd, /create
-mwrfits, variables, imfilename, hd_var
-mwrfits, soap_parameters, imfilename, hd_soap
+;mwrfits, variables, imfilename, hd_var
+;mwrfits, soap_parameters, imfilename, hd_soap
 
 print
 print, ' ---------------------------------------------------'
