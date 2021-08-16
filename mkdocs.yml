@@ -26,6 +26,8 @@ theme:
   font:
     text: Roboto
     code: Roboto Mono
+  features:
+    - navigation.expand
   favicon: images/favicon.png
   logo: images/favicon.png
 
