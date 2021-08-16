@@ -4,7 +4,7 @@
 ;
 ; PURPOSE: 
 ;   Reads in a SALSA level4 FITS cubes
-;   and outputs selected important header's parameters with meaningful names as a structure (defualt).
+;   and outputs selected important header's parameters with meaningful names as a structure (default).
 ;   Thees are also printed in terminal (unless otherwise omitted).
 ;   All header parameters or the most important parameters with their original name tags can also be 
 ;   outputted (optional).
@@ -20,8 +20,8 @@
 ; + OPTIONAL KEYWORDS/INPUT PARAMETERS:
 ;   SILENT      If set, no information (i.e., selected important header's parameters) is printed in terminal.
 ;   ORIGINAL    If set, the selected important header's parameters are returned with their original name (abbreviation)
-;               otherwise, they are returend with meanningful names (by default)
-;   ALL         If set, all parametrs from the header (with their original tag names) are outputted in to the structure.
+;               otherwise, they are returned with meaningful names (by default)
+;   ALL         If set, all parameters from the header (with their original tag names) are outputted into the structure.
 ;               If set, other cases are ignored (i.e., the selected important header's parameters are not outputted).
 ;
 ; + OUTPUTS:
@@ -46,6 +46,7 @@
 ;
 ; MODIFICATION HISTORY:
 ;   Shahin Jafarzadeh (Rosseland Centre for Solar Physics, University of Oslo, Norway), July 2021
+;   Stian Aannerud (University of Oslo, Norway), July 2021: testing/debugging
 ;-
 function salat_read_header, cube, header=header, all=all, original=original, silent=silent
 

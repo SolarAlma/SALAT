@@ -29,7 +29,7 @@
 ; EXAMPLE:
 ;   IDL> cube = './solaralma.b3.fba.20161222_141931-150707.2016.1.00423.S.level4.k.fits'
 ;   IDL> result = salat_stats(cube, /histogram)
-;	IDL> help, result
+;   IDL> help, result
 ;
 ; MODIFICATION HISTORY:
 ;   Shahin Jafarzadeh (Rosseland Centre for Solar Physics, University of Oslo, Norway), July 2021

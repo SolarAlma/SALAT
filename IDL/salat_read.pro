@@ -16,7 +16,7 @@
 ;   CUBE        The SALSA data cube in FITS format
 ;
 ; + OPTIONAL KEYWORDS/INPUT PARAMETERS:
-;   NAN_VALUE   User deined value to replace all NAN values (outside the science field of view)
+;   NAN_VALUE   User defined value to replace all NAN values (outside the science field of view)
 ;   NAN_MEDIAN  If set, the NAN values are replaced with the median of the entire data cube
 ;               If set, the NAN_VALUE keyword is ignored
 ;   SILENT      If set, no information is printed in terminal
@@ -33,7 +33,7 @@
 ;               which is defined as angle of the Sun with respect to the north celestial pole, i.e. the ‘position angle’ (optional)
 ;
 ; + RESTRICTIONS:
-;   Currently wroks with SALSA level4 3D datacubes (i.e., no spectral and Stokes data)
+;   Currently works with SALSA level4 3D datacubes (i.e., no spectral and Stokes data)
 ;
 ; EXAMPLE:
 ;   IDL> cube = './solaralma.b3.fba.20161222_141931-150707.2016.1.00423.S.level4.k.fits'
@@ -48,7 +48,7 @@
 ;-
 function salat_read, cube, header=header, time=time, beam_major=beam_major, beam_minor=beam_minor, $
                      beam_angle=beam_angle, nan_value=nan_value, nan_median=nan_median, silent=silent, $
-                     no_header=no_header all=all, original=original
+                     no_header=no_header, all=all, original=original
 
 alma = reform(readfits(cube,hd,/silent))
 variables = reform(readfits(cube,hd_var,ext=1,/silent))
@@ -85,7 +85,7 @@ if n_elements(silent) eq 0 then begin
     print, ' -- Optional: 1D arrays for observing time,'
     print, '    major and minor axes as well as angle of the sampling beam'
     print, '    as well the cube header can also be outputted as variables'
-    print, '    IDL> alma = salat_load(cube, header=header, time=time, beammajor=beammajor, beamminor=beamminor, beamangle=beamangle)'
+    print, '    IDL> alma = salat_load(cube, header=header, time=time, beam_major=beam_major, beam_minor=beam_minor, beam_angle=beam_angle)'
     print
     print, ' ---------------------------------------------------'
     print, ' -- Solar Alma Library of Auxiliary Tools (SALAT) --'
@@ -95,7 +95,7 @@ endif
 
 if n_elements(all) eq 0 then all = 0 else all = 1
 if n_elements(original) eq 0 then original = 0 else original = 1
-if n_elements(no_header) ne 0 then header = salat_read_header(header=hd, all=all, original=original)
+if n_elements(no_header) eq 0 then header = salat_read_header(header=hd, all=all, original=original)
 
 return, alma
 end

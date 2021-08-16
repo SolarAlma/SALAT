@@ -3,7 +3,7 @@
 ;       part of -- Solar Alma Library of Auxiliary Tools (SALAT) --
 ;
 ; PURPOSE: 
-;   Displays a time line with missing frames and calibration gaps
+;   Displays a timeline with missing frames and calibration gaps
 ;   and outputs corresponding info (time indices)
 ;
 ; CALLING SEQUENCE:
@@ -19,7 +19,7 @@
 ;
 ; + OUTPUTS:
 ;   Time index ranges of consequent sequences 
-;   in the form of (n,2), where n is the number of onsequent sequences.
+;   in the form of (n,2), where n is the number of consequent sequences.
 ;
 ; + RESTRICTIONS:
 ;   None
@@ -32,6 +32,7 @@
 ;
 ; MODIFICATION HISTORY:
 ;   Shahin Jafarzadeh (Rosseland Centre for Solar Physics, University of Oslo, Norway), July 2021
+;   Stian Aannerud (University of Oslo, Norway), July 2021: testing/debugging
 ;-
 function salat_timeline, cube, gap=gap, time=time, stime=stime
 
