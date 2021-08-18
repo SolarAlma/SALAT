@@ -49,8 +49,9 @@ def salat_stats(almadata,Histogram=False,SILENT=False):
 	© Guevara Gómez J.C. (RoCS/SolarALMA), July 2021
 	"""
 	print("")
-	print("----------------------------------------------")
-	print("SALAT STATS part of -- Solar Alma Library of Auxiliary Tools (SALAT) --")
+	print("---------------------------------------------------")
+	print("--------------- SALAT STATS part of ----------------")
+	print("-- Solar Alma Library of Auxiliary Tools (SALAT) --")
 	print("")
 	print("Computing Statistics")
 	print("")

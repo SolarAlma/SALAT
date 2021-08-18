@@ -9,7 +9,7 @@
 
 **Other data cubes:**
 ```bash
-/mn/stornext/d13/alma/almaobs_final/reference/solaralma.b6.fba.20170422_153917-164326.2016.1.00050.S.level4.k.fits
+/mn/stornext/d13/alma/almaobs_final/reference/solaralma.b6.fba.20170422_155917-164326.2016.1.00050.S.level4.k.fits
 ```
 
 ```bash

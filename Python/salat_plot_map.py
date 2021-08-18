@@ -40,7 +40,7 @@ def salat_plot_map(almadata,beam,pxsize,cmap='hot',average=False,timestp=0,savep
 	savepng: Boolean, False default
 		If True it saves image to path in PNG
 	savejpg: Boolean, False default
-		If True it saves image to path in PNG
+		If True it saves image to path in JPG
 	outputpath: str, "./" Default
 		Path for saving image, current as default
 
@@ -61,11 +61,11 @@ def salat_plot_map(almadata,beam,pxsize,cmap='hot',average=False,timestp=0,savep
 	---------------------
 	© Guevara Gómez J.C. (RoCS/SolarALMA), July 2021
 	"""
+	print("---------------------------------------------------")
+	print("------------ SALAT PLOT MAP part of ---------------")
+	print("-- Solar Alma Library of Auxiliary Tools (SALAT) --")
 	print("")
-	print("----------------------------------------------")
-	print("SALAT PLOT MAP part of -- Solar Alma Library of Auxiliary Tools (SALAT) --")
-	print("")
-	print("----------------------------------------------")
+
 
 	############### Getting image to plot ################
 

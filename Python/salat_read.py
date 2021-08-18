@@ -32,7 +32,7 @@ def salat_read(file,fillNan=False,timeout=False,beamout=False,NO_HEADER=False,SI
 	beamout: Boolean, False  default
 		If True it returns 3 arrays being beam axes ang angles
 	NO_HEADER: Boolean, False default
-		If True it returns original header (make use of salat_read_header)
+		If True it does not returns original header (make use of salat_read_header)
 	SILENT: Boolean, False default
 		If True it does not print out info in terminal
 
@@ -158,7 +158,7 @@ def salat_read(file,fillNan=False,timeout=False,beamout=False,NO_HEADER=False,SI
 
 	############### Return variables ################
 	
-	# If options are False, variables are None
+	# If options are True, variables are None
 	print("Done!")
 	if NO_HEADER == True:
 		hdr0 = None

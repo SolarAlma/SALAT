@@ -13,7 +13,6 @@ from scipy import stats
 ###Matplotlib
 import matplotlib.pyplot as plt
 
-
 def salat_info(file):
 	"""
 	Name: salat_info
@@ -23,6 +22,8 @@ def salat_info(file):
 
 	Parameters
 	----------
+	file: str
+		path to ALMA FITS data set
 
 	Returns
 	-------
@@ -38,15 +39,15 @@ def salat_info(file):
 	---------------------
 	© Guevara Gómez J.C. (RoCS/SolarALMA), July 2021
 	"""
+	print("---------------------------------------------------")
+	print("--------------- SALAT INFO part of ----------------")
+	print("-- Solar Alma Library of Auxiliary Tools (SALAT) --")
 	print("")
-	print("----------------------------------------------")
-	print("SALAT INFO part of -- Solar Alma Library of Auxiliary Tools (SALAT) --")
-	print("")
-	print("----------------------------------------------")
+
 
 	############### Reading Header ################
 
-	hdr0,hdr1,hdr2 = srhdr.salat_read_header(file,SILENT=True)
+	hdr0 = srhdr.salat_read_header(file,ALL=True,SILENT=True)
 
 	############### Printing in terminal ################
 
@@ -54,7 +55,7 @@ def salat_info(file):
 	print("----------------------------------------------")
 	print("| Data feat.: ")
 	print("----------------------------------------------")
-	print("|  ALMA BAND: ",int(hdr0["BAND"][-1]))
+	print("|  ALMA BAND: ",int(hdr0["INSTRUME"][-1]))
 	print("|  Obs. Date: ",hdr0["DATE-OBS"][:10])
 	print("|  ALMA proj: ",hdr0["PROPCODE"])	
 	print("|  Pix. Unit: ",hdr0["BUNIT"])

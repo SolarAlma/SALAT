@@ -29,6 +29,8 @@ def salat_beam_stats(beammajor,beamminor,beamangle,timesec,plot=False):
 		Beam minor array (from salat_read)
 	beamangle: np.array
 		Beam angle array (from salat_read)
+	timsec: np.array
+		Array with time in seconds (from salat_read)
 	plot: Boolean, False default
 		If True, plot Beam change on time
 
@@ -49,12 +51,13 @@ def salat_beam_stats(beammajor,beamminor,beamangle,timesec,plot=False):
 	© Guevara Gómez J.C. (RoCS/SolarALMA), July 2021
 	"""
 	print("")
-	print("----------------------------------------------")
-	print("SALAT BEAM STATS part of -- Solar Alma Library of Auxiliary Tools (SALAT) --")
+	print("---------------------------------------------------")
+	print("------------ SALAT BEAM STATS part of -------------")
+	print("-- Solar Alma Library of Auxiliary Tools (SALAT) --")
 	print("")
 	print("Computing Statistics")
 	print("")
-	print("----------------------------------------------")
+	print("---------------------------------------------------")
 
 	############### Computing Stats (NaNs are ignored) ################
 

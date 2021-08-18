@@ -35,7 +35,7 @@ def salat_timeline(timesec,gap=30):
     scans_idxs: Dict.
         Dictionary with indexes for all scans
     mfram_idxs: Dict.
-        Dictionary with indexes for all consequent secuences
+        Dictionary with indexes for all consequent sequences
 
     Examples
     -------
@@ -48,10 +48,11 @@ def salat_timeline(timesec,gap=30):
     © Guevara Gómez J.C. (RoCS/SolarALMA), July 2021
     """
     print("")
-    print("----------------------------------------------")
-    print("SALAT TIME LINE part of -- Solar Alma Library of Auxiliary Tools (SALAT) --")
+    print("---------------------------------------------------")
+    print("------------- SALAT TIME LINE part of -------------")
+    print("-- Solar Alma Library of Auxiliary Tools (SALAT) --")
     print("")
-    print("----------------------------------------------")
+
 
     ############### Finding Scans and storing indexes in dictionary ################
 
