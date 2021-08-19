@@ -35,11 +35,10 @@
 	=== "EXAMPLE"
 		Reading the data, header, time, and beam information from a SALSA data cube, without filling Nans:
 		```python
-		almacube,header,timesec,timeutc,beammajor,beamminor,beamangle = salat.read(file,timeout=True,beamout=True,HEADER=True,SILENT=False,fillNan = False)
-
+		>>> almacube,header,timesec,timeutc,beammajor,beamminor,beamangle = salat.read(file,timeout=True,beamout=True,HEADER=True,SILENT=False,fillNan = False)
+		```
+		
 		100%|██████████| 1200/1200 [00:00<00:00, 31689.21it/s]
-
-    
 		---------------------------------------------------
 		--------------- SALAT READ part of ----------------
 		-- Solar Alma Library of Auxiliary Tools (SALAT) --
@@ -65,8 +64,8 @@
 		|  Max =  10635.5  Kelvin
 		----------------------------------------------
 		Done!
-		```
+		
 	
 	!!! quote "[Source code](https://github.com/SolarAlma/SALAT/blob/2a09174f7807fb1e60462161c87ae65425180b31/Python/salat.py#L18)"
 
-!!! Success "Back to the list of [Python functions](../idl.md)"
+!!! Success "Back to the list of [Python functions](../python.md)"
