@@ -47,7 +47,7 @@ def read(file,fillNan=False,timeout=False,beamout=False,HEADER=True,SILENT=False
 	timesec: np.array
 		Optional, array with time in seconds (0 s is start observation)
 	timeutc: np.array of datetime.datetime
-		Optional, it is returned if timeout=True
+		Optional, array with time in UTC 
 	beammajor: np.array
 		Optional, array with beam major axes in arcsec
 	beamminor: np.array
