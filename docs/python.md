@@ -1,11 +1,7 @@
-!!! success "SALAT_ALMA_READFITSDATA"
-	Read all FITS in a folder and create DataCube, an array with times and extract pixelsize
-	```py3
-	In [1]: run salat_alma_readfitsdata.py
-
-	In [2]: path_alma_fba = '/test_data/b3.2017-04-22/'
-
-	In [3]: dfba_alma_soap,tfba_alma_soap,arpx_alma_soap = ALMA_fits_reader(path_alma_fba) 
+!!! success "[SALAT_READ](python/salat_read.md)"
+	Reads in a SALSA level4 FITS cubes and provides information about the cube's dimension and other parameters stored as extensions, such as arrays of observing time, beam's size and angle.
+	```python
+	>>> almacube,header,timesec,timeutc,beammajor,beamminor,beamangle = salat.read(file,timeout=True,beamout=True,HEADER=True,SILENT=False,fillNan = False)
 	```
 
 !!! success "SALAT_ALMA_READFITSHEADER"
