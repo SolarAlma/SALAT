@@ -23,7 +23,7 @@
 	
 	=== "OUTPUTS"
 		Parameter | Description
-		------ | -----------
+		--------- | -----------
 		**`sqcubecrop`** | The SALSA cube as an array. Information about dimension is printed in terminal. (Squeezed and cropped ALMA cube with dimensions [t,x,y])
 		**`hdr`** | Header as astropy.io.fits.header.Header
 		**`timesec`** | Array with time in seconds (0 s is start of observation)
@@ -35,9 +35,11 @@
 	=== "EXAMPLE"
 		Reading the data, header, time, and beam information from a SALSA data cube, without filling Nans:
 		```python
+		>>> import salat
+		>>> file = "./solaralma.b3.fba.20161222_141931-150707.2016.1.00423.S.level4.k.fits"
 		>>> almacube,header,timesec,timeutc,beammajor,beamminor,beamangle = salat.read(file,timeout=True,beamout=True,HEADER=True,SILENT=False,fillNan = False)
+		```		
 		```
-		
 		100%|██████████| 1200/1200 [00:00<00:00, 31689.21it/s]
 		---------------------------------------------------
 		--------------- SALAT READ part of ----------------
@@ -64,7 +66,7 @@
 		|  Max =  10635.5  Kelvin
 		----------------------------------------------
 		Done!
-		
+		```
 	
 	!!! quote "[Source code](https://github.com/SolarAlma/SALAT/blob/2a09174f7807fb1e60462161c87ae65425180b31/Python/salat.py#L18)"
 
