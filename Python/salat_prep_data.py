@@ -26,17 +26,25 @@ def salat_prep_data(file,savedir="./"):
 
 	Modification history:
 	---------------------
-	© Guevara Gómez J.C. (RoCS/SolarALMA), July 2021
+	© Guevara Gómez J.C. (RoCS/SolarALMA), August 2021
 	"""
 	print("")
-	print("----------------------------------------------")
-	print("SALAT PREP CUBE part of -- Solar Alma Library of Auxiliary Tools (SALAT) --")
+	print("------------------------------------------------------")
+	print("------------ SALAT PREP DATA part of -------------")
+	print("---- Solar Alma Library of Auxiliary Tools (SALAT)----")
 	print("")
-	print("----------------------------------------------")
 
 	cubedata = fits.open(file) #Cube data dimensions [t,S,f,x,y] main
+	imcube = cubedata[0].data[:,0,0,:,:].copy()
 	#Assuming Stokes and Frequency dont apply yet
-	sqcube = np.squeeze(cubedata[0].data) #Cube images squeezed to [t,x,y]
+
+	outfile = file.split("/")[-1].split(".fits")[0]+"_modified-dimension.fits"
+
+	new_hdul = fits.HDUList()
+	new_hdul.append(fits.PrimaryHDU(data=imcube))
+	new_hdul.writeto(savedir+outfile,overwrite=True)
+
+	print("Done!")
 
 	
 

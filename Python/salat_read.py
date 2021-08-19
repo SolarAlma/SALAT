@@ -13,7 +13,7 @@ from scipy import stats
 import tqdm
 import glob
 
-def salat_read(file,fillNan=False,timeout=False,beamout=False,NO_HEADER=False,SILENT=False):
+def salat_read(file,fillNan=False,timeout=False,beamout=False,HEADER=True,SILENT=False):
 	"""
 	Name: salat_read
 		part of -- Solar Alma Library of Auxiliary Tools (SALAT) --
@@ -31,8 +31,8 @@ def salat_read(file,fillNan=False,timeout=False,beamout=False,NO_HEADER=False,SI
 		If True it returns 1D array of time in seconds
 	beamout: Boolean, False  default
 		If True it returns 3 arrays being beam axes ang angles
-	NO_HEADER: Boolean, False default
-		If True it does not returns original header (make use of salat_read_header)
+	HEADER: Boolean, True default
+		If False it does not returns original header (make use of salat_read_header)
 	SILENT: Boolean, False default
 		If True it does not print out info in terminal
 
@@ -158,9 +158,9 @@ def salat_read(file,fillNan=False,timeout=False,beamout=False,NO_HEADER=False,SI
 
 	############### Return variables ################
 	
-	# If options are True, variables are None
+	# If options are False, variables are None
 	print("Done!")
-	if NO_HEADER == True:
+	if HEADER == False:
 		hdr0 = None
 		return sqcubecrop,hdr0,timesec,timeutc,beammajor,beamminor,beamangle
 	else:

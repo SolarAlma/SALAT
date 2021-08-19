@@ -1,10 +1,21 @@
-
-
+import numpy as np
+from astropy.io import fits
+import astropy.units as u
+from datetime import datetime,timedelta
+import scipy
+from scipy import ndimage
+from scipy import stats
+import matplotlib
+import matplotlib.pyplot as plt
+from mpl_toolkits.axes_grid1 import make_axes_locatable
+from typing import NamedTuple
+import radio_beam as rb
+import tqdm
 
 
 ############################ SALAT READ ############################
 
-def salat_read(file,fillNan=False,timeout=False,beamout=False,NO_HEADER=False,SILENT=False):
+def salat_read(file,fillNan=False,timeout=False,beamout=False,HEADER=True,SILENT=False):
 	"""
 	Name: salat_read
 		part of -- Solar Alma Library of Auxiliary Tools (SALAT) --
@@ -22,8 +33,8 @@ def salat_read(file,fillNan=False,timeout=False,beamout=False,NO_HEADER=False,SI
 		If True it returns 1D array of time in seconds
 	beamout: Boolean, False  default
 		If True it returns 3 arrays being beam axes ang angles
-	NO_HEADER: Boolean, False default
-		If True it does not returns original header (make use of salat_read_header)
+	HEADER: Boolean, True default
+		If False it does not returns original header (make use of salat_read_header)
 	SILENT: Boolean, False default
 		If True it does not print out info in terminal
 
@@ -71,7 +82,7 @@ def salat_read(file,fillNan=False,timeout=False,beamout=False,NO_HEADER=False,SI
 	############### READ CUBE FITS################
 
 	cubedata = fits.open(file) #Cube data dimensions [t,S,f,x,y] main
-	sqcube = np.squeeze(cubedata[0].data) #Cube images squeezed to [t,x,y]
+	sqcube = np.squeeze(cubedata[0].data) #Cube images squeezed to [t,y,x]
 	times = []
 	aii_all = []
 	afi_all = []
@@ -104,8 +115,8 @@ def salat_read(file,fillNan=False,timeout=False,beamout=False,NO_HEADER=False,SI
 	############### Reading Times ################
 
 	if timeout:
-		print("Reading Times")
-		print("")
+		# print("Reading Times")
+		# print("")
 		dateobs = hdr0["DATE-OBS"][:10]
 		timesec = cubedata[1].data[3]-np.nanmin(cubedata[1].data[3]) #Time array in Seconds
 		timeutc = np.array([datetime.strptime(hdr0["DATE-OBS"][:10],"%Y-%m-%d")+
@@ -117,8 +128,8 @@ def salat_read(file,fillNan=False,timeout=False,beamout=False,NO_HEADER=False,SI
 	############### Reading Beam axes and angle ################
 
 	if beamout:
-		print("Reading Beam properties")
-		print("")
+		# print("Reading Beam properties")
+		# print("")
 		beammajor = np.array([item*u.deg.to(u.arcsec) 
 			for item in cubedata[1].data[0]]) #unsure about index for BMAJ and BMIN
 		beamminor = np.array([item*u.deg.to(u.arcsec)
@@ -133,30 +144,17 @@ def salat_read(file,fillNan=False,timeout=False,beamout=False,NO_HEADER=False,SI
 	############### Print out in terminal ################
 
 	if SILENT == False:
-		print("")
-		print("----------------------------------------------")
-		print("|  About this dataset: ")
-		print("----------------------------------------------")
-		print("|  ALMA BAND: ",hdr0['INSTRUME'])
-		print("|  Obs. Date: ",hdr0["DATE-OBS"][:10])
-		print("|  Pix. Unit: ",hdr0["BUNIT"])
-		print("|  Pix. Size: ",hdr0["CDELT1A"]," arcsec.")
-		print("|  Nr. frames: ",sqcubecrop.shape[0])
-		print("|  Width frame: ",sqcubecrop.shape[2]," pix.")
-		print("|  Height frame: ",sqcubecrop.shape[1]," pix.")
-		print("----------------------------------------------")
-		print("")
+		salat_info(file)
 
 	############### Return variables ################
 	
-	# If options are True, variables are None
+	# If options are False, variables are None
 	print("Done!")
-	if NO_HEADER == True:
+	if HEADER == False:
 		hdr0 = None
 		return sqcubecrop,hdr0,timesec,timeutc,beammajor,beamminor,beamangle
 	else:
 		return sqcubecrop,hdr0,timesec,timeutc,beammajor,beamminor,beamangle
-
 
 ############################ SALAT READ HEADER ############################
 
@@ -174,7 +172,7 @@ def salat_read_header(file,ALL=False,ORIGINAL=False,SILENT=False):
 		path to ALMA cube
 	ALL: Boolean, False Default 
 		If True, original header as as astropy.io.fits.header.Header is returned
-		If False, header is returned as class structure depending of ORIGINAL para.
+		If False, header is returned as class structure depending of ORIGINAL parameters
 	ORIGINAL: Boolean, False Default
 		If True, header structure preserves original keyword names
 		If False, header structure get new meaninful keywords as in documentation
@@ -672,7 +670,7 @@ def salat_beam_stats(beammajor,beamminor,beamangle,timesec,plot=False):
 		Beam minor array (from salat_read)
 	beamangle: np.array
 		Beam angle array (from salat_read)
-	timsec: np.array
+	timesec: np.array
 		Array with time in seconds (from salat_read)
 	plot: Boolean, False default
 		If True, plot Beam change on time
@@ -763,7 +761,7 @@ def salat_beam_stats(beammajor,beamminor,beamangle,timesec,plot=False):
 
 def salat_contrast(almadata,timesec,side=5,show_best=False):
 	"""
-	Name: salat_convolve_beam
+	Name: salat_contrast
 		part of -- Solar Alma Library of Auxiliary Tools (SALAT) --
 
 	Purpose: This function calcualte RMS contrast and sort best frames
@@ -827,7 +825,102 @@ def salat_contrast(almadata,timesec,side=5,show_best=False):
 
 ############################ SALAT CONVOLVE BEAM ############################
 
+def salat_convolve_beam(data,beam,pxsize):
+	"""
+	Name: salat_convolve_beam
+		part of -- Solar Alma Library of Auxiliary Tools (SALAT) --
+
+	Purpose: Convolve a specified synthetic beam (from an ALMA observation) to a user-provided map 
+	(e.g. from a simulation or observations with other instruments)
+
+	Parameters
+	----------
+	data: np.array
+		Data array from user, only 2D
+	beam: list of np.arrays, [bmaj,bmin,bang]
+		List with np.arrays of beam info
+	pxsize: float,
+		Pixel size of data to convolve arcsec/px
+
+	Returns
+	-------
+	data_convolved: np.array
+		Data convolved with beam
+
+	Examples
+	--------
+
+	Modification history:
+	---------------------
+	© Guevara Gómez J.C. (RoCS/SolarALMA), July 2021
+	"""
+	print("")
+	print("------------------------------------------------------")
+	print("------------ SALAT CONVOLVE BEAM part of -------------")
+	print("---- Solar Alma Library of Auxiliary Tools (SALAT)----")
+	print("")
+	print("For the input data, NANs are not properly handle")
+	print("Please use fill_nans parameter when loading fits")
+	print("")
+	print("------------------------------------------------------")
+
+	# beam_kernel_time = np.array([beam_kernel_calulator(beam[0][i],beam[1][i],beam[2][i],pxsize) for i in range(len(beam[0]))])
+	beam_kernel = beam_kernel_calulator(np.nanmean(beam[0]),np.nanmean(beam[1]),np.nanmean(beam[2]),pxsize)
+	data_convolved = ndimage.convolve(data,beam_kernel)
+
+	return data_convolved
+
+def beam_kernel_calulator(bmaj_obs,bmin_obs,bpan_obs,pxsz):
+	"""
+	Calculate the beam array using the observed beam to be used for convolving the ART data
+	"""
+	beam = rb.Beam(bmaj_obs*u.arcsec,bmin_obs*u.arcsec,bpan_obs*u.deg)
+	beam_kernel = np.asarray(beam.as_kernel(pixscale=pxsz*u.arcsec))
+	return beam_kernel
 
 ############################ SALAT PREP DATA ############################
 
+def salat_prep_data(file,savedir="./"):
+	"""
+	Name: salat_prep_data
+		part of -- Solar Alma Library of Auxiliary Tools (SALAT) --
 
+	Purpose: This function make FITS cube ready to be used in FITS reader as CARTA
+
+	Parameters
+	----------
+	file: str
+		Original FITS file to be reduced
+	savdir: str, "./" Default
+		Output directory for new fits
+
+	Returns
+	-------
+	bestframes: array
+		Indexes of the best frames sorted (i.e., that with the largest rms contrast).
+
+	Examples
+	--------
+		>>> bfrs = slc.salat_contrast(almacube,timesec,show_best=True)
+
+	Modification history:
+	---------------------
+	© Guevara Gómez J.C. (RoCS/SolarALMA), August 2021
+	"""
+	print("")
+	print("------------------------------------------------------")
+	print("------------ SALAT PREP DATA part of -------------")
+	print("---- Solar Alma Library of Auxiliary Tools (SALAT)----")
+	print("")
+
+	cubedata = fits.open(file) #Cube data dimensions [t,S,f,x,y] main
+	imcube = cubedata[0].data[:,0,0,:,:].copy()
+	#Assuming Stokes and Frequency dont apply yet
+
+	outfile = file.split("/")[-1].split(".fits")[0]+"_modified-dimension.fits"
+
+	new_hdul = fits.HDUList()
+	new_hdul.append(fits.PrimaryHDU(data=imcube))
+	new_hdul.writeto(savedir+outfile,overwrite=True)
+
+	print("Done!")

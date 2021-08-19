@@ -10,16 +10,17 @@ from astropy.io import fits
 #MISCELANEOUS
 import tqdm
 
-def salat_convolve_beam(almadata,beam,pxsize):
+def salat_convolve_beam(data,beam,pxsize):
 	"""
 	Name: salat_convolve_beam
 		part of -- Solar Alma Library of Auxiliary Tools (SALAT) --
 
-	Purpose: This function makes beam convolution with any data with pxsize 
+	Purpose: Convolve a specified synthetic beam (from an ALMA observation) to a user-provided map 
+	(e.g. from a simulation or observations with other instruments)
 
 	Parameters
 	----------
-	almadata: np.array
+	data: np.array
 		Data array from user, can be 2D or 3D
 	beam: list of np.arrays, [bmaj,bmin,bang]
 		List with np.arrays of beam info
@@ -39,28 +40,33 @@ def salat_convolve_beam(almadata,beam,pxsize):
 	© Guevara Gómez J.C. (RoCS/SolarALMA), July 2021
 	"""
 	print("")
-	print("----------------------------------------------")
-	print("SALAT CONVOLVE BEAM part of -- Solar Alma Library of Auxiliary Tools (SALAT) --")
-	print("For input data NANs are not properly handle")
+	print("------------------------------------------------------")
+	print("------------ SALAT CONVOLVE BEAM part of -------------")
+	print("---- Solar Alma Library of Auxiliary Tools (SALAT)----")
 	print("")
-	print("----------------------------------------------")
+	print("For the input data, NANs are not properly handle")
+	print("Please use fill_nans parameter when loading fits")
+	print("")
+	print("------------------------------------------------------")
 
 	beam_kernel_time = np.array([beam_kernel_calulator(beam[0][i],beam[1][i],beam[2][i],pxsize) for i in range(len(beam[0]))])
-	data_convolved = np.array([ndimage.convolve(almadata[i],beam_kernel_time[i]) for i in tqdm.tqdm(range(len(almadata)))])
+	data_convolved = np.array([ndimage.convolve(data[i],beam_kernel_time[i]) for i in tqdm.tqdm(range(len(data)))])
 
 	return data_convolved
 
-def beam_kernel_calulator(bmaj_obs,bmin_obs,bpan_obs,ART_pxsz):
+def beam_kernel_calulator(bmaj_obs,bmin_obs,bpan_obs,pxsz):
 	"""
 	Calculate the beam array using the observed beam to be used for convolving the ART data
 	"""
 	beam = rb.Beam(bmaj_obs*u.arcsec,bmin_obs*u.arcsec,bpan_obs*u.deg)
-	beam_kernel = np.asarray(beam.as_kernel(pixscale=ART_pxsz*u.arcsec))
+	beam_kernel = np.asarray(beam.as_kernel(pixscale=pxsz*u.arcsec))
 	return beam_kernel
 
-def art_convolver_parallel(item,beam_kernel):
-	convolved = ndimage.convolve(item,beam_kernel)
-	return convolved
+# def art_convolver_parallel(item,beam_kernel):
+# 	convolved = ndimage.convolve(item,beam_kernel)
+# 	return convolved
+
+	
 # #Author: Guevara Gomez J.C.
 
 # ###Extra
