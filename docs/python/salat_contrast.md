@@ -33,7 +33,7 @@
 		------------ SALAT CONTRAST part of -------------
 		-- Solar Alma Library of Auxiliary Tools (SALAT) --
 		```
-		![png](../../Python/Tutorial/output_29_1.png)
+		![png](../Python_images/output_29_1.png)
 	
 	!!! quote "[Source code](https://github.com/SolarAlma/SALAT/blob/9bfa6c648a27ea5b6958d51d8384420ec9096642/Python/salat.py#L760)"
 
