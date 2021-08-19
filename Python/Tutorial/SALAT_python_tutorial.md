@@ -9,14 +9,11 @@ The test datasets used in this notebook can be found in [here](https://github.co
 
 <div class="alert alert-block alert-warning"><b>Warning: **Please be aware that this tool does not exempt the user of their responsability when interpreting the scientific outcome of the data! </b>
 
+## Importing SALAT as import salat
+
 
 ```python
 import salat
-```
-
-
-```python
-
 ```
 
 ## Datasets
@@ -31,11 +28,6 @@ path_folder = '/Users/juancg/Documents/2021/SALAT/test_data_salat/'
 file1 = path_folder+"solaralma.b3.fba.20161222_141931-150707.2016.1.00423.S.level4.k.fits"
 file2 = path_folder+"solaralma.b6.fba.20170422_155917-164326.2016.1.00050.S.level4.k.fits"
 file3 = path_folder+"solaralma.b6.fba.20170328_150920-161212.2016.1.00788.S.level4.k.fits"
-```
-
-
-```python
-
 ```
 
 ## READ_FITS
@@ -63,10 +55,10 @@ The FITS cube can be loaded as follows:
 
 ```python
 #FITS cube is loaded and all possible variables are returned
-almacube1,header1,timesec1,timeutc1,beammajor1,beamminor1,beamangle1 = salat.salat_read(file1,timeout=True,beamout=True,HEADER=True,SILENT=False)
+almacube1,header1,timesec1,timeutc1,beammajor1,beamminor1,beamangle1 = salat.read(file1,timeout=True,beamout=True,HEADER=True,SILENT=False)
 ```
 
-     28%|██▊       | 342/1200 [00:00<00:00, 3416.58it/s]
+    100%|██████████| 1200/1200 [00:00<00:00, 31689.21it/s]
 
     
     ---------------------------------------------------
@@ -77,7 +69,7 @@ almacube1,header1,timesec1,timeutc1,beammajor1,beamminor1,beamangle1 = salat.sal
     
 
 
-    100%|██████████| 1200/1200 [00:00<00:00, 3333.20it/s]
+    
 
 
     ---------------------------------------------------
@@ -123,7 +115,7 @@ There are 3 possible ways of obtaining the header.
 
 ```python
 #FITS header is read and pass to a Class structure with new meaningful keywords
-hdrmk = salat.salat_read_header(file1,ALL=False,ORIGINAL=False,)
+hdrmk = salat.read_header(file1,ALL=False,ORIGINAL=False,)
 hdrmk
 ```
 
@@ -162,7 +154,7 @@ hdrmk
 ```python
 #FITS header is read and pass to a Class structure with original keywords
 #SILENT=True to avoid printing
-hdrok = salat.salat_read_header(file1,ALL=False,ORIGINAL=True,SILENT=True)
+hdrok = salat.read_header(file1,ALL=False,ORIGINAL=True,SILENT=True)
 hdrok
 ```
 
@@ -176,7 +168,7 @@ hdrok
 
 ```python
 #FITS header is read and returned in original format
-hdroh = salat.salat_read_header(file1,ALL=True,SILENT=True)
+hdroh = salat.read_header(file1,ALL=True,SILENT=True)
 ```
 
 
@@ -192,7 +184,7 @@ The output is a dictionary with the stats.
 
 
 ```python
-stats = salat.salat_stats(almadata=almacube1,Histogram=True,SILENT=False)
+stats = salat.stats(almadata=almacube1,Histogram=True,SILENT=False)
 ```
 
     
@@ -225,7 +217,7 @@ stats = salat.salat_stats(almadata=almacube1,Histogram=True,SILENT=False)
 
 
     
-![png](output_15_1.png)
+![png](output_14_1.png)
     
 
 
@@ -241,7 +233,7 @@ This function returns 2 dictionaries. First with indixes for the scans. Second w
 
 
 ```python
-idxscans,idxcqfrs = salat.salat_timeline(timesec1,gap=25)
+idxscans,idxcqfrs = salat.timeline(timesec1,gap=25)
 print("Indexes scans: ", idxscans)
 print("Indexes consequent frames: ",idxcqfrs)
 ```
@@ -255,7 +247,7 @@ print("Indexes consequent frames: ",idxcqfrs)
 
 
     
-![png](output_18_1.png)
+![png](output_17_1.png)
     
 
 
@@ -274,7 +266,7 @@ This function print out basic information for the datase
 
 
 ```python
-salat.salat_info(file1)
+salat.info(file1)
 ```
 
     ---------------------------------------------------
@@ -312,7 +304,7 @@ This function makes a plot for one frame or averaged frame using as inputs the o
 
 
 ```python
-salat.salat_plot_map(almacube1,pxsize=hdrmk.pixel_size,beam=[beammajor1,beamminor1,beamangle1])
+salat.plot_map(almacube1,pxsize=hdrmk.pixel_size,beam=[beammajor1,beamminor1,beamangle1])
 ```
 
     ---------------------------------------------------
@@ -323,7 +315,7 @@ salat.salat_plot_map(almacube1,pxsize=hdrmk.pixel_size,beam=[beammajor1,beammino
 
 
     
-![png](output_24_1.png)
+![png](output_23_1.png)
     
 
 
@@ -338,7 +330,7 @@ This function uses beam information to show some statistics. If plot=True then i
 
 
 ```python
-salat.salat_beam_stats(beammajor1,beamminor1,beamangle1,timesec1,plot=True)
+salat.beam_stats(beammajor1,beamminor1,beamangle1,timesec1,plot=True)
 ```
 
     
@@ -364,7 +356,7 @@ salat.salat_beam_stats(beammajor1,beamminor1,beamangle1,timesec1,plot=True)
 
 
     
-![png](output_27_1.png)
+![png](output_26_1.png)
     
 
 
@@ -380,7 +372,7 @@ It returns a sorted array with the indexes of best frames
 
 
 ```python
-idxbestfr = salat.salat_contrast(almacube1,timesec1,show_best=True)
+idxbestfr = salat.contrast(almacube1,timesec1,show_best=True)
 ```
 
     
@@ -392,7 +384,7 @@ idxbestfr = salat.salat_contrast(almacube1,timesec1,show_best=True)
 
 
     
-![png](output_30_1.png)
+![png](output_29_1.png)
     
 
 
@@ -432,7 +424,7 @@ pxsizebifrost = 0.06 #This is assumed
 
 
 ```python
-bifrostconv = salat.salat_convolve_beam(bifrostdata,[beammajor1,beamminor1,beamangle1],pxsize=pxsizebifrost)
+bifrostconv = salat.convolve_beam(bifrostdata,[beammajor1,beamminor1,beamangle1],pxsize=pxsizebifrost)
 ```
 
     
@@ -467,7 +459,7 @@ plt.tight_layout()
 
 
     
-![png](output_36_0.png)
+![png](output_35_0.png)
     
 
 
@@ -482,7 +474,7 @@ This function reduces the dimensions of the FITS saving a new one. The new FITS 
 
 
 ```python
-salat.salat_prep_data(file1)
+salat.prep_data(file1)
 ```
 
     

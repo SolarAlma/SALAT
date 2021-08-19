@@ -4,7 +4,7 @@ import astropy.units as u
 from datetime import datetime,timedelta
 import scipy
 from scipy import ndimage
-from scipy import stats
+from scipy import stats as scpstats
 import matplotlib
 import matplotlib.pyplot as plt
 from mpl_toolkits.axes_grid1 import make_axes_locatable
@@ -15,9 +15,9 @@ import tqdm
 
 ############################ SALAT READ ############################
 
-def salat_read(file,fillNan=False,timeout=False,beamout=False,HEADER=True,SILENT=False):
+def read(file,fillNan=False,timeout=False,beamout=False,HEADER=True,SILENT=False):
 	"""
-	Name: salat_read
+	Name: read
 		part of -- Solar Alma Library of Auxiliary Tools (SALAT) --
 
 	Purpose: This function loads all type of data on level 4 fits
@@ -57,14 +57,14 @@ def salat_read(file,fillNan=False,timeout=False,beamout=False,HEADER=True,SILENT
 
 	Examples
 	--------
-		>>> import sala_read as sr
+		>>> import salat
 		>>> file = "./solaralma.b3.fba.20161222_141931-150707.2016.1.00423.S.level4.k.fits"
 		#To get only cube, note that _ are mandatory for non-asked variables
-		>>> almacube,_,_,_,_,_,_ = sr.salat_read(file,SILENT=True)
+		>>> almacube,_,_,_,_,_,_ = salat.read(file,SILENT=True)
 		#To get cube and times and print out information in Terminal
-		>>> almacube,_,timesec,timeutc,_,_,_ = sr.salat_read(file,timeout=True)
+		>>> almacube,_,timesec,timeutc,_,_,_ = salat.read(file,timeout=True)
 		#To get cube and beam info and print out information in Terminal
-		>>> almacube,_,_,_,beammajor,beamminor,beamangle = sr.salat_read(file,beamout=True)
+		>>> almacube,_,_,_,beammajor,beamminor,beamangle = salat.read(file,beamout=True)
 
 	Modification history:
 	---------------------
@@ -95,8 +95,8 @@ def salat_read(file,fillNan=False,timeout=False,beamout=False,HEADER=True,SILENT
 		aii_all.append(aii)
 		afi_all.append(afi)
 		del aii,afi,afw,afri
-	afi = int(stats.mode(afi_all).mode) #Stats mode of indexes left and right for non-Nans
-	aii = int(stats.mode(aii_all).mode) #Stats mode of indexes left and right for non-Nans
+	afi = int(scpstats.mode(afi_all).mode) #Stats mode of indexes left and right for non-Nans
+	aii = int(scpstats.mode(aii_all).mode) #Stats mode of indexes left and right for non-Nans
 	sqcubecrop = sqcube[:,aii:afi,aii:afi].copy() #Cube is cropped to removed Nans  around
 	#Filling Nans if option True
 	if fillNan:
@@ -110,7 +110,7 @@ def salat_read(file,fillNan=False,timeout=False,beamout=False,HEADER=True,SILENT
 
 	############### Read header ################
 
-	hdr0 = salat_read_header(file,ALL=True,ORIGINAL=True,SILENT=True)
+	hdr0 = read_header(file,ALL=True,ORIGINAL=True,SILENT=True)
 
 	############### Reading Times ################
 
@@ -144,7 +144,7 @@ def salat_read(file,fillNan=False,timeout=False,beamout=False,HEADER=True,SILENT
 	############### Print out in terminal ################
 
 	if SILENT == False:
-		salat_info(file)
+		info(file)
 
 	############### Return variables ################
 	
@@ -158,9 +158,9 @@ def salat_read(file,fillNan=False,timeout=False,beamout=False,HEADER=True,SILENT
 
 ############################ SALAT READ HEADER ############################
 
-def salat_read_header(file,ALL=False,ORIGINAL=False,SILENT=False):
+def read_header(file,ALL=False,ORIGINAL=False,SILENT=False):
 	"""
-	Name: salat_read_header
+	Name: read_header
 		part of -- Solar Alma Library of Auxiliary Tools (SALAT) --
 
 	Purpose: This function load the header of a ALMA cube according
@@ -189,9 +189,9 @@ def salat_read_header(file,ALL=False,ORIGINAL=False,SILENT=False):
 
 	Examples
 	-------
-		>>> import sala_load_header as slhdr
+		>>> import salat
 		>>> path_alma = "./solaralma.b6.fba.20170328-150920_161212.2016.1.00788.S.level4.k.fits"
-		>>> hdr0,hdr1,hdr2 = slhdr.salat_load_header(path_alma)
+		>>> header = salat.read_header(path_alma)
 
 	Modification history:
 	---------------------
@@ -267,9 +267,9 @@ def salat_read_header(file,ALL=False,ORIGINAL=False,SILENT=False):
 
 ############################ SALAT STATS ############################
 
-def salat_stats(almadata,Histogram=False,SILENT=False):
+def stats(almadata,Histogram=False,SILENT=False):
 	"""
-	Name: salat_stats
+	Name: stats
 		part of -- Solar Alma Library of Auxiliary Tools (SALAT) --
 
 	Purpose: This function computes basic stats for data cube
@@ -291,10 +291,10 @@ def salat_stats(almadata,Histogram=False,SILENT=False):
 
 	Examples
 	--------
-		>>> import salat_stats as sst
+		>>> import salat
 		#Datacube or frame existing with name almadata
 		#Create Stats printing in terminal and plotting histo
-		>>> datastats = sst.salat_stats(almadata,Histogram=True,)
+		>>> datastats = salat.stats(almadata,Histogram=True,)
 
 
 	Modification history:
@@ -318,9 +318,9 @@ def salat_stats(almadata,Histogram=False,SILENT=False):
 	mediandata = np.nanmedian(almadata) #median data
 	stddata = np.nanstd(almadata) #Std data
 	vardata = np.nanvar(almadata) #Variance data
-	skewdata = float(stats.skew(almadata,axis=None,nan_policy='omit').data) #Skewness data Fisher-Pearson coefficient of skewness
-	kurtdata = stats.kurtosis(almadata,axis=None,nan_policy='omit') #Kurtosis data
-	modedata = float(stats.mode(almadata,axis=None,nan_policy='omit')[0]) #Mode data
+	skewdata = float(scpstats.skew(almadata,axis=None,nan_policy='omit').data) #Skewness data Fisher-Pearson coefficient of skewness
+	kurtdata = scpstats.kurtosis(almadata,axis=None,nan_policy='omit') #Kurtosis data
+	modedata = float(scpstats.mode(almadata,axis=None,nan_policy='omit')[0]) #Mode data
 	percentile1 = np.nanpercentile(almadata,[1,99]) #Value range btw 1st and 99th percentile
 	percentile5 = np.nanpercentile(almadata,[5,95]) #Value range btw 5th and 95th percentile
 
@@ -392,9 +392,9 @@ def salat_stats(almadata,Histogram=False,SILENT=False):
 
 ############################ SALAT TIMELINE ############################
 
-def salat_timeline(timesec,gap=30):
+def timeline(timesec,gap=30):
     """
-    Name: salat_timeline
+    Name: timeline
         part of -- Solar Alma Library of Auxiliary Tools (SALAT) --
 
     Purpose: This function displays a timeline showing missing frames and gaps
@@ -415,8 +415,8 @@ def salat_timeline(timesec,gap=30):
 
     Examples
     -------
-        >>> import salat_timeline as stl
-        >>> scans_idxs,mfram_idxs = stl.salat_timeline(timesec,gap=30)
+        >>> import salat
+        >>> scans_idxs,mfram_idxs = salat.timeline(timesec,gap=30)
 
     Modification history:
     ---------------------
@@ -432,7 +432,7 @@ def salat_timeline(timesec,gap=30):
 
     ############### Finding Scans and storing indexes in dictionary ################
 
-    cadence = stats.mode(np.ediff1d(timesec))[0][0]
+    cadence = scpstats.mode(np.ediff1d(timesec))[0][0]
     tidx_scans = np.where(np.ediff1d(timesec)>(gap))[0]+1 #gap is defined for scans
     scans_idxs = {}
     nl = len(tidx_scans)
@@ -480,15 +480,13 @@ def salat_timeline(timesec,gap=30):
     plt.tight_layout()
     plt.show()
 
-    ############### Returning variable ################
-
     return scans_idxs,mfram_idxs
 
 ############################ SALAT INFO ############################
 
-def salat_info(file):
+def info(file):
 	"""
-	Name: salat_info
+	Name: info
 		part of -- Solar Alma Library of Auxiliary Tools (SALAT) --
 
 	Purpose: This function computes basic stats for beam
@@ -505,8 +503,8 @@ def salat_info(file):
 
 	Examples
 	--------
-	>>> import salat_info as sin
-	>>> sin.salat_info(file)
+	>>> import salat
+	>>> salat.info(file)
 
 	Modification history:
 	---------------------
@@ -520,7 +518,7 @@ def salat_info(file):
 
 	############### Reading Header ################
 
-	hdr0 = salat_read_header(file,ALL=True,SILENT=True)
+	hdr0 = read_header(file,ALL=True,SILENT=True)
 
 	############### Printing in terminal ################
 
@@ -545,9 +543,9 @@ def salat_info(file):
 
 ############################ SALAT PLOT MAP ############################
 
-def salat_plot_map(almadata,beam,pxsize,cmap='hot',average=False,timestp=0,savepng=False,savejpg=False,outputpath="./"):
+def plot_map(almadata,beam,pxsize,cmap='hot',average=False,timestp=0,savepng=False,savejpg=False,outputpath="./"):
 	"""
-	Name: salat_plot_map
+	Name: plot_map
 		part of -- Solar Alma Library of Auxiliary Tools (SALAT) --
 
 	Purpose: This function makes map plot centered at (0,0) arcsec
@@ -581,9 +579,9 @@ def salat_plot_map(almadata,beam,pxsize,cmap='hot',average=False,timestp=0,savep
 
 	Examples
 	--------
-		>>> import salat_plot_map as spm
+		>>> import salat
 		#Plot map timestp=0
-		>>> salat_plot_map(almadata,beam,pxsize,cmap='hot',average=False,timestp=0,savepng=False,savejpg=False,outputpath="./")
+		>>> salat.plot_map(almadata,beam,pxsize,cmap='hot',average=False,timestp=0,savepng=False,savejpg=False,outputpath="./")
 
 
 	Modification history:
@@ -655,9 +653,9 @@ def salat_plot_map(almadata,beam,pxsize,cmap='hot',average=False,timestp=0,savep
 
 ############################ SALAT BEAM STATS ############################
 
-def salat_beam_stats(beammajor,beamminor,beamangle,timesec,plot=False):
+def beam_stats(beammajor,beamminor,beamangle,timesec,plot=False):
 	"""
-	Name: salat_beam_stats
+	Name: beam_stats
 		part of -- Solar Alma Library of Auxiliary Tools (SALAT) --
 
 	Purpose: This function computes basic stats for beam
@@ -682,9 +680,9 @@ def salat_beam_stats(beammajor,beamminor,beamangle,timesec,plot=False):
 
 	Examples
 	-------
-		>>> import salat_beam_stats as sbs
+		>>> import salat
 		#Get stats and plot
-		>>> sbs.salat_beam_stats(beammajor,beamminor,beamangle,timesec=timesec,plot=True)
+		>>> salat.beam_stats(beammajor,beamminor,beamangle,timesec=timesec,plot=True)
 
 
 	Modification history:
@@ -759,9 +757,9 @@ def salat_beam_stats(beammajor,beamminor,beamangle,timesec,plot=False):
 
 ############################ SALAT CONTRAST ############################
 
-def salat_contrast(almadata,timesec,side=5,show_best=False):
+def contrast(almadata,timesec,side=5,show_best=False):
 	"""
-	Name: salat_contrast
+	Name: contrast
 		part of -- Solar Alma Library of Auxiliary Tools (SALAT) --
 
 	Purpose: This function calcualte RMS contrast and sort best frames
@@ -784,7 +782,8 @@ def salat_contrast(almadata,timesec,side=5,show_best=False):
 
 	Examples
 	--------
-		>>> bfrs = slc.salat_contrast(almacube,timesec,show_best=True)
+		>>> import salat
+		>>> bfrs = salat.contrast(almacube,timesec,show_best=True)
 
 	Modification history:
 	---------------------
@@ -825,9 +824,9 @@ def salat_contrast(almadata,timesec,side=5,show_best=False):
 
 ############################ SALAT CONVOLVE BEAM ############################
 
-def salat_convolve_beam(data,beam,pxsize):
+def convolve_beam(data,beam,pxsize):
 	"""
-	Name: salat_convolve_beam
+	Name: convolve_beam
 		part of -- Solar Alma Library of Auxiliary Tools (SALAT) --
 
 	Purpose: Convolve a specified synthetic beam (from an ALMA observation) to a user-provided map 
@@ -849,6 +848,12 @@ def salat_convolve_beam(data,beam,pxsize):
 
 	Examples
 	--------
+	>>> import salat
+	>>>	filebifrost = path_folder + "bifrost_b3_frame400.fits"
+	>>> bifrostdata = fits.open(filebifrost)[0].data
+	>>> pxsizebifrost = 0.06 #This is assumed
+	>>> bifrostconv = salat.convolve_beam(bifrostdata,[beammajor1,beamminor1,beamangle1],pxsize=pxsizebifrost)
+
 
 	Modification history:
 	---------------------
@@ -880,9 +885,9 @@ def beam_kernel_calulator(bmaj_obs,bmin_obs,bpan_obs,pxsz):
 
 ############################ SALAT PREP DATA ############################
 
-def salat_prep_data(file,savedir="./"):
+def prep_data(file,savedir="./"):
 	"""
-	Name: salat_prep_data
+	Name: prep_data
 		part of -- Solar Alma Library of Auxiliary Tools (SALAT) --
 
 	Purpose: This function make FITS cube ready to be used in FITS reader as CARTA
@@ -897,11 +902,12 @@ def salat_prep_data(file,savedir="./"):
 	Returns
 	-------
 	bestframes: array
-		Indexes of the best frames sorted (i.e., that with the largest rms contrast).
+		I
 
 	Examples
 	--------
-		>>> bfrs = slc.salat_contrast(almacube,timesec,show_best=True)
+		>>> import salat
+		>>> salat.prep_data(file)
 
 	Modification history:
 	---------------------
