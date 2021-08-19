@@ -5,8 +5,8 @@
 	
 	**CALLING SEQUENCE:**
 	```python
-		>>> import salat
-		>>> datastats = salat.stats(almadata,Histogram=True,)
+	>>> import salat
+	>>> datastats = salat.stats(almadata,Histogram=True,)
 	```
 	=== "INPUTS / OPTIONAL KEYWORDS"
 		Option | Description | Status | Default

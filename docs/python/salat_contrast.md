@@ -5,7 +5,8 @@
 	
 	**CALLING SEQUENCE:**
 	```python
-	almacube,_,_,_,_,_,_ = salat.read(file)
+	>>> import salat
+	>>> bfrs = salat.contrast(almacube,timesec,show_best=True)
 	```
 	=== "INPUTS / OPTIONAL KEYWORDS"
 		Option | Description | Status | Default

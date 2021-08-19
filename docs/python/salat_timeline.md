@@ -5,14 +5,14 @@
 	
 	**CALLING SEQUENCE:**
 	```python
-		>>> import salat
-		>>> scans_idxs,mfram_idxs = salat.timeline(timesec,gap=30)
+	>>> import salat
+	>>> scans_idxs,mfram_idxs = salat.timeline(timesec,gap=30)
 	```
 	=== "INPUTS / OPTIONAL KEYWORDS"
 		Option | Description | Status | Default
 		------ | ----------- | ------ | -------
 		**`timesec`** | Timesec array from "[salat_read](./salat_read.md)" | `required` | 
-		**`gap`** | Time gap to considered two frames correspond to different scans | `required` | `30 
+		**`gap`** | Time gap to considered two frames correspond to different scans | `required` | `30` 
 	
 	=== "OUTPUTS"
 		Parameter | Description

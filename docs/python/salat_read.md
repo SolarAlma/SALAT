@@ -9,7 +9,8 @@
 	
 	**CALLING SEQUENCE:**
 	```python
-	almacube,_,_,_,_,_,_ = salat.read(file)
+	>>> import salat
+	>>> almacube,_,_,_,_,_,_ = salat.read(file)
 	```
 	=== "INPUTS / OPTIONAL KEYWORDS"
 		Option | Description | Status | Default
