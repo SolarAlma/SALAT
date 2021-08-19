@@ -17,7 +17,7 @@
 		**`file`** | Path to the SALSA cube in FITS format. | `required` | 
 		**`fill_NAN`** | If `True`, user will be asked to enter value or to choose if wants to use Median. | `optional` | `False`
 		**`timeout`** | If `True`, it returns 2 1D array of time in seconds and in datetime format | `optional` | `False`
-		**`beamout`** | If `True`, it returns 3 arrays with beam major and minor axes and beam angle| `optional` | `False`
+		**`beamout`** | If `True`, it returns 3 arrays with beam major and minor axes and beam angle | `optional` | `False`
 		**`HEADER`** | If `True`, it returns the original header | `optional` | `True`
 		**`SILENT`** | If `True`, no information is printed to the terminal.  | `optional` | `False`
 	

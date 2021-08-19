@@ -1,45 +1,40 @@
 # :low_brightness: SALAT_CONTRAST
 
 !!! example "SALAT_CONTRAST"
-	Compute and plot "mean intensity" and "rms intensity contrast" of a cube and indicate bad/good frames based on a given threshold.
+	Compute and plot "mean intensity" and "rms intensity contrast" of a cube and indicate bad/good frames based on a given threshold. Gaps (due to ALMA calibration routines) are marked with Red dashed lines.
 	
 	**CALLING SEQUENCE:**
-	```webidl
-	IDL> bestframe = salat_contrast(cube, limit=limit, badframes=badframes, goodframes=goodframes)
+	```python
+	almacube,_,_,_,_,_,_ = salat.read(file)
 	```
 	=== "INPUTS / OPTIONAL KEYWORDS"
-		Option | Description | Status
-		------ | ----------- | -------
-		**`CUBE`** | The ALMA data cube in `[x,y,t]` format | `required`
-		**`FITS`** | It should be set if the cube is a fits file (default = 0). | `optional`
-		**`LIMIT`** | A limit for the rms intensity contrast, with which 'good' and 'bad' frames are identified. | `optional`
-		**`SIDE`** | Number of pixels to be excluded from sides of the field of view prior to calculations of the mean intensity and rms contrast (default = 0).  | `optional`
-		**`SHOW_BEST`** | If set, location of the best frame (i.e., that with the largest rms contrast) is indicated on the plot (default = 0).  | `optional`
-		**`TITLE`** | It should be set if the cube is a fits file. | `optional`
+		Option | Description | Status | Default
+		------ | ----------- | ------ | -------
+		**`almadata`** | Datacube as array from "[salat_read](./salat_read.md)". It can be 2D and 3D | `required` | 
+		**`timesec`** | Timesec array from "[salat_read](./salat_read.md)" | `required` | 
+		**`side`** | Number of pixels to be excluded from sides of the field of view prior to calculations of the mean intensity and rms contrast. | `required` | `5`
+		**`show_best`** | If `True`, location of the best frame (i.e., that with the largest rms contrast) is indicated on the plot. | `optional` | `False`
 	
 	=== "OUTPUTS"
 		Parameter | Description
 		------ | -----------
-		**`BESTFRAME`** | Index of the best frame (i.e., that with the largest rms contrast).
-		**`GOODFRAMES`** | Indices of 'good' frames, i.e., those above the LIMIT, only if the LIMIT is defined (`optional`)
-		**`BADFRAMES`** | Indices of 'bad' frames, i.e., those below the LIMIT, only if the LIMIT is defined (`optional`)
+		**`bestframes`** | Indexes of the best frames sorted (i.e., that with the largest rms contrast).
+		**`fig`** | A matplotlib plot is produced.
+
 		
 	=== "EXAMPLE"
-		To get the band information:
-		```webidl
-		IDL> dir = '/mn/stornext/d13/alma/shahin/almaobs_level4/b3__2016-12-22/'
-		IDL> cube = dir+'solaralma.b3.2016-12-22.14:19:31-15:07:07__2016.1.00423.S_clean_inK_sj_level4.fits'
-		IDL> bestframe = salat_contrast(cube, /fits, side=100, /show_best)
-		
-			 Variation of mean brightness (imean): -0.79 %
-			 Variation of rms intensity contrast (rmsCont): -12.05 %
-			 
-		IDL> print, bestframe
-			 105.000
+		Finding best frames and plotting RMS contrast for one cube
+		```python
+		>>> import salat
+		>>> bfrs = salat.contrast(almacube,timesec,show_best=True)
+		```	
 		```
-		
-		![](../images/examples/salat_contrast_example.jpg)
+		---------------------------------------------------
+		------------ SALAT CONTRAST part of -------------
+		-- Solar Alma Library of Auxiliary Tools (SALAT) --
+		```
+		![png](../../Python/Tutorial/output_29_1.png)
 	
-	!!! quote "[Source code](https://github.com/SolarAlma/SALAT/blob/main/IDL/salat_contrast.pro)"
+	!!! quote "[Source code](https://github.com/SolarAlma/SALAT/blob/9bfa6c648a27ea5b6958d51d8384420ec9096642/Python/salat.py#L760)"
 
-!!! Success "Back to the list of [IDL Routines](../idl.md)"
+!!! Success "Back to the list of [Python functions](../python.md)"

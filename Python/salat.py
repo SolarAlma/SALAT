@@ -401,7 +401,7 @@ def timeline(timesec,gap=30):
 
     Parameters
     ----------
-    file: np.array
+    timesec: np.array
         Time array in seconds
     gap: float, 30 seconds default
         Time gap to consider different scans
