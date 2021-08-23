@@ -1,8 +1,7 @@
 # :low_brightness: SALAT_READ
 
 !!! example "SALAT_READ"
-	Reads in a SALSA level4 FITS cubes and provides information about the cube's dimension and other parameters stored as extensions,
-	such as arrays of observing time, beam's size and angle.
+	Reads in a SALSA level4 FITS cubes and provides information about the cube's dimension and other parameters stored as extensions,such as arrays of observing time, beam's size and angle.
 	The SALSA datacubes have the following dimensions: [spatial (x), spatial (y), frequency (f), Stokes (s), time (t)].
 	When using Python, the dimensions are reversed: [time (t),Stokes (s),frequency (f)spatial (y),spatial (x)].
 	Thus, depending on the availability of full spectra and/or Stokes parameters, the cube may have 3-5 dimensions.

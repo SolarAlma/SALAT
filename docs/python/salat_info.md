@@ -20,7 +20,6 @@
 
 		
 	=== "EXAMPLE"
-		Finding best frames and plotting RMS contrast for one cube
 		```python
 		>>> import salat
 		>>> salat.info(file)

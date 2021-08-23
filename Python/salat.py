@@ -183,7 +183,7 @@ def read_header(file,ALL=False,ORIGINAL=False,SILENT=False):
 	Returns
 	-------
 	header: Class or astropy.io.fits.header.Header 
-		Header as Namedtuple CLass that can be access as header.__varname__ if ALL=FALSE
+		Header as Namedtuple CLass that can be accessed as header.__varname__ if ALL=FALSE
 		Header as astropy.io.fits.header.Header if ALL=TRUE
 
 
@@ -195,7 +195,7 @@ def read_header(file,ALL=False,ORIGINAL=False,SILENT=False):
 
 	Modification history:
 	---------------------
-	© Guevara Gómez J.C. (RoCS/SolarALMA), July 2021
+	© Guevara Gómez J.C. (RoCS/SolarALMA), July, August 2021
 	"""
 
 	############### Loading Original Header ################
@@ -217,21 +217,21 @@ def read_header(file,ALL=False,ORIGINAL=False,SILENT=False):
 
 		if ORIGINAL == True:
 			important_tags = [w.replace('-', '_') for w in important_tags] #Class dont handle - for varname
-			class define_header(NamedTuple):
+			class Header(NamedTuple):
 				"""
 				Define tags and types
 				"""
 				for i in range(len(important_tags_values)):
 					exec("%s : %s" % (important_tags[i],important_tags_values_type[i].__name__))
 		else:
-			class define_header(NamedTuple):
+			class Header(NamedTuple):
 				"""
 				Define tags and types
 				"""
 				for i in range(len(important_tags_values)):
 					exec("%s : %s" % (important_tags_meaningful[i],important_tags_values_type[i].__name__))
 
-		header = define_header(*important_tags_values)
+		header = Header(*important_tags_values)
 
 	else: #Otherwise, all are passed to structure
 		header = hdr0.copy()
@@ -835,7 +835,7 @@ def convolve_beam(data,beam,pxsize):
 	Parameters
 	----------
 	data: np.array
-		Data array from user, only 2D
+		Data array from user, only 2D, could be a Bifrost snapshot.
 	beam: list of np.arrays, [bmaj,bmin,bang]
 		List with np.arrays of beam info
 	pxsize: float,
@@ -896,12 +896,12 @@ def prep_data(file,savedir="./"):
 	----------
 	file: str
 		Original FITS file to be reduced
-	savdir: str, "./" Default
+	savedir: str, "./" Default
 		Output directory for new fits
 
 	Returns
 	-------
-	bestframes: array
+	savefile
 		I
 
 	Examples

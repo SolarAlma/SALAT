@@ -58,8 +58,6 @@ The FITS cube can be loaded as follows:
 almacube1,header1,timesec1,timeutc1,beammajor1,beamminor1,beamangle1 = salat.read(file1,timeout=True,beamout=True,HEADER=True,SILENT=False)
 ```
 
-    100%|██████████| 1200/1200 [00:00<00:00, 31689.21it/s]
-
     
     ---------------------------------------------------
     --------------- SALAT READ part of ----------------
@@ -69,7 +67,7 @@ almacube1,header1,timesec1,timeutc1,beammajor1,beamminor1,beamangle1 = salat.rea
     
 
 
-    
+    100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1200/1200 [00:00<00:00, 24440.79it/s]
 
 
     ---------------------------------------------------
@@ -97,11 +95,6 @@ almacube1,header1,timesec1,timeutc1,beammajor1,beamminor1,beamangle1 = salat.rea
     Done!
 
 
-
-```python
-
-```
-
 ## READ_HEADER
 There are 3 possible ways of obtaining the header.
 
@@ -116,7 +109,8 @@ There are 3 possible ways of obtaining the header.
 ```python
 #FITS header is read and pass to a Class structure with new meaningful keywords
 hdrmk = salat.read_header(file1,ALL=False,ORIGINAL=False,)
-hdrmk
+print("Header with meaningful keywords", hdrmk)
+print("Get Pixelsize (hdrmk.pixel_size): ",hdrmk.pixel_size)
 ```
 
     
@@ -141,13 +135,8 @@ hdrmk
      |  Water Vapour:  1.598
      ---------------------------------------------------
       
-
-
-
-
-
-    define_header(major_beam_mean=0.000583749, minor_beam_mean=0.000379633, beam_angle_mean=71.31184387207, RA=271.2488635455, Dec=-25.42327076764, Frequency=99990725896.68, solarx=-0.001, solary=0.001, Rest_frequency=93000000000.1, DATE_OBS='2016-12-22T14:19:36.623999', ALMA_Band='BAND3', min_of_datacube=4573.09, max_of_datacube=10635.5, ALMA_project_id='2016.1.00423.S', water_vapour=1.598, pixel_size=0.32)
-
+    Header with meaningful keywords Header(major_beam_mean=0.000583749, minor_beam_mean=0.000379633, beam_angle_mean=71.31184387207, RA=271.2488635455, Dec=-25.42327076764, Frequency=99990725896.68, solarx=-0.001, solary=0.001, Rest_frequency=93000000000.1, DATE_OBS='2016-12-22T14:19:36.623999', ALMA_Band='BAND3', min_of_datacube=4573.09, max_of_datacube=10635.5, ALMA_project_id='2016.1.00423.S', water_vapour=1.598, pixel_size=0.32)
+    Get Pixelsize (hdrmk.pixel_size):  0.32
 
 
 
@@ -155,25 +144,18 @@ hdrmk
 #FITS header is read and pass to a Class structure with original keywords
 #SILENT=True to avoid printing
 hdrok = salat.read_header(file1,ALL=False,ORIGINAL=True,SILENT=True)
-hdrok
+print("Header with original keywords",hdrok)
+print("Get Pixelsize (hdrok.CDELT1A): ",hdrok.CDELT1A)
 ```
 
-
-
-
-    define_header(BMAJ=0.000583749, BMIN=0.000379633, BPA=71.31184387207, CRVAL1=271.2488635455, CRVAL2=-25.42327076764, CRVAL3=99990725896.68, CRVAL1A=-0.001, CRVAL2A=0.001, RESTFRQ=93000000000.1, DATE_OBS='2016-12-22T14:19:36.623999', INSTRUME='BAND3', DATAMIN=4573.09, DATAMAX=10635.5, PROPCODE='2016.1.00423.S', PWV=1.598, CDELT1A=0.32)
-
+    Header with original keywords Header(BMAJ=0.000583749, BMIN=0.000379633, BPA=71.31184387207, CRVAL1=271.2488635455, CRVAL2=-25.42327076764, CRVAL3=99990725896.68, CRVAL1A=-0.001, CRVAL2A=0.001, RESTFRQ=93000000000.1, DATE_OBS='2016-12-22T14:19:36.623999', INSTRUME='BAND3', DATAMIN=4573.09, DATAMAX=10635.5, PROPCODE='2016.1.00423.S', PWV=1.598, CDELT1A=0.32)
+    Get Pixelsize (hdrok.CDELT1A):  0.32
 
 
 
 ```python
 #FITS header is read and returned in original format
 hdroh = salat.read_header(file1,ALL=True,SILENT=True)
-```
-
-
-```python
-
 ```
 
 ## SALAT STATS
@@ -217,14 +199,9 @@ stats = salat.stats(almadata=almacube1,Histogram=True,SILENT=False)
 
 
     
-![png](output_14_1.png)
+![png](output_12_1.png)
     
 
-
-
-```python
-
-```
 
 ## SALAT TIMELINE
 This function displays a plot that shows the time gaps within the observation timeline. The gap to considere frame as part of a new scan is by default 30 frames but it can be customized as well.
@@ -247,18 +224,13 @@ print("Indexes consequent frames: ",idxcqfrs)
 
 
     
-![png](output_17_1.png)
+![png](output_14_1.png)
     
 
 
     Indexes scans:  {'Sc. 1': [0, 299], 'Sc. 2': [300, 599], 'Sc. 3': [600, 899], 'Sc. 4': [900, 1199]}
     Indexes consequent frames:  {'Sec. 1': [0, 149], 'Sec. 2': [150, 299], 'Sec. 3': [300, 449], 'Sec. 4': [450, 599], 'Sec. 5': [600, 749], 'Sec. 6': [750, 899], 'Sec. 7': [900, 1049], 'Sec. 8': [1050, 1199]}
 
-
-
-```python
-
-```
 
 ## SALAT INFO
 
@@ -293,11 +265,6 @@ salat.info(file1)
     
 
 
-
-```python
-
-```
-
 ## SALAT PLOT_MAP
 
 This function makes a plot for one frame or averaged frame using as inputs the outputs from read function. The pixelsize can be extracted from hdr, for example pxsize=hdr.
@@ -315,14 +282,9 @@ salat.plot_map(almacube1,pxsize=hdrmk.pixel_size,beam=[beammajor1,beamminor1,bea
 
 
     
-![png](output_23_1.png)
+![png](output_18_1.png)
     
 
-
-
-```python
-
-```
 
 ## SALAT BEAM_STATS
 
@@ -356,14 +318,9 @@ salat.beam_stats(beammajor1,beamminor1,beamangle1,timesec1,plot=True)
 
 
     
-![png](output_26_1.png)
+![png](output_20_1.png)
     
 
-
-
-```python
-
-```
 
 ## SALAT CONTRAST
 Compute and plot "mean intensity" and "rms intensity contrast" of a cube and indicate bad/good frames based on a given threshold. Gaps (due to ALMA calibration routines) are marked with Red dashed lines.
@@ -384,14 +341,9 @@ idxbestfr = salat.contrast(almacube1,timesec1,show_best=True)
 
 
     
-![png](output_29_1.png)
+![png](output_22_1.png)
     
 
-
-
-```python
-
-```
 
 ## SALAT CONVOLVE_BEAM
 
@@ -459,14 +411,9 @@ plt.tight_layout()
 
 
     
-![png](output_35_0.png)
+![png](output_27_0.png)
     
 
-
-
-```python
-
-```
 
 ## SALAT PREP_DATA
 
@@ -484,8 +431,3 @@ salat.prep_data(file1)
     
     Done!
 
-
-
-```python
-
-```

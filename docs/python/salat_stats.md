@@ -19,12 +19,11 @@
 		Parameter | Description
 		------ | -----------
 		**`datastats`** | Python dictionary with computed stats.
-		**`fig`** | A matplotlib histogram of temperature distribution is produced if Histogram=True`.
+		**`fig`** | A matplotlib histogram of temperature distribution is produced if `Histogram=True`.
 
 
 		
 	=== "EXAMPLE"
-		Finding best frames and plotting RMS contrast for one cube
 		```python
 		>>> import salat
 		>>> datastats = salat.stats(almadata,Histogram=True,)
@@ -53,7 +52,7 @@
 		----------------------------------------------
 
 		```
-		![png](../Python_images/output_14_1.png)
+		![png](../Python_images/output_12_1.png)
 	
 	!!! quote "[Source code](https://github.com/SolarAlma/SALAT/blob/9bfa6c648a27ea5b6958d51d8384420ec9096642/Python/salat.py#L270)"
 
