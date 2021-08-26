@@ -12,7 +12,7 @@ Update an existing installation to the **newest version** via:
 cd SALAT
 git pull
 ```
-**Install via direct download**. Alternatively, the SALAT package can be downloaded as a [zip file][https://github.com/SolarAlma/SALAT/zipball/master/]. This way, the latest version should be downloaded and replaced with the older one manually. Please note the version of the packages and be aware that the routines are updated regularly.
+**Install via direct download**. Alternatively, the SALAT package can be downloaded as a [zip file](https://github.com/SolarAlma/SALAT/zipball/master/). This way, the latest version should be downloaded and replaced with the older one manually. Please note the version of the packages and be aware that the routines are updated regularly.
 
 !!! Help "Installation issues"
     Please let us know if you encounter any issues and/or if any tricks required, so we can add them here!
