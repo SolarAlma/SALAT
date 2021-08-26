@@ -33,7 +33,7 @@ git pull
 	```
 
 !!! Info "Python"
-    To be added ....
+    Download the [salat.py](https://github.com/SolarAlma/SALAT/blob/main/Python/salat.py) and save it in the folder you want to work in. Then, just follow [examples](./python.md)
 	
 
 
