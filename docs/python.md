@@ -1,3 +1,6 @@
+A notebook tutorial can be also downloaded [here](https://github.com/SolarAlma/SALAT/blob/main/Python/SALAT_python_tutorial.ipynb) or revised online [here](https://github.com/SolarAlma/SALAT/blob/main/Python/Tutorial/SALAT_python_tutorial.md) 
+
+
 !!! success "[SALAT_READ](python/salat_read.md)"
 	Reads in a SALSA level4 FITS cubes and provides information about the cube's dimension and other parameters stored as extensions, such as arrays of observing time, beam's size and angle.
 	```python
