@@ -1,7 +1,7 @@
 ## SALAT: Solar ALMA Library of Auxiliary Tools</strong>
 
 <p align="left">
-    <a href="#"><img src="https://img.shields.io/badge/under-development-red"></a> 
+    <a href="https://doi.org/10.5281/zenodo.5466873"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.5466873.svg" alt="DOI"></a>
     <a href="https://www.mn.uio.no/rocs/english/projects/solaralma/" title=""  target="_blank"><img src="https://img.shields.io/badge/copyright-RoCS%2FSolarALMA-blue"></a>
     <a href="https://opensource.org/licenses/MIT" title="" target="_blank"><img src="https://img.shields.io/badge/license-MIT-yellow.svg"></a>
 </p>
