@@ -4,7 +4,7 @@ If you use **SALAT** in your research, please cite it as
 
 - [Jafarzadeh, S., Guevara Gómez, J. C., Wedemeyer, S., Aannerud, S. 2021, SolarAlma/SALAT: DOI 10.5281/zenodo.5466872][1]{target=_blank}
 
-Additionally, please cite the following article, if you use a SALSA dataset and/or the SALAT library.
+Additionally, please cite the following article, if you use a **[SALSA][3]{target=_blank}** dataset and/or the **SALAT** library.
 
 - [Henriques, V. M. J., Jafarzadeh, S., Guevara Gómez, J. C., Eklund, H., Wedemeyer, S., Szydlarski, M., Haugan, S. V. H., Mohan, A., 2021, arXiv:2109.02374][2]{target=_blank} 
 
@@ -29,5 +29,6 @@ Additionally, please cite the following article, if you use a SALSA dataset and/
 
   [1]: https://doi.org/10.5281/zenodo.5466872
   [2]: https://ui.adsabs.harvard.edu/abs/2021arXiv210902374H/abstract
+  [3]: http://sdc.uio.no/salsa
   
 <br>  
