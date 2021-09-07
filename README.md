@@ -15,16 +15,15 @@ A collection of routines (programmed in both IDL and Python) for simple analysis
 
 See the documentation at **[https://solaralma.github.io/SALAT](https://solaralma.github.io/SALAT)** for **getting started guides**, **descriptions**, and **working examples**.
 
-<br>
 
 ## Citation
 
 If you use **SALAT** in your research, please cite it as
 
-- [Jafarzadeh, S., Guevara Gómez, J. C., Wedemeyer, S., Aannerud, S. 2021, SolarAlma/SALAT: DOI 10.5281/zenodo.5466872](https://doi.org/10.5281/zenodo.5466872)
+[Jafarzadeh, S., Guevara Gómez, J. C., Wedemeyer, S., Aannerud, S. 2021, SolarAlma/SALAT: DOI 10.5281/zenodo.5466872](https://doi.org/10.5281/zenodo.5466872)
 
 Additionally, please cite the following article, if you use a **[SALSA](http://sdc.uio.no/salsa)** dataset and/or the **SALAT** library.
 
-- [Henriques, V. M. J., Jafarzadeh, S., Guevara Gómez, J. C., Eklund, H., Wedemeyer, S., Szydlarski, M., Haugan, S. V. H., Mohan, A., 2021, arXiv:2109.02374](https://ui.adsabs.harvard.edu/abs/2021arXiv210902374H/abstract)
+[Henriques, V. M. J., Jafarzadeh, S., Guevara Gómez, J. C., Eklund, H., Wedemeyer, S., Szydlarski, M., Haugan, S. V. H., Mohan, A., 2021, arXiv:2109.02374](https://ui.adsabs.harvard.edu/abs/2021arXiv210902374H/abstract)
 
 <br>
