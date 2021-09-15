@@ -531,7 +531,7 @@ def info(file):
 	print("|  ALMA proj: ",hdr0["PROPCODE"])	
 	print("|  Pix. Unit: ",hdr0["BUNIT"])
 	print("|  Pix. Size: ",hdr0["CDELT1A"]," arcsec.")
-	print("|  Beam mean: ",float(hdr0["SPATRES"])*u.deg.to(u.arcsec)," arcsec")
+	print("|  Beam mean: ",float(hdr0["SPATRES"])," arcsec")
 	print("|  FOV. diam: ",hdr0["EFFDIAM"])
 	print("----------------------------------------------")
 	print("| Data range ")
