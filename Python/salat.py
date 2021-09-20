@@ -632,7 +632,7 @@ def plot_map(almadata,beam,pxsize,cmap='hot',average=False,timestp=0,savepng=Fal
 	cax = divider.append_axes('right', size='5%', pad=0.05)
 	cb = fig.colorbar(im1, cax=cax, orientation='vertical')
 	#Beam artist to add to plot
-	ell_beam = matplotlib.patches.Ellipse(((-imylen/2)+5,(-imxlen/2)+5),bmaj,bmin,angle=bang,fc='k',ec='b')
+	ell_beam = matplotlib.patches.Ellipse(((-imylen/2)+5,(-imxlen/2)+5),bmaj,bmin,angle=bang+90,fc='k',ec='b')
 	#Add beam
 	ax.add_patch(ell_beam)
 	#Miscelanoues
