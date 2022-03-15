@@ -24,6 +24,6 @@ If you use **SALAT** in your research, please cite it as
 
 Additionally, please cite the following article, if you use a **[SALSA](http://sdc.uio.no/salsa)** dataset and/or the **SALAT** library.
 
-[Henriques, V. M. J., Jafarzadeh, S., Guevara Gómez, J. C., Eklund, H., Wedemeyer, S., Szydlarski, M., Haugan, S. V. H., Mohan, A., 2021, arXiv:2109.02374](https://ui.adsabs.harvard.edu/abs/2021arXiv210902374H/abstract)
+[Henriques, V. M. J., Jafarzadeh, S., Guevara Gómez, J. C., Eklund, H., Wedemeyer, S., Szydlarski, M., Haugan, S. V. H., Mohan, A., 2021, Astronomy & Astrophysics,  659, A31](https://ui.adsabs.harvard.edu/abs/2021arXiv210902374H/abstract) | [PDF](https://www.aanda.org/articles/aa/pdf/2022/03/aa42291-21.pdf)
 
 <br>
