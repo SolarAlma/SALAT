@@ -25,7 +25,7 @@ Additionally, please cite the following article, if you use a **[SALSA][3]**{tar
         primaryClass = {astro-ph.SR},
         adsurl = {https://ui.adsabs.harvard.edu/abs/2022A&A...659A..31H},
         adsnote = {Provided by the SAO/NASA Astrophysics Data System}
-}
+  }
   ```
 <br>
 
