@@ -29,7 +29,8 @@ theme:
   features:
     - navigation.expand
   favicon: images/favicon.png
-  logo: images/favicon.png
+  icon:
+    logo: images/favicon.png
 
 markdown_extensions:
     - toc:
