@@ -30,7 +30,7 @@ theme:
     - navigation.expand
   favicon: images/favicon.png
   icon:
-    logo: images/favicon.png
+    logo: logo
 
 markdown_extensions:
     - toc:
