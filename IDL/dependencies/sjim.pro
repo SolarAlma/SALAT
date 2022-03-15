@@ -1026,7 +1026,7 @@ endelse
 						if atime then sjclock, time[mk], pos=[10,(nyt/ycc)-((nxt/ycc)*0.14)-10], size=(nxt/xcc)*0.14, thick=4, /dev, col=clockcolor
 						device, decomposed=0
 						if atextseries then $
-							XYOUTS, 0.1, 0.93, ALIGNMENT=0, CHARSIZE=2.5, /NORMAL, strtrim(textseries[mk],2), COLOR=FSC_Color('GOLD'), CHARTHICK=2.
+							XYOUTS, 0.1*cc, 0.9*cc, ALIGNMENT=0, CHARSIZE=2.5, /NORMAL, strtrim(textseries[mk],2), COLOR=FSC_Color('GOLD'), CHARTHICK=2.
 						if atiffsavedir then $
 							void = cgSnapshot(filename=savedir+'im'+strtrim(long(1000+mk),2), quality=100, /PNG, /NODIALOG)
 					endelse
@@ -1045,7 +1045,7 @@ endelse
 						if atime then sjclock, time[mk], pos=[10,(nyt/ycc)-((nxt/ycc)*0.14)-10], size=(nxt/xcc)*0.14, thick=4, /dev, col=clockcolor
 						device, decomposed=0
 						if atextseries then $
-							XYOUTS, 0.1, 0.93, ALIGNMENT=0, CHARSIZE=2.5, /NORMAL, strtrim(textseries[mk],2), COLOR=FSC_Color('GOLD'), CHARTHICK=2.
+							XYOUTS, 0.1*cc, 0.9*cc, ALIGNMENT=0, CHARSIZE=2.5, /NORMAL, strtrim(textseries[mk],2), COLOR=FSC_Color('GOLD'), CHARTHICK=2.
 						if atiffsavedir then $
 							void = cgSnapshot(filename=savedir+'im'+strtrim(long(1000+mk),2), quality=100, /PNG, /NODIALOG)
 					endelse
@@ -1076,7 +1076,7 @@ endelse
 				   			  loadct_im = ct, noxval=0, zticks=6, dm=dm, ctfile=ctfile
 			    
 					if atextseries then $
-						XYOUTS, 0.05, 0.95, ALIGNMENT=0, CHARSIZE=1.5, /NORMAL, strtrim(textseries[mk],2), COLOR=FSC_Color('Dodger Blue'), CHARTHICK=1
+						XYOUTS, 0.1*cc, 0.9*cc, ALIGNMENT=0, CHARSIZE=1.5, /NORMAL, strtrim(textseries[mk],2), COLOR=FSC_Color('Dodger Blue'), CHARTHICK=1
 					
 					if atiffsavedir then $
 						void = cgSnapshot(filename=savedir+'im'+strtrim(long(1000+mk),2), quality=100, /PNG, /NODIALOG)
