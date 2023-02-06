@@ -35,7 +35,7 @@ coeffs2 = LINEAR_FIT(x,rmsCont)
 varper1 = (float(((coeffs1(0)+(coeffs1(1)*(nt-1))-coeffs1(0)))/coeffs1(0)))*100.
 varper2 = (float(((coeffs2(0)+(coeffs2(1)*(nt-1))-coeffs2(0)))/coeffs2(0)))*100.
 
-window, 6, xs=2200, ys=1000, title='Variations of: mean brightness (top) & rms intensity contrast (bottom) | '+title
+window, 0, xs=2200, ys=1000, title='Variations of: mean brightness (top) & rms intensity contrast (bottom) | '+title
 !P.MULTI=[0,1,2]
 cgplot, imean, /ynozero, xtitle='Frame number', ytitle='Mean brightness', xs=1, pos=[0.1,0.59,0.99,0.99]
 ;xyouts, 0.94, 0.93, alignment=1.0, 'Variation: '+strtrim(string(varper1, format='(F20.2)'),2)+' %', $
