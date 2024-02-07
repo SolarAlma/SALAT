@@ -28,7 +28,7 @@ repo_url: https://github.com/SolarAlma/SALAT
 edit_uri: ""
 
 # Copyright
-copyright: Copyright &copy; 2022 <a href="https://www.mn.uio.no/rocs/english/projects/solaralma/" target="blank">RoCS/SolarALMA</a>
+copyright: Copyright &copy; 2024 <a href="https://www.mn.uio.no/rocs/english/projects/solaralma/" target="blank">RoCS/SolarALMA</a>
 
 nav:
   - Home: index.md
